@@ -1,0 +1,203 @@
+{
+  "Nav": {
+    "home": "Home",
+    "camere": "Camere",
+    "ristorante": "Ristorante",
+    "esperienze": "Esperienze",
+    "lerici": "Lerici",
+    "lavoro": "Soggiorni lavoro",
+    "offerte": "Offerte",
+    "contatti": "Contatti"
+  },
+  "Header": {
+    "cta": "Prenota ora",
+    "menuAria": "Apri menu"
+  },
+  "Footer": {
+    "contattiTitle": "Contatti",
+    "orari": "Orari reception",
+    "privacy": "Privacy Policy",
+    "cookie": "Cookie Policy",
+    "rights": "Tutti i diritti riservati"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Lerici · La Spezia · Liguria",
+      "titlePre": "Nel cuore del ",
+      "titleHighlight": "Golfo dei Poeti",
+      "subtitle": "Hotel familiare a Lerici, 150 metri dal mare.",
+      "ctaPrimary": "Prenota ora",
+      "ctaSecondary": "Scopri l'hotel",
+      "badges": {
+        "mare": "150m dal mare",
+        "borgo": "Centro del borgo",
+        "ristorante": "Ristorante di pesce",
+        "famiglia": "Familiare da generazioni"
+      }
+    },
+    "camere": {
+      "title": "Camere in evidenza",
+      "subtitle": "Ambienti curati, vista sul golfo o sul borgo.",
+      "priceFrom": "da",
+      "cta": "Scopri",
+      "ctaAll": "Vedi tutte le camere"
+    },
+    "ristorante": {
+      "tag": "Unico a Lerici",
+      "title": "Il Ristorante",
+      "description": "Cucina ligure e di pesce, con prodotti del territorio e la tradizione marinara del golfo.",
+      "cta": "Scopri il menu"
+    },
+    "pesto": {
+      "number": "1.500+",
+      "numberLabel": "ospiti ogni stagione",
+      "title": "La degustazione del pesto",
+      "description": "Un'esperienza artigianale: pestello, mortaio e ingredienti liguri autentici, per scoprire la vera ricetta del pesto genovese.",
+      "cta": "Prenota la degustazione"
+    },
+    "dintorni": {
+      "title": "Lerici e dintorni",
+      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 min in treno" },
+      "portovenere": { "name": "Portovenere", "distanza": "10 min in battello" },
+      "tellaro": { "name": "Tellaro", "distanza": "10 min in auto" },
+      "cta": "Scopri il territorio"
+    },
+    "lavoro": {
+      "title": "Soggiorni di lavoro — Convenzioni aziendali",
+      "subtitle": "Per professionisti e aziende del Porto di La Spezia",
+      "cta": "Scopri le convenzioni"
+    },
+    "galleria": {
+      "title": "Galleria",
+      "cta": "Vedi la galleria completa"
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "q1": "Dove si trova l'Hotel del Golfo?",
+      "a1": "L'Hotel del Golfo si trova nel centro di Lerici, a soli 150 metri dal mare, nel cuore del Golfo dei Poeti in Liguria.",
+      "q2": "L'hotel ha un ristorante?",
+      "a2": "Sì, il nostro ristorante propone cucina ligure e di pesce con prodotti del territorio.",
+      "q3": "Quanto dista dalle Cinque Terre?",
+      "a3": "Le Cinque Terre sono raggiungibili in circa 20 minuti in treno da Lerici.",
+      "q4": "L'hotel fa convenzioni aziendali?",
+      "a4": "Sì, offriamo tariffe dedicate e convenzioni per professionisti e aziende del Porto di La Spezia."
+    }
+  },
+  "Servizi": {
+    "wifi": "WiFi",
+    "tv": "TV",
+    "aria-condizionata": "Aria condizionata",
+    "vista-mare": "Vista mare",
+    "balcone": "Balcone",
+    "minibar": "Minibar",
+    "cassaforte": "Cassaforte",
+    "bagno-privato": "Bagno privato"
+  },
+  "CamerePage": {
+    "title": "Le nostre camere",
+    "subtitle": "Ambienti curati, vista sul golfo o sul borgo.",
+    "empty": "Le camere saranno disponibili a breve.",
+    "priceFrom": "da",
+    "cta": "Scopri"
+  },
+  "CameraDetailPage": {
+    "capienza": "persone",
+    "mq": "mq",
+    "prezzoFrom": "da",
+    "prezzoNotte": "a notte",
+    "serviziTitle": "Servizi",
+    "bookingCta": "Prenota questa camera",
+    "backToList": "Tutte le camere",
+    "notFoundTitle": "Camera non trovata",
+    "notFoundBody": "La camera cercata non esiste o non è più disponibile."
+  },
+  "RistorantePage": {
+    "title": "Il Ristorante",
+    "tag": "Unico a Lerici",
+    "fallbackDescription": "Cucina ligure e di pesce, con prodotti del territorio e la tradizione marinara del golfo.",
+    "specialitaTitle": "Le nostre specialità",
+    "menuCta": "Vedi il menu",
+    "formTitle": "Prenota un tavolo",
+    "formNome": "Nome",
+    "formData": "Data",
+    "formOra": "Ora",
+    "formCoperti": "Numero coperti",
+    "formTelefono": "Telefono",
+    "formSubmit": "Invia richiesta"
+  },
+  "EsperienzePage": {
+    "title": "Esperienze",
+    "pestoCta": "Prenota la degustazione",
+    "escursioniTitle": "Escursioni consigliate",
+    "escursioni": {
+      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "Le celebri terrazze colorate a picco sul mare, raggiungibili in treno o battello." },
+      "portovenere": { "titolo": "Portovenere", "descrizione": "Borgo marinaro Patrimonio UNESCO, con la chiesa di San Pietro sullo scoglio." },
+      "kayak": { "titolo": "Escursioni in kayak", "descrizione": "Il golfo esplorato dal mare, tra insenature e piccole spiagge nascoste." },
+      "trekking": { "titolo": "Trekking sui sentieri liguri", "descrizione": "Percorsi panoramici tra Lerici, Tellaro e il Parco di Montemarcello." }
+    }
+  },
+  "LavoroPage": {
+    "title": "Per chi lavora nel Golfo",
+    "subtitle": "Tariffe dedicate per professionisti e aziende che operano nel Porto di La Spezia",
+    "serviziTitle": "Servizi dedicati",
+    "serviziDefault": [
+      "Tariffe dedicate per soggiorni prolungati (settimanali/mensili)",
+      "Fatturazione aziendale e convenzioni con ditte",
+      "Check-in/out flessibile per turni di lavoro",
+      "Colazione dalle 6:00 per chi inizia presto",
+      "WiFi ad alta velocità in tutte le camere",
+      "Parcheggio (convenzione con parcheggio vicino)",
+      "Ristorante con menu fisso economico per lavoratori",
+      "Lavanderia su richiesta"
+    ],
+    "convenzioniTitle": "Convenzioni aziendali",
+    "convenzioniFallback": "Collaboriamo con ditte, cooperative e aziende del distretto industriale di La Spezia da oltre 30 anni. Contattaci per definire una convenzione su misura.",
+    "formTitle": "Richiedi una convenzione",
+    "formAzienda": "Nome azienda",
+    "formReferente": "Nome referente",
+    "formEmail": "Email aziendale",
+    "formTelefono": "Telefono",
+    "formDipendenti": "N° dipendenti stimati al mese",
+    "formPeriodo": "Periodo",
+    "formPeriodoAnno": "Tutto l'anno",
+    "formPeriodoStagionale": "Stagionale",
+    "formNote": "Note",
+    "formSubmit": "Invia richiesta"
+  },
+  "ContattiPage": {
+    "title": "Contatti",
+    "formTitle": "Scrivici",
+    "formNome": "Nome",
+    "formEmail": "Email",
+    "formTelefono": "Telefono",
+    "formMessaggio": "Messaggio",
+    "formArrivo": "Data arrivo",
+    "formPartenza": "Data partenza",
+    "formSubmit": "Invia messaggio",
+    "orariTitle": "Orari reception",
+    "comeArrivareTitle": "Come arrivare",
+    "auto": "In auto: A12, uscita Sarzana, poi SP331 per Lerici (15 min).",
+    "treno": "In treno: stazione di La Spezia Centrale, poi bus o taxi (20 min).",
+    "battello": "In battello: collegamenti stagionali da La Spezia e Portovenere."
+  },
+  "OffertePage": {
+    "title": "Offerte",
+    "subtitle": "Pacchetti e promozioni stagionali per il tuo soggiorno a Lerici.",
+    "empty": "Nessuna offerta attiva al momento.",
+    "badgeEvidenziata": "In evidenza",
+    "validoDal": "Valido dal",
+    "al": "al",
+    "cta": "Prenota questa offerta"
+  },
+  "GalleriaPage": {
+    "title": "Galleria",
+    "subtitle": "Scorci dell'hotel, delle camere, del ristorante e di Lerici.",
+    "empty": "Le foto saranno disponibili a breve.",
+    "filterAll": "Tutte",
+    "filterHotel": "Hotel",
+    "filterCamere": "Camere",
+    "filterRistorante": "Ristorante",
+    "filterLerici": "Lerici",
+    "closeLightbox": "Chiudi"
+  }
+}

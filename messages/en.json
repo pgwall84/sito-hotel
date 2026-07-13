@@ -1,0 +1,203 @@
+{
+  "Nav": {
+    "home": "Home",
+    "camere": "Rooms",
+    "ristorante": "Restaurant",
+    "esperienze": "Experiences",
+    "lerici": "Lerici",
+    "lavoro": "Work Stays",
+    "offerte": "Offers",
+    "contatti": "Contact"
+  },
+  "Header": {
+    "cta": "Book now",
+    "menuAria": "Open menu"
+  },
+  "Footer": {
+    "contattiTitle": "Contact",
+    "orari": "Reception hours",
+    "privacy": "Privacy Policy",
+    "cookie": "Cookie Policy",
+    "rights": "All rights reserved"
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "Lerici · La Spezia · Liguria",
+      "titlePre": "In the heart of the ",
+      "titleHighlight": "Gulf of Poets",
+      "subtitle": "A family-run hotel in Lerici, 150 metres from the sea.",
+      "ctaPrimary": "Book now",
+      "ctaSecondary": "Discover the hotel",
+      "badges": {
+        "mare": "150m from the sea",
+        "borgo": "Heart of the village",
+        "ristorante": "Seafood restaurant",
+        "famiglia": "Family-run for generations"
+      }
+    },
+    "camere": {
+      "title": "Featured rooms",
+      "subtitle": "Carefully furnished rooms, with views of the gulf or the village.",
+      "priceFrom": "from",
+      "cta": "Discover",
+      "ctaAll": "View all rooms"
+    },
+    "ristorante": {
+      "tag": "Unique in Lerici",
+      "title": "The Restaurant",
+      "description": "Ligurian and seafood cuisine, with local produce and the gulf's maritime tradition.",
+      "cta": "See the menu"
+    },
+    "pesto": {
+      "number": "1,500+",
+      "numberLabel": "guests every season",
+      "title": "The pesto tasting",
+      "description": "A handmade experience: mortar, pestle and authentic Ligurian ingredients, to discover the true recipe for Genoese pesto.",
+      "cta": "Book the tasting"
+    },
+    "dintorni": {
+      "title": "Lerici and beyond",
+      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 min by train" },
+      "portovenere": { "name": "Portovenere", "distanza": "10 min by boat" },
+      "tellaro": { "name": "Tellaro", "distanza": "10 min by car" },
+      "cta": "Discover the area"
+    },
+    "lavoro": {
+      "title": "Work stays — Corporate agreements",
+      "subtitle": "For professionals and companies operating in the Port of La Spezia",
+      "cta": "Discover the agreements"
+    },
+    "galleria": {
+      "title": "Gallery",
+      "cta": "View the full gallery"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": "Where is Hotel del Golfo located?",
+      "a1": "Hotel del Golfo is located in the centre of Lerici, just 150 metres from the sea, in the heart of the Gulf of Poets in Liguria.",
+      "q2": "Does the hotel have a restaurant?",
+      "a2": "Yes, our restaurant serves Ligurian and seafood cuisine made with local produce.",
+      "q3": "How far is it from the Cinque Terre?",
+      "a3": "The Cinque Terre are about 20 minutes away by train from Lerici.",
+      "q4": "Does the hotel offer corporate agreements?",
+      "a4": "Yes, we offer dedicated rates and agreements for professionals and companies operating in the Port of La Spezia."
+    }
+  },
+  "Servizi": {
+    "wifi": "WiFi",
+    "tv": "TV",
+    "aria-condizionata": "Air conditioning",
+    "vista-mare": "Sea view",
+    "balcone": "Balcony",
+    "minibar": "Minibar",
+    "cassaforte": "Safe",
+    "bagno-privato": "Private bathroom"
+  },
+  "CamerePage": {
+    "title": "Our rooms",
+    "subtitle": "Carefully furnished rooms, with views of the gulf or the village.",
+    "empty": "Rooms will be available soon.",
+    "priceFrom": "from",
+    "cta": "Discover"
+  },
+  "CameraDetailPage": {
+    "capienza": "guests",
+    "mq": "sqm",
+    "prezzoFrom": "from",
+    "prezzoNotte": "per night",
+    "serviziTitle": "Amenities",
+    "bookingCta": "Book this room",
+    "backToList": "All rooms",
+    "notFoundTitle": "Room not found",
+    "notFoundBody": "The room you're looking for doesn't exist or is no longer available."
+  },
+  "RistorantePage": {
+    "title": "The Restaurant",
+    "tag": "Unique in Lerici",
+    "fallbackDescription": "Ligurian and seafood cuisine, with local produce and the gulf's maritime tradition.",
+    "specialitaTitle": "Our specialities",
+    "menuCta": "See the menu",
+    "formTitle": "Book a table",
+    "formNome": "Name",
+    "formData": "Date",
+    "formOra": "Time",
+    "formCoperti": "Number of guests",
+    "formTelefono": "Phone",
+    "formSubmit": "Send request"
+  },
+  "EsperienzePage": {
+    "title": "Experiences",
+    "pestoCta": "Book the tasting",
+    "escursioniTitle": "Recommended excursions",
+    "escursioni": {
+      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "The famous colourful terraces overlooking the sea, reachable by train or boat." },
+      "portovenere": { "titolo": "Portovenere", "descrizione": "A UNESCO World Heritage fishing village, with the church of San Pietro on the rock." },
+      "kayak": { "titolo": "Kayak excursions", "descrizione": "Explore the gulf from the sea, among coves and hidden little beaches." },
+      "trekking": { "titolo": "Hiking on Ligurian trails", "descrizione": "Scenic routes between Lerici, Tellaro and the Montemarcello Park." }
+    }
+  },
+  "LavoroPage": {
+    "title": "For those who work in the Gulf",
+    "subtitle": "Dedicated rates for professionals and companies operating in the Port of La Spezia",
+    "serviziTitle": "Dedicated services",
+    "serviziDefault": [
+      "Dedicated rates for extended stays (weekly/monthly)",
+      "Corporate invoicing and agreements with companies",
+      "Flexible check-in/out for work shifts",
+      "Breakfast from 6:00 for early starters",
+      "High-speed WiFi in all rooms",
+      "Parking (agreement with nearby car park)",
+      "Restaurant with affordable set menu for workers",
+      "Laundry on request"
+    ],
+    "convenzioniTitle": "Corporate agreements",
+    "convenzioniFallback": "We have been working with companies, cooperatives and businesses in the La Spezia industrial district for over 30 years. Contact us to arrange a tailored agreement.",
+    "formTitle": "Request an agreement",
+    "formAzienda": "Company name",
+    "formReferente": "Contact person",
+    "formEmail": "Company email",
+    "formTelefono": "Phone",
+    "formDipendenti": "Estimated employees per month",
+    "formPeriodo": "Period",
+    "formPeriodoAnno": "All year round",
+    "formPeriodoStagionale": "Seasonal",
+    "formNote": "Notes",
+    "formSubmit": "Send request"
+  },
+  "ContattiPage": {
+    "title": "Contact",
+    "formTitle": "Write to us",
+    "formNome": "Name",
+    "formEmail": "Email",
+    "formTelefono": "Phone",
+    "formMessaggio": "Message",
+    "formArrivo": "Arrival date",
+    "formPartenza": "Departure date",
+    "formSubmit": "Send message",
+    "orariTitle": "Reception hours",
+    "comeArrivareTitle": "How to get here",
+    "auto": "By car: A12 motorway, Sarzana exit, then SP331 to Lerici (15 min).",
+    "treno": "By train: La Spezia Centrale station, then bus or taxi (20 min).",
+    "battello": "By boat: seasonal connections from La Spezia and Portovenere."
+  },
+  "OffertePage": {
+    "title": "Offers",
+    "subtitle": "Seasonal packages and promotions for your stay in Lerici.",
+    "empty": "No active offers at the moment.",
+    "badgeEvidenziata": "Featured",
+    "validoDal": "Valid from",
+    "al": "to",
+    "cta": "Book this offer"
+  },
+  "GalleriaPage": {
+    "title": "Gallery",
+    "subtitle": "Glimpses of the hotel, the rooms, the restaurant and Lerici.",
+    "empty": "Photos will be available soon.",
+    "filterAll": "All",
+    "filterHotel": "Hotel",
+    "filterCamere": "Rooms",
+    "filterRistorante": "Restaurant",
+    "filterLerici": "Lerici",
+    "closeLightbox": "Close"
+  }
+}
