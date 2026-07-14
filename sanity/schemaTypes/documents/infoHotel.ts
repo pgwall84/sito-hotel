@@ -23,6 +23,12 @@ export const infoHotel = defineType({
     defineField({ name: "linkInstagram", title: "Link Instagram", type: "url" }),
     defineField({ name: "linkTripAdvisor", title: "Link TripAdvisor", type: "url" }),
     defineField({ name: "logo", title: "Logo", type: "image" }),
+    defineField({
+      name: "immagineHero",
+      title: "Immagine Hero (homepage)",
+      description: "Foto a piena larghezza usata come sfondo dell'hero in home. Orientamento orizzontale, alta risoluzione.",
+      type: "image",
+    }),
     defineField({ name: "orariReception", title: "Orari reception", type: "string" }),
   ],
   preview: {

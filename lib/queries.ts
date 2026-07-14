@@ -14,6 +14,13 @@ function imgUrl(source: SanityImage | undefined | null, width: number, height: n
   return urlFor(source).width(width).height(height).fit("crop").url();
 }
 
+// per immagini full-bleed (hero): niente crop server-side forzato,
+// il ritaglio finale lo fa object-cover lato client
+function imgUrlWide(source: SanityImage | undefined | null, width: number) {
+  if (!source) return null;
+  return urlFor(source).width(width).quality(80).url();
+}
+
 // ---------- Info Hotel ----------
 
 const INFO_HOTEL_QUERY = groq`*[_type == "infoHotel"][0]`;
@@ -33,6 +40,7 @@ interface InfoHotelRaw {
   longitudine?: number;
   citr?: string;
   logo?: SanityImage;
+  immagineHero?: SanityImage;
 }
 
 export const getInfoHotel = cache(async (locale: Locale) => {
@@ -52,6 +60,7 @@ export const getInfoHotel = cache(async (locale: Locale) => {
     longitudine: h?.longitudine ?? 9.9127261,
     citr: h?.citr ?? "011016-ALB-0027",
     fotoUrl: imgUrl(h?.logo, 1200, 630),
+    heroUrl: imgUrlWide(h?.immagineHero, 2400),
   };
 });
 

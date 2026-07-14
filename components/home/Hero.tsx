@@ -1,16 +1,31 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import BookingButton from "@/components/ui/BookingButton";
 
 const BADGE_KEYS = ["mare", "borgo", "ristorante", "famiglia"] as const;
 
-export default function Hero() {
+export default function Hero({ fotoUrl }: { fotoUrl?: string | null }) {
   const t = useTranslations("Home.hero");
 
   return (
-    // sfondo navy placeholder — foto reale del golfo arriverà da Sanity (infoHotel/hero)
-    <section className="relative overflow-hidden bg-primary text-white">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-      <div className="relative mx-auto flex max-w-6xl flex-col items-start px-4 py-24 md:py-32">
+    <section className="relative flex min-h-screen w-full items-center overflow-hidden text-white">
+      {fotoUrl ? (
+        <Image
+          src={fotoUrl}
+          alt="Hotel del Golfo Lerici — vista sul Golfo dei Poeti"
+          fill
+          priority
+          className="object-cover"
+        />
+      ) : (
+        // fallback navy piatto finché non viene caricata una foto in Sanity (infoHotel.immagineHero)
+        <div className="absolute inset-0 bg-primary" />
+      )}
+
+      {/* overlay navy semitrasparente — mantiene leggibile il testo bianco sopra la foto */}
+      <div className="absolute inset-0" style={{ backgroundColor: "rgba(27, 58, 92, 0.55)" }} />
+
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start px-4 py-24 md:py-32">
         <p className="text-[11px] uppercase tracking-[3px] text-gold">{t("eyebrow")}</p>
 
         <h1 className="mt-4 font-heading text-4xl leading-tight md:text-5xl">

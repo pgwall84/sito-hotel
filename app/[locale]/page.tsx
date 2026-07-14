@@ -72,7 +72,7 @@ export default async function HomePage({
   return (
     <>
       <JsonLd data={hotelSchema} />
-      <Hero />
+      <Hero fotoUrl={info.heroUrl} />
       <CamereInEvidenza locale={locale} />
       <RistorantePreview locale={locale} />
       <PestoHighlight />
