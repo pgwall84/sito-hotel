@@ -706,3 +706,34 @@ Eventuale: loghi aziende già convenzionate (se il titolare vuole mostrarli)
 - Aggiungere alla homepage una piccola sezione o banner:
   "Soggiorni di lavoro — Convenzioni aziendali per il Porto di La Spezia"
   con link a /lavoro
+
+---
+
+## 16. EVOLUTIVE CONTENUTI E PAGINE
+
+Da completare con contenuti reali:
+
+CONTENUTI DA AGGIORNARE IN SANITY (titolare):
+- Descrizioni camere complete e accattivanti
+- Foto ristorante aggiuntive
+- Descrizione degustazione pesto approfondita
+- Distanze e tempi corretti per borghi vicini
+  (Cinque Terre, Portovenere, Tellaro, La Spezia)
+- Itinerari consigliati nella pagina /lerici
+- Testi pagina soggiorni lavoro /lavoro
+
+EVOLUTIVE CHE RICHIEDONO CLAUDE CODE:
+- Homepage: aggiungere sezione colazione
+  ("La nostra colazione" nello scroll della home,
+  dopo il ristorante o prima dei borghi)
+  con foto, descrizione prodotti tipici liguri,
+  orario servizio colazione
+- Pagina /lerici: sezione itinerari dettagliati
+  con mappa e durate escursioni
+- Aggiornare distanze reali nel JSON-LD
+  e nei testi dei borghi vicini
+- ~~Foto hero: caricare foto golfo di Lerici
+  su Sanity Studio (lerici-golfo.jpg)~~ — fatto 2026-07-14
+- Foto ingresso hotel: caricare su Sanity
+  (ingresso-hotel.jpg, ancora in `public/temp-old-photos/`,
+  in attesa di valutazione: l'originale non convince)
