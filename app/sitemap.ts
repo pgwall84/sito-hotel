@@ -3,7 +3,7 @@ import { routing } from "@/lib/i18n/routing";
 import { getCamere } from "@/lib/queries";
 import { SITE_URL } from "@/lib/seo";
 
-const STATIC_PATHS = ["", "/camere", "/ristorante", "/esperienze", "/lavoro", "/contatti", "/offerte", "/galleria"];
+const STATIC_PATHS = ["", "/camere", "/ristorante", "/esperienze", "/lerici", "/lavoro", "/contatti", "/offerte", "/galleria"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const camere = await getCamere(routing.defaultLocale);

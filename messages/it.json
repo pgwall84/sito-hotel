@@ -199,5 +199,25 @@
     "filterRistorante": "Ristorante",
     "filterLerici": "Lerici",
     "closeLightbox": "Chiudi"
+  },
+  "LericiPage": {
+    "title": "Lerici",
+    "subtitle": "Nel cuore del Golfo dei Poeti, tra castello, borghi di pescatori e calette.",
+    "cosaVedereTitle": "Cosa vedere",
+    "castelloTitolo": "Castello di Lerici",
+    "castelloDescrizione": "Fortezza medievale a picco sul mare, con vista sul golfo e un piccolo museo geopaleontologico.",
+    "portoTitolo": "Porto e lungomare",
+    "portoDescrizione": "Il cuore della vita del borgo, tra pescherecci, bar e passeggiate al tramonto.",
+    "spiaggeTitolo": "Spiagge",
+    "spiaggeDescrizione": "Calette e spiagge libere e attrezzate, raggiungibili a piedi dal centro.",
+    "borghiTitle": "Borghi vicini",
+    "tellaroTitolo": "Tellaro",
+    "tellaroDescrizione": "Borgo di pescatori dai colori vivaci, tra i più belli d'Italia.",
+    "sanTerenzoTitolo": "San Terenzo",
+    "sanTerenzoDescrizione": "Frazione con castello e la lunga spiaggia dove soggiornò Lord Byron.",
+    "fiascherinoTitolo": "Fiascherino",
+    "fiascherinoDescrizione": "Piccola baia appartata, cara ai poeti romantici.",
+    "comeArrivareTitle": "Come arrivare",
+    "galleriaCta": "Vedi tutte le foto di Lerici"
   }
 }

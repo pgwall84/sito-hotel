@@ -199,5 +199,25 @@
     "filterRistorante": "Restaurant",
     "filterLerici": "Lerici",
     "closeLightbox": "Schließen"
+  },
+  "LericiPage": {
+    "title": "Lerici",
+    "subtitle": "Im Herzen des Golfs der Dichter, zwischen Burg, Fischerdörfern und Buchten.",
+    "cosaVedereTitle": "Sehenswürdigkeiten",
+    "castelloTitolo": "Burg von Lerici",
+    "castelloDescrizione": "Mittelalterliche Festung über dem Meer, mit Blick auf den Golf und einem kleinen geopaläontologischen Museum.",
+    "portoTitolo": "Hafen und Uferpromenade",
+    "portoDescrizione": "Das Herz des Ortslebens, zwischen Fischerbooten, Bars und Sonnenuntergangs-Spaziergängen.",
+    "spiaggeTitolo": "Strände",
+    "spiaggeDescrizione": "Freie und ausgestattete Strände und Buchten, zu Fuß vom Zentrum erreichbar.",
+    "borghiTitle": "Nahegelegene Dörfer",
+    "tellaroTitolo": "Tellaro",
+    "tellaroDescrizione": "Ein farbenfrohes Fischerdorf, eines der schönsten Italiens.",
+    "sanTerenzoTitolo": "San Terenzo",
+    "sanTerenzoDescrizione": "Ortsteil mit Burg und dem langen Strand, an dem einst Lord Byron weilte.",
+    "fiascherinoTitolo": "Fiascherino",
+    "fiascherinoDescrizione": "Eine abgelegene kleine Bucht, geliebt von den romantischen Dichtern.",
+    "comeArrivareTitle": "Anfahrt",
+    "galleriaCta": "Alle Fotos von Lerici ansehen"
   }
 }

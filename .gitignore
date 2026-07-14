@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# foto di staging in attesa di upload su Sanity — non fanno parte del sito
+/public/temp-old-photos
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

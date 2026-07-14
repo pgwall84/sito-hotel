@@ -199,5 +199,25 @@
     "filterRistorante": "Restaurant",
     "filterLerici": "Lerici",
     "closeLightbox": "Close"
+  },
+  "LericiPage": {
+    "title": "Lerici",
+    "subtitle": "In the heart of the Gulf of Poets, between a castle, fishing villages and coves.",
+    "cosaVedereTitle": "What to see",
+    "castelloTitolo": "Lerici Castle",
+    "castelloDescrizione": "A medieval fortress overlooking the sea, with views of the gulf and a small geopalaeontology museum.",
+    "portoTitolo": "Harbour and seafront",
+    "portoDescrizione": "The heart of village life, among fishing boats, bars and sunset strolls.",
+    "spiaggeTitolo": "Beaches",
+    "spiaggeDescrizione": "Free and equipped beaches and coves, within walking distance of the centre.",
+    "borghiTitle": "Nearby villages",
+    "tellaroTitolo": "Tellaro",
+    "tellaroDescrizione": "A colourful fishing village, among the most beautiful in Italy.",
+    "sanTerenzoTitolo": "San Terenzo",
+    "sanTerenzoDescrizione": "A hamlet with a castle and the long beach where Lord Byron once stayed.",
+    "fiascherinoTitolo": "Fiascherino",
+    "fiascherinoDescrizione": "A secluded little bay, dear to the Romantic poets.",
+    "comeArrivareTitle": "How to get here",
+    "galleriaCta": "See all Lerici photos"
   }
 }

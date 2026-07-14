@@ -199,5 +199,25 @@
     "filterRistorante": "Restaurant",
     "filterLerici": "Lerici",
     "closeLightbox": "Fermer"
+  },
+  "LericiPage": {
+    "title": "Lerici",
+    "subtitle": "Au cœur du Golfe des Poètes, entre château, villages de pêcheurs et criques.",
+    "cosaVedereTitle": "À voir",
+    "castelloTitolo": "Château de Lerici",
+    "castelloDescrizione": "Forteresse médiévale surplombant la mer, avec vue sur le golfe et un petit musée géopaléontologique.",
+    "portoTitolo": "Port et front de mer",
+    "portoDescrizione": "Le cœur de la vie du village, entre bateaux de pêche, bars et promenades au coucher du soleil.",
+    "spiaggeTitolo": "Plages",
+    "spiaggeDescrizione": "Plages et criques libres et équipées, accessibles à pied depuis le centre.",
+    "borghiTitle": "Villages voisins",
+    "tellaroTitolo": "Tellaro",
+    "tellaroDescrizione": "Village de pêcheurs aux couleurs vives, parmi les plus beaux d'Italie.",
+    "sanTerenzoTitolo": "San Terenzo",
+    "sanTerenzoDescrizione": "Hameau avec château et la longue plage où séjourna Lord Byron.",
+    "fiascherinoTitolo": "Fiascherino",
+    "fiascherinoDescrizione": "Petite baie isolée, chère aux poètes romantiques.",
+    "comeArrivareTitle": "Comment venir",
+    "galleriaCta": "Voir toutes les photos de Lerici"
   }
 }
