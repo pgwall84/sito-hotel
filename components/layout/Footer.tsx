@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import LinguaSelector from "@/components/ui/LinguaSelector";
@@ -12,7 +13,13 @@ const NAV_ITEMS = [
   { href: "/contatti", key: "contatti" },
 ] as const;
 
-export default function Footer() {
+export default function Footer({
+  logoUrl,
+  nome,
+}: {
+  logoUrl?: string | null;
+  nome: string;
+}) {
   const t = useTranslations("Nav");
   const tFooter = useTranslations("Footer");
   const year = new Date().getFullYear();
@@ -21,7 +28,13 @@ export default function Footer() {
     <footer className="bg-primary text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
         <div>
-          <span className="font-heading text-lg font-semibold">Hotel del Golfo</span>
+          {logoUrl ? (
+            <span className="relative block h-10 w-36">
+              <Image src={logoUrl} alt={nome} fill className="object-contain object-left" />
+            </span>
+          ) : (
+            <span className="font-heading text-lg font-semibold">{nome}</span>
+          )}
           <p className="mt-2 text-sm text-white/70">Nel cuore del Golfo dei Poeti</p>
           <div className="mt-4">
             <LinguaSelector />

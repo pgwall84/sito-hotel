@@ -59,7 +59,8 @@ export const getInfoHotel = cache(async (locale: Locale) => {
     latitudine: h?.latitudine ?? 44.0773612,
     longitudine: h?.longitudine ?? 9.9127261,
     citr: h?.citr ?? "011016-ALB-0027",
-    fotoUrl: imgUrl(h?.logo, 1200, 630),
+    fotoUrl: imgUrl(h?.logo, 1200, 630), // per og:image — crop 1200x630 corretto solo lì
+    logoUrl: imgUrlWide(h?.logo, 400), // per Header/Footer — nessun crop forzato, mantiene le proporzioni reali
     heroUrl: imgUrlWide(h?.immagineHero, 2400),
   };
 });

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Playfair_Display, Inter } from "next/font/google";
 import { routing } from "@/lib/i18n/routing";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { getInfoHotel } from "@/lib/queries";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "../globals.css";
@@ -45,6 +46,8 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const info = await getInfoHotel(locale);
+
   return (
     <html
       lang={locale}
@@ -52,9 +55,9 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
-          <Header />
+          <Header logoUrl={info.logoUrl} nome={info.nome} />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer logoUrl={info.logoUrl} nome={info.nome} />
         </NextIntlClientProvider>
       </body>
     </html>

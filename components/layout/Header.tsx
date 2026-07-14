@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import LinguaSelector from "@/components/ui/LinguaSelector";
@@ -17,7 +18,13 @@ const NAV_ITEMS = [
   { href: "/contatti", key: "contatti" },
 ] as const;
 
-export default function Header() {
+export default function Header({
+  logoUrl,
+  nome,
+}: {
+  logoUrl?: string | null;
+  nome: string;
+}) {
   const t = useTranslations("Nav");
   const tHeader = useTranslations("Header");
   const pathname = usePathname();
@@ -26,8 +33,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="font-heading text-xl font-semibold text-primary">
-          Hotel del Golfo
+        <Link href="/" className="flex items-center">
+          {logoUrl ? (
+            <span className="relative block h-10 w-36">
+              <Image src={logoUrl} alt={nome} fill className="object-contain object-left" priority />
+            </span>
+          ) : (
+            <span className="font-heading text-xl font-semibold text-primary">{nome}</span>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
