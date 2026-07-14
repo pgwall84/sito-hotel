@@ -32,10 +32,10 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
         <Link href="/" className="flex items-center">
           {logoUrl ? (
-            <span className="relative block h-10 w-36">
+            <span className="relative block h-16 w-52">
               <Image src={logoUrl} alt={nome} fill className="object-contain object-left" priority />
             </span>
           ) : (

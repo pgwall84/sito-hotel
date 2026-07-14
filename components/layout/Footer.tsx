@@ -29,7 +29,7 @@ export default function Footer({
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
         <div>
           {logoUrl ? (
-            <span className="relative block h-10 w-36">
+            <span className="relative block h-16 w-52">
               <Image src={logoUrl} alt={nome} fill className="object-contain object-left" />
             </span>
           ) : (
