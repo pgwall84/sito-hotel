@@ -24,6 +24,12 @@ export const infoHotel = defineType({
     defineField({ name: "linkTripAdvisor", title: "Link TripAdvisor", type: "url" }),
     defineField({ name: "logo", title: "Logo", type: "image" }),
     defineField({
+      name: "logoBianco",
+      title: "Logo bianco (per sfondi scuri)",
+      description: "Versione del logo su sfondo trasparente, usata nel footer (sfondo blu navy).",
+      type: "image",
+    }),
+    defineField({
       name: "immagineHero",
       title: "Immagine Hero (homepage)",
       description: "Foto a piena larghezza usata come sfondo dell'hero in home. Orientamento orizzontale, alta risoluzione.",

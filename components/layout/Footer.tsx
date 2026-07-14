@@ -14,10 +14,10 @@ const NAV_ITEMS = [
 ] as const;
 
 export default function Footer({
-  logoUrl,
+  logoBiancoUrl,
   nome,
 }: {
-  logoUrl?: string | null;
+  logoBiancoUrl?: string | null;
   nome: string;
 }) {
   const t = useTranslations("Nav");
@@ -28,9 +28,9 @@ export default function Footer({
     <footer className="bg-primary text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
         <div>
-          {logoUrl ? (
+          {logoBiancoUrl ? (
             <span className="relative block h-16 w-52">
-              <Image src={logoUrl} alt={nome} fill className="object-contain object-left" />
+              <Image src={logoBiancoUrl} alt={nome} fill className="object-contain object-left" />
             </span>
           ) : (
             <span className="font-heading text-lg font-semibold">{nome}</span>

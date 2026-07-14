@@ -40,6 +40,7 @@ interface InfoHotelRaw {
   longitudine?: number;
   citr?: string;
   logo?: SanityImage;
+  logoBianco?: SanityImage;
   immagineHero?: SanityImage;
 }
 
@@ -60,7 +61,8 @@ export const getInfoHotel = cache(async (locale: Locale) => {
     longitudine: h?.longitudine ?? 9.9127261,
     citr: h?.citr ?? "011016-ALB-0027",
     fotoUrl: imgUrl(h?.logo, 1200, 630), // per og:image — crop 1200x630 corretto solo lì
-    logoUrl: imgUrlWide(h?.logo, 400), // per Header/Footer — nessun crop forzato, mantiene le proporzioni reali
+    logoUrl: imgUrlWide(h?.logo, 400), // per Header — nessun crop forzato, mantiene le proporzioni reali
+    logoBiancoUrl: imgUrlWide(h?.logoBianco, 400), // per Footer (sfondo navy)
     heroUrl: imgUrlWide(h?.immagineHero, 2400),
   };
 });

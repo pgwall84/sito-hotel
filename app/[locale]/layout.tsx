@@ -57,7 +57,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Header logoUrl={info.logoUrl} nome={info.nome} />
           <main className="flex-1">{children}</main>
-          <Footer logoUrl={info.logoUrl} nome={info.nome} />
+          <Footer logoBiancoUrl={info.logoBiancoUrl} nome={info.nome} />
         </NextIntlClientProvider>
       </body>
     </html>
