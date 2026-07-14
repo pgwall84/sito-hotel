@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import ContattoForm from "@/components/forms/ContattoForm";
+import MapEmbed from "@/components/ui/MapEmbed";
 import { pageMetadata } from "@/lib/seo";
 
 const LAT = 44.0773612;
@@ -57,12 +58,7 @@ export default async function ContattiPage({
             </ul>
 
             <div className="mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-border">
-              <iframe
-                title="Hotel del Golfo — mappa"
-                src={`https://www.google.com/maps?q=${LAT},${LON}&z=15&output=embed`}
-                className="h-full w-full border-0"
-                loading="lazy"
-              />
+              <MapEmbed lat={LAT} lon={LON} />
             </div>
           </div>
         </div>

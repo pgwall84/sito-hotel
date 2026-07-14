@@ -7,6 +7,8 @@ import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getInfoHotel } from "@/lib/queries";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CookieConsentInit from "@/components/cookie/CookieConsentInit";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import "../globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -58,6 +60,8 @@ export default async function LocaleLayout({
           <Header logoUrl={info.logoUrl} nome={info.nome} />
           <main className="flex-1">{children}</main>
           <Footer logoBiancoUrl={info.logoBiancoUrl} nome={info.nome} />
+          <CookieConsentInit />
+          <GoogleAnalytics />
         </NextIntlClientProvider>
       </body>
     </html>
