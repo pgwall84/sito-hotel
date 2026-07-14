@@ -73,12 +73,12 @@ export default async function HomePage({
     <>
       <JsonLd data={hotelSchema} />
       <Hero />
-      <CamereInEvidenza />
-      <RistorantePreview />
+      <CamereInEvidenza locale={locale} />
+      <RistorantePreview locale={locale} />
       <PestoHighlight />
       <LericiDintorni />
       <LavoroBanner />
-      <GalleriaPreview />
+      <GalleriaPreview locale={locale} />
       <FAQ />
     </>
   );
