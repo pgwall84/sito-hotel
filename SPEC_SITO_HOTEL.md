@@ -737,3 +737,50 @@ EVOLUTIVE CHE RICHIEDONO CLAUDE CODE:
 - Foto ingresso hotel: caricare su Sanity
   (ingresso-hotel.jpg, ancora in `public/temp-old-photos/`,
   in attesa di valutazione: l'originale non convince)
+
+---
+
+## 17. SICUREZZA E GDPR (2026-07-15)
+
+Implementato in questa sessione:
+
+- Security headers (next.config.ts): X-Content-Type-Options,
+  X-Frame-Options, Referrer-Policy, Permissions-Policy, HSTS
+  su tutto il sito. CSP scoperta solo sul sito pubblico
+  (esclude /studio, che ha bisogno di policy propria).
+  Nota tecnica: la CSP richiede 'unsafe-eval' in sviluppo
+  (webpack usa eval() per i moduli) — attivo solo se
+  NODE_ENV === 'development', mai in produzione.
+- Cookie banner GDPR (vanilla-cookieconsent): categorie
+  necessari/statistiche/funzionali. Google Analytics gated
+  su consenso + NEXT_PUBLIC_GA_ID (non ancora impostata,
+  quindi per ora GA non parte comunque). Mappa Google Maps
+  in /contatti gated su consenso funzionali
+  (components/ui/MapEmbed.tsx).
+- Pagine /privacy-policy e /cookie-policy create (erano
+  linkate dal footer dallo Step 4 ma mai costruite — 404
+  latente, come /lerici). Testo placeholder esplicito,
+  in attesa di revisione legale/Iubenda.
+- app/api/contact/route.ts: validazione server-side
+  (email, lunghezza campi max 1000, sanitizzazione tag HTML),
+  rate limiting in-memory (3 richieste/IP/ora, best effort,
+  si azzera ad ogni cold start), risposte generiche.
+  Form contatti principale (/contatti) ora invia via questa
+  route invece di mailto:. IMPORTANTE: l'invio email vero
+  e proprio è un TODO esplicito nel codice — non è collegato
+  a nessun provider (Resend proposto, non ancora configurato).
+  Il messaggio finisce solo nei log server Vercel, a nessuno
+  in casella. Form Tavolo e Convenzione restano mailto:
+  per scelta esplicita.
+- Sanity Studio protetto in produzione con HTTP Basic Auth
+  (proxy.ts, env var STUDIO_USER/STUDIO_PASSWORD, verificate
+  su Vercel). Nessun impatto in sviluppo locale.
+- Dependabot configurato (.github/dependabot.yml), npm,
+  aggiornamenti settimanali.
+- Audit senza fix necessari: SANITY_API_TOKEN mai usato nel
+  progetto; nessuna Google Maps API key esiste (embed keyless).
+
+EVOLUTIVE RIMASTE:
+- Configurare un vero invio email per /api/contact (Resend
+  consigliato) — finché non è fatto, il form principale non
+  notifica nessuno.
