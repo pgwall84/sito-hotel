@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-const EMAIL_TO = "info@hoteldelgolfo.com";
+type Status = "idle" | "sending" | "success" | "error" | "rate-limited";
 
 export default function ContattoForm() {
   const t = useTranslations("ContattiPage");
@@ -15,15 +15,35 @@ export default function ContattoForm() {
     arrivo: "",
     partenza: "",
   });
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Richiesta informazioni — ${form.nome}`);
-    const body = encodeURIComponent(
-      `Nome: ${form.nome}\nEmail: ${form.email}\nTelefono: ${form.telefono}\nArrivo: ${form.arrivo}\nPartenza: ${form.partenza}\n\n${form.messaggio}`
-    );
-    window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.status === 429) {
+        setStatus("rate-limited");
+        return;
+      }
+      if (!res.ok) {
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+      setForm({ nome: "", email: "", telefono: "", messaggio: "", arrivo: "", partenza: "" });
+    } catch {
+      setStatus("error");
+    }
   };
+
+  if (status === "success") {
+    return <p className="text-sm text-primary">{t("formSuccess")}</p>;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
@@ -73,11 +93,16 @@ export default function ContattoForm() {
         rows={4}
         className="rounded-md border border-border bg-background px-4 py-2 text-sm sm:col-span-2"
       />
+
+      {status === "error" && <p className="text-sm text-accent sm:col-span-2">{t("formError")}</p>}
+      {status === "rate-limited" && <p className="text-sm text-accent sm:col-span-2">{t("formRateLimited")}</p>}
+
       <button
         type="submit"
-        className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-primaryLight sm:col-span-2"
+        disabled={status === "sending"}
+        className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-primaryLight disabled:opacity-60 sm:col-span-2"
       >
-        {t("formSubmit")}
+        {status === "sending" ? t("formSending") : t("formSubmit")}
       </button>
     </form>
   );

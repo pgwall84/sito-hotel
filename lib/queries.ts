@@ -23,7 +23,13 @@ function imgUrlWide(source: SanityImage | undefined | null, width: number) {
 
 // ---------- Info Hotel ----------
 
-const INFO_HOTEL_QUERY = groq`*[_type == "infoHotel"][0]`;
+const INFO_HOTEL_QUERY = groq`
+  *[_type == "infoHotel"][0] {
+    nome, claim, descrizione, telefono, telefonoMobile, email,
+    indirizzo, citta, cap, provincia, latitudine, longitudine, citr,
+    logo, logoBianco, immagineHero
+  }
+`;
 
 interface InfoHotelRaw {
   nome?: string;
