@@ -224,6 +224,36 @@
     "comeArrivareTitle": "Come arrivare",
     "galleriaCta": "Vedi tutte le foto di Lerici"
   },
+  "BenvenutoPage": {
+    "title": "Benvenuto all'Hotel del Golfo",
+    "subtitle": "Tutto quello che ti serve per il tuo soggiorno, in un unico posto.",
+    "wifiTitle": "WiFi",
+    "wifiNomeLabel": "Rete",
+    "wifiPasswordLabel": "Password",
+    "orariTitle": "Orari",
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "colazioneLabel": "Colazione",
+    "regoleTitle": "Regole della casa",
+    "regoleDefault": [
+      "Silenzio dalle 22:00 alle 8:00, per il rispetto di tutti gli ospiti",
+      "È vietato fumare all'interno delle camere",
+      "Animali domestici ammessi su richiesta",
+      "Conserva la chiave/tessera per l'accesso alla struttura"
+    ],
+    "ristoranteTitle": "Ristorante",
+    "ristoranteText": "Scopri i piatti della cucina ligure e di pesce del nostro ristorante.",
+    "menuCta": "Vedi il menu",
+    "contattiTitle": "Contatti reception",
+    "numeriUtiliTitle": "Numeri utili",
+    "lericiTitle": "Consigli su Lerici",
+    "lericiDefault": [
+      "Il centro storico e il porto sono a pochi minuti a piedi dall'hotel",
+      "Il Castello di Lerici offre una vista spettacolare sul golfo",
+      "Cinque Terre e Portovenere sono raggiungibili in battello nei mesi estivi"
+    ],
+    "lericiCta": "Scopri di più su Lerici"
+  },
   "CookieConsent": {
     "title": "Utilizziamo i cookie",
     "description": "Usiamo cookie tecnici necessari al funzionamento del sito e, con il tuo consenso, cookie statistici (Google Analytics) e funzionali (Google Maps).",

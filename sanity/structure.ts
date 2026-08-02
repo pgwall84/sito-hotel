@@ -5,6 +5,7 @@ const SINGLETONS = [
   "esperienzaPesto",
   "sezioneRistorante",
   "convenzioniAziendali",
+  "welcomeBook",
 ] as const;
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -24,6 +25,9 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .title("Convenzioni Aziendali")
         .child(S.document().schemaType("convenzioniAziendali").documentId("convenzioniAziendali")),
+      S.listItem()
+        .title("Welcome Book (QR camere)")
+        .child(S.document().schemaType("welcomeBook").documentId("welcomeBook")),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) => !SINGLETONS.includes(item.getId() as (typeof SINGLETONS)[number])

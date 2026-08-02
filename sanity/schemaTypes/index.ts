@@ -12,6 +12,7 @@ import { paginaGenerica } from "./documents/paginaGenerica";
 import { fotoGalleria } from "./documents/fotoGalleria";
 import { sezioneRistorante } from "./documents/sezioneRistorante";
 import { convenzioniAziendali } from "./documents/convenzioniAziendali";
+import { welcomeBook } from "./documents/welcomeBook";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,5 +29,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     fotoGalleria,
     sezioneRistorante,
     convenzioniAziendali,
+    welcomeBook,
   ],
 };

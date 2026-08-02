@@ -27,7 +27,7 @@ const INFO_HOTEL_QUERY = groq`
   *[_type == "infoHotel"][0] {
     nome, claim, descrizione, telefono, telefonoMobile, email,
     indirizzo, citta, cap, provincia, latitudine, longitudine, citr,
-    logo, logoBianco, immagineHero
+    orariReception, logo, logoBianco, immagineHero
   }
 `;
 
@@ -45,6 +45,7 @@ interface InfoHotelRaw {
   latitudine?: number;
   longitudine?: number;
   citr?: string;
+  orariReception?: string;
   logo?: SanityImage;
   logoBianco?: SanityImage;
   immagineHero?: SanityImage;
@@ -66,6 +67,7 @@ export const getInfoHotel = cache(async (locale: Locale) => {
     latitudine: h?.latitudine ?? 44.0773612,
     longitudine: h?.longitudine ?? 9.9127261,
     citr: h?.citr ?? "011016-ALB-0027",
+    orariReception: h?.orariReception ?? "",
     fotoUrl: imgUrl(h?.logo, 1200, 630), // per og:image — crop 1200x630 corretto solo lì
     logoUrl: imgUrlWide(h?.logo, 400), // per Header — nessun crop forzato, mantiene le proporzioni reali
     logoBiancoUrl: imgUrlWide(h?.logoBianco, 400), // per Footer (sfondo navy)
@@ -235,6 +237,62 @@ export const getConvenzioniAziendali = cache(async (locale: Locale) => {
     testoConvenzioni: pickLocale(c.testoConvenzioni, locale) ?? "",
     emailRichieste: c.emailRichieste ?? "info@hoteldelgolfo.com",
     mostraFormRichiesta: c.mostraFormRichiesta ?? true,
+  };
+});
+
+// ---------- Welcome Book (modulo 4.2 — QR in camera) ----------
+// Nota: niente REVALIDATE lungo qui non serve — usa lo stesso ISR 60s di
+// tutto il resto. Contatti reception e link menu ristorante NON sono in
+// questo documento: si leggono da getInfoHotel/getSezioneRistorante nella
+// pagina, per non duplicare dati già gestiti altrove in Sanity.
+
+const WELCOME_BOOK_QUERY = groq`
+  *[_type == "welcomeBook"][0] {
+    titoloBenvenuto, messaggioBenvenuto,
+    wifiNome, wifiPassword,
+    orariCheckin, orariCheckout, orariColazione,
+    regoleCasa,
+    numeriUtili,
+    consigliLericiTitolo, consigliLerici
+  }
+`;
+
+interface NumeroUtileRaw {
+  etichetta?: LocaleString;
+  valore?: string;
+}
+
+interface WelcomeBookRaw {
+  titoloBenvenuto?: LocaleString;
+  messaggioBenvenuto?: LocaleString;
+  wifiNome?: string;
+  wifiPassword?: string;
+  orariCheckin?: string;
+  orariCheckout?: string;
+  orariColazione?: string;
+  regoleCasa?: LocaleString[];
+  numeriUtili?: NumeroUtileRaw[];
+  consigliLericiTitolo?: LocaleString;
+  consigliLerici?: LocaleString[];
+}
+
+export const getWelcomeBook = cache(async (locale: Locale) => {
+  const w = await client.fetch<WelcomeBookRaw | null>(WELCOME_BOOK_QUERY, {}, REVALIDATE);
+  if (!w) return null;
+  return {
+    titoloBenvenuto: pickLocale(w.titoloBenvenuto, locale) ?? "",
+    messaggioBenvenuto: pickLocale(w.messaggioBenvenuto, locale) ?? "",
+    wifiNome: w.wifiNome ?? "",
+    wifiPassword: w.wifiPassword ?? "",
+    orariCheckin: w.orariCheckin ?? "",
+    orariCheckout: w.orariCheckout ?? "",
+    orariColazione: w.orariColazione ?? "",
+    regoleCasa: (w.regoleCasa ?? []).map((r) => pickLocale(r, locale)).filter(Boolean) as string[],
+    numeriUtili: (w.numeriUtili ?? [])
+      .map((n) => ({ etichetta: pickLocale(n.etichetta, locale) ?? "", valore: n.valore ?? "" }))
+      .filter((n) => n.etichetta && n.valore),
+    consigliLericiTitolo: pickLocale(w.consigliLericiTitolo, locale) ?? "",
+    consigliLerici: (w.consigliLerici ?? []).map((c) => pickLocale(c, locale)).filter(Boolean) as string[],
   };
 });
 

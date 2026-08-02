@@ -224,6 +224,36 @@
     "comeArrivareTitle": "Anfahrt",
     "galleriaCta": "Alle Fotos von Lerici ansehen"
   },
+  "BenvenutoPage": {
+    "title": "Willkommen im Hotel del Golfo",
+    "subtitle": "Alles, was Sie für Ihren Aufenthalt brauchen, an einem Ort.",
+    "wifiTitle": "WLAN",
+    "wifiNomeLabel": "Netzwerk",
+    "wifiPasswordLabel": "Passwort",
+    "orariTitle": "Zeiten",
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "colazioneLabel": "Frühstück",
+    "regoleTitle": "Hausordnung",
+    "regoleDefault": [
+      "Ruhezeit von 22:00 bis 8:00 Uhr, aus Rücksicht auf alle Gäste",
+      "Rauchen in den Zimmern ist nicht gestattet",
+      "Haustiere auf Anfrage willkommen",
+      "Bewahren Sie Ihren Schlüssel/Ihre Karte für den Zugang zum Haus gut auf"
+    ],
+    "ristoranteTitle": "Restaurant",
+    "ristoranteText": "Entdecken Sie die ligurischen Gerichte und Fischspezialitäten unseres Restaurants.",
+    "menuCta": "Speisekarte ansehen",
+    "contattiTitle": "Rezeption kontaktieren",
+    "numeriUtiliTitle": "Nützliche Nummern",
+    "lericiTitle": "Tipps für Lerici",
+    "lericiDefault": [
+      "Die Altstadt und der Hafen sind wenige Gehminuten vom Hotel entfernt",
+      "Die Burg von Lerici bietet einen spektakulären Blick auf den Golf",
+      "Cinque Terre und Portovenere sind in den Sommermonaten mit dem Boot erreichbar"
+    ],
+    "lericiCta": "Mehr über Lerici erfahren"
+  },
   "CookieConsent": {
     "title": "Wir verwenden Cookies",
     "description": "Wir verwenden technische Cookies, die für den Betrieb der Website notwendig sind, sowie mit Ihrer Zustimmung statistische Cookies (Google Analytics) und funktionale Cookies (Google Maps).",

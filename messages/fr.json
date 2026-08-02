@@ -224,6 +224,36 @@
     "comeArrivareTitle": "Comment venir",
     "galleriaCta": "Voir toutes les photos de Lerici"
   },
+  "BenvenutoPage": {
+    "title": "Bienvenue à l'Hotel del Golfo",
+    "subtitle": "Tout ce dont vous avez besoin pour votre séjour, au même endroit.",
+    "wifiTitle": "WiFi",
+    "wifiNomeLabel": "Réseau",
+    "wifiPasswordLabel": "Mot de passe",
+    "orariTitle": "Horaires",
+    "checkinLabel": "Arrivée",
+    "checkoutLabel": "Départ",
+    "colazioneLabel": "Petit-déjeuner",
+    "regoleTitle": "Règles de la maison",
+    "regoleDefault": [
+      "Silence de 22h00 à 8h00, par respect pour tous les clients",
+      "Il est interdit de fumer dans les chambres",
+      "Animaux de compagnie acceptés sur demande",
+      "Conservez votre clé/carte pour l'accès à l'établissement"
+    ],
+    "ristoranteTitle": "Restaurant",
+    "ristoranteText": "Découvrez les plats de la cuisine ligure et de poisson de notre restaurant.",
+    "menuCta": "Voir le menu",
+    "contattiTitle": "Contacts réception",
+    "numeriUtiliTitle": "Numéros utiles",
+    "lericiTitle": "Conseils sur Lerici",
+    "lericiDefault": [
+      "Le centre historique et le port sont à quelques minutes à pied de l'hôtel",
+      "Le château de Lerici offre une vue spectaculaire sur le golfe",
+      "Les Cinque Terre et Portovenere sont accessibles en bateau pendant les mois d'été"
+    ],
+    "lericiCta": "En savoir plus sur Lerici"
+  },
   "CookieConsent": {
     "title": "Nous utilisons des cookies",
     "description": "Nous utilisons des cookies techniques nécessaires au fonctionnement du site et, avec votre consentement, des cookies statistiques (Google Analytics) et fonctionnels (Google Maps).",
