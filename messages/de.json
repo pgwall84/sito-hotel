@@ -252,7 +252,9 @@
       "Die Burg von Lerici bietet einen spektakulären Blick auf den Golf",
       "Cinque Terre und Portovenere sind in den Sommermonaten mit dem Boot erreichbar"
     ],
-    "lericiCta": "Mehr über Lerici erfahren"
+    "lericiCta": "Mehr über Lerici erfahren",
+    "backCta": "Zurück zum Welcome Book",
+    "infoNonDisponibile": "Information noch nicht verfügbar — bitte an der Rezeption fragen."
   },
   "CookieConsent": {
     "title": "Wir verwenden Cookies",

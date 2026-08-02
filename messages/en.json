@@ -252,7 +252,9 @@
       "Lerici Castle offers a spectacular view over the gulf",
       "Cinque Terre and Portovenere can be reached by boat in the summer months"
     ],
-    "lericiCta": "Discover more about Lerici"
+    "lericiCta": "Discover more about Lerici",
+    "backCta": "Back to Welcome Book",
+    "infoNonDisponibile": "Information not yet available — ask at reception."
   },
   "CookieConsent": {
     "title": "We use cookies",

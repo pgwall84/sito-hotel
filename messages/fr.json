@@ -252,7 +252,9 @@
       "Le château de Lerici offre une vue spectaculaire sur le golfe",
       "Les Cinque Terre et Portovenere sont accessibles en bateau pendant les mois d'été"
     ],
-    "lericiCta": "En savoir plus sur Lerici"
+    "lericiCta": "En savoir plus sur Lerici",
+    "backCta": "Retour au Welcome Book",
+    "infoNonDisponibile": "Information pas encore disponible — demandez à la réception."
   },
   "CookieConsent": {
     "title": "Nous utilisons des cookies",

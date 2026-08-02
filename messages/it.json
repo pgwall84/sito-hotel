@@ -252,7 +252,9 @@
       "Il Castello di Lerici offre una vista spettacolare sul golfo",
       "Cinque Terre e Portovenere sono raggiungibili in battello nei mesi estivi"
     ],
-    "lericiCta": "Scopri di più su Lerici"
+    "lericiCta": "Scopri di più su Lerici",
+    "backCta": "Torna al Welcome Book",
+    "infoNonDisponibile": "Informazione non ancora disponibile — chiedi in reception."
   },
   "CookieConsent": {
     "title": "Utilizziamo i cookie",
