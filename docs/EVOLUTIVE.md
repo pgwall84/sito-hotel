@@ -58,7 +58,30 @@ un'eccezione reale segnalata sotto):
     nessun cambio di codice.
   - Google Analytics 4 mai configurato (NEXT_PUBLIC_GA_ID vuota) — il
     banner cookie GDPR è pronto e gated correttamente, ma gira a vuoto.
-    COSTO: gratis (GA4 è gratuito a questi volumi).
+    Il componente (components/analytics/GoogleAnalytics.tsx) è già
+    scritto e già montato nel layout: non c'è sviluppo da fare, solo
+    procurarsi il Measurement ID. COSTO: gratis (GA4 è gratuito a questi
+    volumi). BLOCCATO (06/08/2026): titolare senza accesso all'account
+    Google in quel momento — riprendere quando disponibile.
+
+    Passaggi per procurarsi il Measurement ID (su analytics.google.com,
+    con l'account Google da usare per l'hotel):
+      1. Prima volta: "Inizia a misurare" → nome account (es. "Hotel del
+         Golfo") → avanti.
+      2. Nome proprietà: "Hotel del Golfo Lerici" → fuso orario Italia,
+         valuta EUR.
+      3. Info attività: categoria Ospitalità/Turismo, dimensione,
+         obiettivo (es. "Genera contatti/prenotazioni").
+      4. "Configura flusso di dati" → Web.
+      5. URL: https://hoteldelgolfolerici.com (va bene anche se il
+         dominio non è ancora collegato — è solo un riferimento). Nome
+         stream: "Sito Hotel del Golfo".
+      6. Lasciare "Misurazione avanzata" attiva (default).
+      7. Nella pagina "Dettagli stream web": copiare il Measurement ID
+         (formato G-XXXXXXXXXX).
+      8. Impostarlo come NEXT_PUBLIC_GA_ID sia in .env.local (locale) sia
+         nelle Environment Variables di Vercel (produzione) — nessun
+         codice da toccare, si attiva da solo.
   - Instagram feed e Facebook Pixel previsti in spec (Sezione 1.11 di
     CLAUDE.md gestionale), mai implementati: stesso pattern del
     TripAdvisor, solo un link statico in footer, nessun embed reale.
