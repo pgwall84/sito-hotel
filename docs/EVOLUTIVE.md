@@ -47,12 +47,15 @@ PRIORITÀ ALTA (blocca la qualità percepita o fa perdere contatti diretti):
 PRIORITÀ MEDIA (valore reale; costo quasi sempre nullo o basso, con
 un'eccezione reale segnalata sotto):
 
-  - Messaggio "prenota diretto e risparmia" da nessuna parte sul sito.
-    Da dicembre 2024 Booking.com ha eliminato le clausole di parità
-    tariffaria — l'hotel può legittimamente scontare il canale diretto
-    rispetto alle OTA, ma serve prima una decisione commerciale del
-    titolare su quanto scontare prima di scrivere il badge/copy.
-    COSTO: gratis — solo copy e design, nessun servizio esterno.
+  - [FATTO 06/08/2026] Messaggio "prenota diretto" sotto ai due CTA di
+    prenotazione principali (Hero home + dettaglio camera):
+    components/ui/PrenotaDirettoNote.tsx, testo in messages/*.json
+    (namespace Booking). Scelta esplicita del titolare: nessuno sconto
+    percentuale impegnativo ("non ho ancora deciso quanto scontare") —
+    testo generico ("nessuna commissione, il prezzo migliore"). Copy da
+    considerare provvisoria: se in futuro il titolare decide una
+    percentuale precisa, va aggiornato solo il testo in messages/*.json,
+    nessun cambio di codice.
   - Google Analytics 4 mai configurato (NEXT_PUBLIC_GA_ID vuota) — il
     banner cookie GDPR è pronto e gated correttamente, ma gira a vuoto.
     COSTO: gratis (GA4 è gratuito a questi volumi).

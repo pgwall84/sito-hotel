@@ -4,6 +4,7 @@ import { Link } from "@/lib/i18n/navigation";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import ImageGallery from "@/components/ui/ImageGallery";
 import BookingButton from "@/components/ui/BookingButton";
+import PrenotaDirettoNote from "@/components/ui/PrenotaDirettoNote";
 import JsonLd from "@/components/seo/JsonLd";
 import { SERVIZI_ICONS } from "@/lib/servizi";
 import { getCameraBySlug } from "@/lib/queries";
@@ -118,6 +119,7 @@ export default async function CameraDetailPage({
           >
             {t("bookingCta")}
           </BookingButton>
+          <PrenotaDirettoNote />
         </div>
       </div>
     </SectionWrapper>

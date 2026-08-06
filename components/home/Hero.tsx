@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import BookingButton from "@/components/ui/BookingButton";
+import PrenotaDirettoNote from "@/components/ui/PrenotaDirettoNote";
 
 const BADGE_KEYS = ["mare", "borgo", "ristorante", "famiglia"] as const;
 
@@ -46,6 +47,7 @@ export default function Hero({ fotoUrl }: { fotoUrl?: string | null }) {
             {t("ctaSecondary")}
           </a>
         </div>
+        <PrenotaDirettoNote variant="light" />
 
         <div
           id="punti-di-forza"
