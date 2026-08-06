@@ -82,6 +82,16 @@ un'eccezione reale segnalata sotto):
       8. Impostarlo come NEXT_PUBLIC_GA_ID sia in .env.local (locale) sia
          nelle Environment Variables di Vercel (produzione) — nessun
          codice da toccare, si attiva da solo.
+  - [FATTO 06/08/2026] Pulsante flottante "scrivici su WhatsApp" (link
+    diretto wa.me, nessuna WhatsApp Business API): components/ui/
+    WhatsAppButton.tsx, montato in app/[locale]/layout.tsx su tutte le
+    pagine, numero da infoHotel.telefonoMobile (Sanity). Stesso pattern del
+    competitor locale Hotel Florida. Automazione via WhatsApp Business API
+    esplicitamente rimandata dal titolare — valutare separatamente se e
+    quando serve (costo provider + nuovo modulo nel gestionale, non nel
+    sito). Telegram richiesto insieme a WhatsApp ma non ancora fatto:
+    manca un handle/account Telegram reale dell'hotel — verificare con il
+    titolare se esiste prima di costruire un bottone che punta a niente.
   - Instagram feed e Facebook Pixel previsti in spec (Sezione 1.11 di
     CLAUDE.md gestionale), mai implementati: stesso pattern del
     TripAdvisor, solo un link statico in footer, nessun embed reale.

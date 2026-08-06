@@ -9,6 +9,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsentInit from "@/components/cookie/CookieConsentInit";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import "../globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
           <Header logoUrl={info.logoUrl} nome={info.nome} />
           <main className="flex-1">{children}</main>
           <Footer logoBiancoUrl={info.logoBiancoUrl} nome={info.nome} />
+          <WhatsAppButton telefono={info.telefonoMobile} />
           <CookieConsentInit />
           <GoogleAnalytics />
         </NextIntlClientProvider>

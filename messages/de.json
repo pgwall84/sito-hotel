@@ -23,6 +23,10 @@
   "Booking": {
     "prenotaDirettoNote": "Buchen Sie direkt bei uns: keine Provision, der beste Preis."
   },
+  "Chat": {
+    "whatsappLabel": "Schreiben Sie uns auf WhatsApp",
+    "whatsappGreeting": "Hallo! Ich hätte gerne Informationen zum Hotel del Golfo."
+  },
   "Home": {
     "hero": {
       "eyebrow": "Lerici · La Spezia · Liguria",
