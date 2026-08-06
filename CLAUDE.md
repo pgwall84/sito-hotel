@@ -81,6 +81,8 @@ proposto, non configurato) — il messaggio finisce solo nei log Vercel.
 ## 5. RIFERIMENTI
 
 - Spec completa: `SPEC_SITO_HOTEL.md` (questa cartella)
+- Backlog/evolutive (gap noti, contenuti mancanti, miglioramenti
+  rimandati): `docs/EVOLUTIVE.md` (questa cartella, creato 06/08/2026)
 - Gestionale interno (progetto collegato ma separato): repo
   `gestionale-hotel`, `CLAUDE.md` di quel repo
 - Booking engine Fase 1: widget TeamSystem, URL in `lib/theme.ts`

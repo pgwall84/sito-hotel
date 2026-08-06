@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { inviaEmail } from "@/lib/resend";
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 ora
 const RATE_LIMIT_MAX = 3;
@@ -80,9 +81,38 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Dati non validi." }, { status: 400 });
   }
 
-  // TODO(fase 2): inviare email reale tramite un provider (es. Resend) usando `payload`.
-  // Per ora la richiesta viene solo validata e loggata lato server.
-  console.log("[contact] richiesta ricevuta da", payload.email);
+  const destinatario = process.env.CONTACT_EMAIL_TO || "info@hoteldelgolfo.com";
+  const rigaSoggiorno =
+    payload.arrivo || payload.partenza
+      ? `<p><strong>Soggiorno:</strong> ${payload.arrivo || "?"} → ${payload.partenza || "?"}</p>`
+      : "";
+  const html = `
+    <h2>Nuova richiesta dal form contatti del sito</h2>
+    <p><strong>Nome:</strong> ${payload.nome}</p>
+    <p><strong>Email:</strong> ${payload.email}</p>
+    ${payload.telefono ? `<p><strong>Telefono:</strong> ${payload.telefono}</p>` : ""}
+    ${rigaSoggiorno}
+    <p><strong>Messaggio:</strong></p>
+    <p>${payload.messaggio.replace(/\n/g, "<br>")}</p>
+  `;
+
+  const esito = await inviaEmail({
+    destinatario,
+    oggetto: `Richiesta contatto sito — ${payload.nome}`,
+    html,
+    replyTo: payload.email,
+  });
+
+  if (!esito.ok) {
+    // Non un fallback silenzioso: qui l'email è l'unico effetto della
+    // richiesta, l'utente deve sapere che non è arrivata (es. account
+    // Resend ancora in sandbox, dominio non verificato — vedi lib/resend.ts).
+    console.error("[contact] invio email fallito:", esito.errore);
+    return NextResponse.json(
+      { error: "Messaggio non inviato. Riprova o contattaci direttamente per telefono/email." },
+      { status: 502 }
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }

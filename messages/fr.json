@@ -71,6 +71,10 @@
       "title": "Galerie",
       "cta": "Voir toute la galerie"
     },
+    "recensioni": {
+      "title": "Ce que disent nos hôtes",
+      "cta": "Lire tous les avis sur TripAdvisor"
+    },
     "faq": {
       "title": "Questions fréquentes",
       "q1": "Où se trouve l'Hôtel del Golfo ?",

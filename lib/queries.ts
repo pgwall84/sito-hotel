@@ -27,7 +27,7 @@ const INFO_HOTEL_QUERY = groq`
   *[_type == "infoHotel"][0] {
     nome, claim, descrizione, telefono, telefonoMobile, email,
     indirizzo, citta, cap, provincia, latitudine, longitudine, citr,
-    orariReception, logo, logoBianco, immagineHero
+    orariReception, logo, logoBianco, immagineHero, linkTripAdvisor
   }
 `;
 
@@ -49,6 +49,7 @@ interface InfoHotelRaw {
   logo?: SanityImage;
   logoBianco?: SanityImage;
   immagineHero?: SanityImage;
+  linkTripAdvisor?: string;
 }
 
 export const getInfoHotel = cache(async (locale: Locale) => {
@@ -68,6 +69,12 @@ export const getInfoHotel = cache(async (locale: Locale) => {
     longitudine: h?.longitudine ?? 9.9127261,
     citr: h?.citr ?? "011016-ALB-0027",
     orariReception: h?.orariReception ?? "",
+    // Fallback alla scheda TripAdvisor reale trovata via ricerca (06/08/2026) —
+    // finché il campo in Sanity (Impostazioni ▸ Info Hotel) resta vuoto.
+    // Verificare che sia ancora la pagina corretta prima di fidarsene ciecamente.
+    linkTripAdvisor:
+      h?.linkTripAdvisor ??
+      "https://www.tripadvisor.com/Hotel_Review-g194792-d567523-Reviews-Hotel_Del_Golfo-Lerici_Italian_Riviera_Liguria.html",
     fotoUrl: imgUrl(h?.logo, 1200, 630), // per og:image — crop 1200x630 corretto solo lì
     logoUrl: imgUrlWide(h?.logo, 400), // per Header — nessun crop forzato, mantiene le proporzioni reali
     logoBiancoUrl: imgUrlWide(h?.logoBianco, 400), // per Footer (sfondo navy)

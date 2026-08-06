@@ -711,32 +711,10 @@ Eventuale: loghi aziende già convenzionate (se il titolare vuole mostrarli)
 
 ## 16. EVOLUTIVE CONTENUTI E PAGINE
 
-Da completare con contenuti reali:
-
-CONTENUTI DA AGGIORNARE IN SANITY (titolare):
-- Descrizioni camere complete e accattivanti
-- Foto ristorante aggiuntive
-- Descrizione degustazione pesto approfondita
-- Distanze e tempi corretti per borghi vicini
-  (Cinque Terre, Portovenere, Tellaro, La Spezia)
-- Itinerari consigliati nella pagina /lerici
-- Testi pagina soggiorni lavoro /lavoro
-
-EVOLUTIVE CHE RICHIEDONO CLAUDE CODE:
-- Homepage: aggiungere sezione colazione
-  ("La nostra colazione" nello scroll della home,
-  dopo il ristorante o prima dei borghi)
-  con foto, descrizione prodotti tipici liguri,
-  orario servizio colazione
-- Pagina /lerici: sezione itinerari dettagliati
-  con mappa e durate escursioni
-- Aggiornare distanze reali nel JSON-LD
-  e nei testi dei borghi vicini
-- ~~Foto hero: caricare foto golfo di Lerici
-  su Sanity Studio (lerici-golfo.jpg)~~ — fatto 2026-07-14
-- Foto ingresso hotel: caricare su Sanity
-  (ingresso-hotel.jpg, ancora in `public/temp-old-photos/`,
-  in attesa di valutazione: l'originale non convince)
+Spostato in `docs/EVOLUTIVE.md` il 06/08/2026 (stesso principio già
+applicato nel gestionale il 26/07/2026, per tenere questa spec leggera).
+Consultare quel file per il backlog completo di contenuti da aggiornare
+in Sanity e sviluppo rimandato.
 
 ---
 
@@ -780,7 +758,5 @@ Implementato in questa sessione:
 - Audit senza fix necessari: SANITY_API_TOKEN mai usato nel
   progetto; nessuna Google Maps API key esiste (embed keyless).
 
-EVOLUTIVE RIMASTE:
-- Configurare un vero invio email per /api/contact (Resend
-  consigliato) — finché non è fatto, il form principale non
-  notifica nessuno.
+Evolutive rimaste da questa sessione: spostate in `docs/EVOLUTIVE.md`
+il 06/08/2026 insieme al resto del backlog del sito.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
 import Hero from "@/components/home/Hero";
 import CamereInEvidenza from "@/components/home/CamereInEvidenza";
@@ -7,7 +8,9 @@ import PestoHighlight from "@/components/home/PestoHighlight";
 import LericiDintorni from "@/components/home/LericiDintorni";
 import LavoroBanner from "@/components/home/LavoroBanner";
 import GalleriaPreview from "@/components/home/GalleriaPreview";
+import TripAdvisorWidget from "@/components/home/TripAdvisorWidget";
 import FAQ from "@/components/home/FAQ";
+import SectionWrapper from "@/components/layout/SectionWrapper";
 import { getInfoHotel } from "@/lib/queries";
 import { pageMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -37,6 +40,7 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const info = await getInfoHotel(locale);
+  const tRecensioni = await getTranslations({ locale, namespace: "Home.recensioni" });
 
   const hotelSchema = {
     "@context": "https://schema.org",
@@ -79,6 +83,12 @@ export default async function HomePage({
       <LericiDintorni />
       <LavoroBanner />
       <GalleriaPreview locale={locale} />
+      <SectionWrapper bg="surface">
+        <h2 className="text-center font-heading text-3xl text-primary">{tRecensioni("title")}</h2>
+        <div className="mt-8">
+          <TripAdvisorWidget url={info.linkTripAdvisor} locale={locale} />
+        </div>
+      </SectionWrapper>
       <FAQ />
     </>
   );
