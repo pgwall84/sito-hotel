@@ -56,6 +56,15 @@ un'eccezione reale segnalata sotto):
     considerare provvisoria: se in futuro il titolare decide una
     percentuale precisa, va aggiornato solo il testo in messages/*.json,
     nessun cambio di codice.
+  - Hosting — Vercel confermato per ora (07/08/2026), Netlify segnato come
+    alternativa da rivalutare in futuro: piano free ammette uso commerciale
+    (Vercel Hobby no, da contratto), adattatore Next.js maturo con supporto
+    ISR verificato — l'unica alternativa reale trovata. Cloudflare Pages
+    scartato: il loro adattatore Next.js non supporta ancora ISR ed è
+    dichiarato dai maintainer non pronto per produzione. Non urgente,
+    nessun risparmio da inseguire ora (~220€/anno Vercel Pro, marginale
+    rispetto alle altre voci di `docs/confronto_costi_fase2.xlsx` del
+    gestionale) — rivalutare con calma, non a ridosso di una scadenza.
   - Google Analytics 4 mai configurato (NEXT_PUBLIC_GA_ID vuota) — il
     banner cookie GDPR è pronto e gated correttamente, ma gira a vuoto.
     Il componente (components/analytics/GoogleAnalytics.tsx) è già
@@ -89,9 +98,10 @@ un'eccezione reale segnalata sotto):
     competitor locale Hotel Florida. Automazione via WhatsApp Business API
     esplicitamente rimandata dal titolare — valutare separatamente se e
     quando serve (costo provider + nuovo modulo nel gestionale, non nel
-    sito). Telegram richiesto insieme a WhatsApp ma non ancora fatto:
-    manca un handle/account Telegram reale dell'hotel — verificare con il
-    titolare se esiste prima di costruire un bottone che punta a niente.
+    sito). Telegram richiesto insieme a WhatsApp, non fatto — confermato dal
+    titolare (06/08/2026): l'hotel non ha un account/canale Telegram.
+    Resta in backlog per quando (e se) ne avranno uno; non riproporlo
+    finché non arriva quella notizia.
   - Instagram feed e Facebook Pixel previsti in spec (Sezione 1.11 di
     CLAUDE.md gestionale), mai implementati: stesso pattern del
     TripAdvisor, solo un link statico in footer, nessun embed reale.
@@ -107,9 +117,16 @@ un'eccezione reale segnalata sotto):
     lista.** Il piano Free di Iubenda copre solo siti sotto 1.000
     pageview/mese e mostra il branding Iubenda — per una revisione seria,
     sufficiente a coprire un hotel con traffico reale, serve il piano
-    Essentials (~5€/mese fatturato annuale) o una revisione diretta da un
-    legale/DPO (costo variabile, probabilmente più alto). Non rimandarla
-    aspettando che diventi gratis: non lo sarà.
+    Essentials o una revisione diretta da un legale/DPO (costo variabile,
+    probabilmente più alto). Non rimandarla aspettando che diventi gratis:
+    non lo sarà.
+    **Aggiornamento 09/08/2026**: verificato dal vivo che la soglia del
+    piano Essentials oggi è **25.000 pageview/mese** (non 1.000 come
+    scritto sopra — probabilmente la struttura piani è cambiata da quando
+    fu scritta questa nota). Cifra esatta in euro non confermata in questa
+    sessione per un problema di rendering della pagina prezzi — verificare
+    su iubenda.com/en/pricing prima di sottoscrivere (la stima storica
+    era ~5€/mese fatturato annuale, da ricontrollare).
   - Sezione "colazione" in homepage (foto, prodotti tipici liguri, orario
     servizio) — annotata come evolutiva già dalla spec originale, mai
     scritta.
