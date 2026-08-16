@@ -3,6 +3,7 @@ import { type SchemaTypeDefinition } from "sanity";
 import { localeString } from "./objects/localeString";
 import { localeText } from "./objects/localeText";
 import { localePortableText } from "./objects/localePortableText";
+import { luogo } from "./objects/luogo";
 
 import { infoHotel } from "./documents/infoHotel";
 import { camera } from "./documents/camera";
@@ -20,6 +21,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     localeString,
     localeText,
     localePortableText,
+    luogo,
     // documenti
     infoHotel,
     camera,
