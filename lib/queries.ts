@@ -260,13 +260,54 @@ const WELCOME_BOOK_QUERY = groq`
     orariCheckin, orariCheckout, orariColazione,
     regoleCasa,
     numeriUtili,
-    consigliLericiTitolo, consigliLerici
+    posizioneLat, posizioneLon, posizioneTesto,
+    trasporti, servizi, attivita, ristorantiEsterni, bar, shopping,
+    informazioni, emergenza
   }
 `;
 
 interface NumeroUtileRaw {
   etichetta?: LocaleString;
   valore?: string;
+}
+
+interface LuogoRaw {
+  nome?: LocaleString;
+  categoria?: string;
+  indirizzo?: string;
+  nota?: LocaleString;
+  telefono?: string;
+  lat?: number;
+  lon?: number;
+  link?: string;
+}
+
+export type Luogo = {
+  nome: string;
+  categoria?: string;
+  indirizzo?: string;
+  nota?: string;
+  telefono?: string;
+  lat?: number;
+  lon?: number;
+  link?: string;
+};
+
+function mapLuogo(raw: LuogoRaw, locale: Locale): Luogo {
+  return {
+    nome: pickLocale(raw.nome, locale) ?? "",
+    categoria: raw.categoria,
+    indirizzo: raw.indirizzo,
+    nota: pickLocale(raw.nota, locale),
+    telefono: raw.telefono,
+    lat: raw.lat,
+    lon: raw.lon,
+    link: raw.link,
+  };
+}
+
+function mapLuoghi(raw: LuogoRaw[] | undefined, locale: Locale): Luogo[] {
+  return (raw ?? []).map((l) => mapLuogo(l, locale)).filter((l) => l.nome);
 }
 
 interface WelcomeBookRaw {
@@ -279,8 +320,17 @@ interface WelcomeBookRaw {
   orariColazione?: string;
   regoleCasa?: LocaleString[];
   numeriUtili?: NumeroUtileRaw[];
-  consigliLericiTitolo?: LocaleString;
-  consigliLerici?: LocaleString[];
+  posizioneLat?: number;
+  posizioneLon?: number;
+  posizioneTesto?: LocaleString;
+  trasporti?: LuogoRaw[];
+  servizi?: LuogoRaw[];
+  attivita?: LuogoRaw[];
+  ristorantiEsterni?: LuogoRaw[];
+  bar?: LuogoRaw[];
+  shopping?: LuogoRaw[];
+  informazioni?: LuogoRaw[];
+  emergenza?: LuogoRaw[];
 }
 
 export const getWelcomeBook = cache(async (locale: Locale) => {
@@ -298,8 +348,17 @@ export const getWelcomeBook = cache(async (locale: Locale) => {
     numeriUtili: (w.numeriUtili ?? [])
       .map((n) => ({ etichetta: pickLocale(n.etichetta, locale) ?? "", valore: n.valore ?? "" }))
       .filter((n) => n.etichetta && n.valore),
-    consigliLericiTitolo: pickLocale(w.consigliLericiTitolo, locale) ?? "",
-    consigliLerici: (w.consigliLerici ?? []).map((c) => pickLocale(c, locale)).filter(Boolean) as string[],
+    posizioneLat: w.posizioneLat,
+    posizioneLon: w.posizioneLon,
+    posizioneTesto: pickLocale(w.posizioneTesto, locale) ?? "",
+    trasporti: mapLuoghi(w.trasporti, locale),
+    servizi: mapLuoghi(w.servizi, locale),
+    attivita: mapLuoghi(w.attivita, locale),
+    ristorantiEsterni: mapLuoghi(w.ristorantiEsterni, locale),
+    bar: mapLuoghi(w.bar, locale),
+    shopping: mapLuoghi(w.shopping, locale),
+    informazioni: mapLuoghi(w.informazioni, locale),
+    emergenza: mapLuoghi(w.emergenza, locale),
   };
 });
 
