@@ -465,22 +465,45 @@ Strategie:
 
 ## 10. BOOKING ENGINE — DUAL MODE
 
+**Aggiornato 19/08/2026 — piano WuBook di Fase 2 qui sotto ABBANDONATO**: WuBook
+vende le sue API solo a rivenditori/PMS certificati, non a un singolo hotel con
+gestionale interno (verificato direttamente con WuBook). Stessa risposta per
+RoomCloud. Octorate dà accesso alle API solo comprando il suo gestionale in
+bundle (~160€/mese, fuori scala). Decisione presa con il titolare il
+19/08/2026: la sincronizzazione OTA (channel manager) userà **Beds24** — spec
+e piano separati, non ancora avviati. Il booking engine diretto per il canale
+sito è stato **sviluppato in proprio** invece di aspettare un fornitore
+esterno: nuove route pubbliche sul gestionale esistente (`gestionale-hotel`,
+`/api/booking-pubblico/*`), Stripe per la caparra (30% online, saldo in hotel
+con il POS Nexi esistente), nessun servizio intermedio. Dettaglio completo:
+`gestionale-hotel/docs/superpowers/specs/2026-08-19-booking-engine-diretto-design.md`
+e `.../plans/2026-08-19-booking-engine-diretto.md`.
+
 ```
 Variabile d'ambiente: NEXT_PUBLIC_BOOKING_ENGINE
 
-Fase 1 (ora):
-  NEXT_PUBLIC_BOOKING_ENGINE=teamsystem
+'diretto' (DEFAULT dal 19/08/2026 — fallback in lib/theme.ts se la variabile non è impostata):
+  → pulsante "Prenota" è un <Link> interno verso /prenota (locale-aware)
+  → pagina /prenota: BookingWidget (ricerca disponibilità + dati ospite)
+    → PaymentStep (Stripe Payment Element, caparra 30%)
+  → conferma SOLO via webhook Stripe lato gestionale, mai dal redirect browser
+  → vedi componenti/booking/BookingWidget.tsx e PaymentStep.tsx
+
+'teamsystem' (fallback manuale, non più il default — widget TS fuori servizio
+dall'agosto 2026):
   → pulsante "Prenota" apre URL TeamSystem in nuova tab
   → nessuna integrazione API necessaria
 
-Fase 2 (dopo switch-off TS):
-  NEXT_PUBLIC_BOOKING_ENGINE=wubook
-  → calendario disponibilità con API WuBook
-  → selezione camera, date, ospiti
-  → pagamento via WuBook (Nexi + Stripe)
-  → webhook al gestionale
-  → sviluppare questo componente solo in Fase 2
+'wubook': non più previsto (vedi nota sopra) — se impostata per errore in
+un env var residuo, BookingButton.tsx la tratta come 'diretto' (unico ramo
+else), non c'è più un ramo WuBook dedicato.
 ```
+
+Se il pulsante "Prenota" del sito in produzione risulta ancora puntare al
+widget TeamSystem dopo un deploy, la causa più probabile è
+`NEXT_PUBLIC_BOOKING_ENGINE=teamsystem` ancora impostata esplicitamente
+nelle variabili d'ambiente del progetto Vercel — il default nel codice è
+cambiato, ma un valore esplicito su Vercel lo sovrascrive comunque.
 
 ---
 
@@ -516,7 +539,7 @@ sito-hotel/
 │   │   ├── LericiDintorni.tsx
 │   │   └── GalleriaPreview.tsx
 │   ├── ui/
-│   │   ├── BookingButton.tsx     → dual mode TS/WuBook
+│   │   ├── BookingButton.tsx     → dual mode TS/diretto (Sezione 10)
 │   │   ├── CameraCard.tsx
 │   │   ├── OffertaCard.tsx
 │   │   ├── LinguaSelector.tsx

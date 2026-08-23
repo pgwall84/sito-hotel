@@ -16,16 +16,22 @@ const BASE_SECURITY_HEADERS = [
 // serve 'unsafe-eval' solo qui, mai in produzione dove non è necessario
 const SCRIPT_SRC_EVAL = process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";
 
+// in dev il Booking Engine Diretto chiama il gestionale in LAN su localhost:7001
+// (vedi NEXT_PUBLIC_GESTIONALE_API_URL) — in produzione punta invece al dominio
+// pubblico del gestionale, già coperto da HTTPS/CSP suo (vedi gestionale-hotel/CLAUDE.md)
+const CONNECT_SRC_GESTIONALE =
+  process.env.NODE_ENV === "development" ? " http://localhost:7001" : " https://hdgolfo-gestionale.com";
+
 // CSP applicata solo al sito pubblico: lo Studio Sanity richiede una policy
 // molto più permissiva per i propri bundle/worker interni
 const PUBLIC_SITE_CSP = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EVAL} https://www.googletagmanager.com https://www.google-analytics.com`,
+  `script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EVAL} https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com",
-  "frame-src https://www.google.com",
+  `connect-src 'self' https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com${CONNECT_SRC_GESTIONALE}`,
+  "frame-src https://www.google.com https://js.stripe.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",

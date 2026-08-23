@@ -46,9 +46,13 @@ export const theme = {
     cardHover: '0 8px 24px rgba(27, 58, 92, 0.16)',
   },
   booking: {
-    engine: process.env.NEXT_PUBLIC_BOOKING_ENGINE || 'teamsystem',
-    // 'teamsystem' → widget iframe TS
-    // 'wubook'     → calendario custom con API WuBook
+    // 'diretto'    → Booking Engine Diretto interno (/prenota, caparra Stripe) — DEFAULT dal 19/08/2026,
+    //                widget TeamSystem fuori servizio. Vedi CLAUDE.md e
+    //                docs/superpowers/specs/2026-08-19-booking-engine-diretto-design.md (repo gestionale-hotel).
+    // 'teamsystem' → widget iframe TS — tenuto solo come fallback manuale, non più il default
+    // 'wubook'     → non più previsto: la sincronizzazione OTA userà Beds24 (spec separata),
+    //                il booking engine diretto sostituisce il calendario custom WuBook di questa entry
+    engine: process.env.NEXT_PUBLIC_BOOKING_ENGINE || 'diretto',
     teamsystemUrl: 'https://digitalbooking.digiside.it/it/Struttura?strutture_id=224',
     wubookApiUrl: process.env.WUBOOK_API_URL || '',
   }

@@ -102,7 +102,10 @@
     "balcone": "Balcony",
     "minibar": "Minibar",
     "cassaforte": "Safe",
-    "bagno-privato": "Private bathroom"
+    "bagno-privato": "Private bathroom",
+    "colazione-inclusa": "Breakfast included",
+    "parcheggio": "Parking",
+    "sky": "Sky TV"
   },
   "CamerePage": {
     "title": "Our rooms",
@@ -203,6 +206,35 @@
     "validoDal": "Valid from",
     "al": "to",
     "cta": "Book this offer"
+  },
+  "PrenotaPage": {
+    "title": "Book your stay",
+    "subtitle": "Real-time availability and prices, 30% deposit online, balance paid at the hotel",
+    "dataArrivo": "Check-in date",
+    "dataPartenza": "Check-out date",
+    "ospiti": "Number of guests",
+    "adulti": "Adults",
+    "bambini": "Children (with age)",
+    "anni": "years",
+    "aggiungiBambino": "Add child",
+    "rimuoviBambino": "Remove child",
+    "cerca": "Search availability",
+    "nessunaDisponibilita": "No rooms available for these dates.",
+    "prezzoTotale": "Total stay",
+    "caparra": "Deposit to pay now (30%)",
+    "selezionaCamera": "Select this room",
+    "nome": "First name",
+    "cognome": "Last name",
+    "email": "Email",
+    "telefono": "Phone (optional)",
+    "terminiCancellazione": "Cancellation policy",
+    "continua": "Continue to payment",
+    "daPrezzo": "from",
+    "trattamento": "Board",
+    "bb": "Room only (B&B)",
+    "mezzaPensione": "Half board",
+    "pensioneCompleta": "Full board",
+    "trattamentoNonDisponibile": "Not available for these dates"
   },
   "GalleriaPage": {
     "title": "Gallery",

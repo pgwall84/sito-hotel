@@ -102,7 +102,10 @@
     "balcone": "Balcon",
     "minibar": "Minibar",
     "cassaforte": "Coffre-fort",
-    "bagno-privato": "Salle de bain privée"
+    "bagno-privato": "Salle de bain privée",
+    "colazione-inclusa": "Petit-déjeuner inclus",
+    "parcheggio": "Parking",
+    "sky": "Sky TV"
   },
   "CamerePage": {
     "title": "Nos chambres",
@@ -203,6 +206,35 @@
     "validoDal": "Valable du",
     "al": "au",
     "cta": "Réserver cette offre"
+  },
+  "PrenotaPage": {
+    "title": "Prenota il tuo soggiorno",
+    "subtitle": "Disponibilità e prezzi in tempo reale, caparra del 30% online, saldo in hotel",
+    "dataArrivo": "Data di arrivo",
+    "dataPartenza": "Data di partenza",
+    "ospiti": "Numero ospiti",
+    "adulti": "Adulti",
+    "bambini": "Bambini (con età)",
+    "anni": "anni",
+    "aggiungiBambino": "Aggiungi bambino",
+    "rimuoviBambino": "Rimuovi bambino",
+    "cerca": "Cerca disponibilità",
+    "nessunaDisponibilita": "Nessuna camera disponibile per queste date.",
+    "prezzoTotale": "Totale soggiorno",
+    "caparra": "Caparra da pagare ora (30%)",
+    "selezionaCamera": "Seleziona questa camera",
+    "nome": "Nome",
+    "cognome": "Cognome",
+    "email": "Email",
+    "telefono": "Telefono (opzionale)",
+    "terminiCancellazione": "Termini di cancellazione",
+    "continua": "Continua al pagamento",
+    "daPrezzo": "a partire da",
+    "trattamento": "Trattamento",
+    "bb": "Solo pernottamento (B&B)",
+    "mezzaPensione": "Mezza pensione",
+    "pensioneCompleta": "Pensione completa",
+    "trattamentoNonDisponibile": "Non disponibile per queste date"
   },
   "GalleriaPage": {
     "title": "Galerie",
