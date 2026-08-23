@@ -1,7 +1,8 @@
 # CLAUDE.md — Hotel del Golfo — Sito Web
 
-> Leggi questo file e poi `SPEC_SITO_HOTEL.md` integralmente prima di fare
-> qualsiasi cosa.
+> Leggi questo file, poi `SPEC_SITO_HOTEL.md`, poi `STATO_PROGETTO.md`
+> integralmente prima di fare qualsiasi cosa — quest'ultimo (nuovo,
+> 23/08/2026) è la fotografia di dove siamo oggi, non duplicata qui.
 
 **Nota**: `AGENTS.md` in questa cartella non è documentazione di progetto —
 è un file generato automaticamente da Next.js 16.2+ (`create-next-app`)
@@ -38,9 +39,12 @@ Next.js 15 + TypeScript, App Router, Tailwind + design tokens in
 IT/EN/DE/FR, deploy Vercel con ISR 60s sui contenuti Sanity. Dettaglio
 completo in `SPEC_SITO_HOTEL.md` Sezione 2.
 
-Booking engine dual-mode: Fase 1 usa il widget TeamSystem Hospitality
-(iframe/link esterno), Fase 2 lo sostituirà con un calendario custom su
-API WuBook — vedi `SPEC_SITO_HOTEL.md` Sezione 10 e `BookingButton.tsx`.
+Booking engine: `/prenota` (Booking Engine Diretto v2, Stripe, caparra 30%)
+è già in produzione, costruito **senza WuBook** — il piano "calendario
+custom su API WuBook" è stato abbandonato il 19/08/2026 (WuBook/RoomCloud/
+Octorate tutti esclusi, Beds24 scelto solo per la sincronizzazione OTA,
+spec separata non ancora scritta). Vedi `SPEC_SITO_HOTEL.md` Sezione 10
+(aggiornata) e `STATO_PROGETTO.md`.
 
 ---
 
@@ -72,15 +76,18 @@ cronologia git di `next.config.ts`/`proxy.ts` (questo repo non ha ancora
 un diario sessioni separato come il gestionale — se la cronologia diventa
 densa, valutare di crearne uno analogo a `docs/DIARIO_SESSIONI.md`).
 
-**Evolutiva aperta**: `app/api/contact/route.ts` valida e sanitizza il
-form contatti ma non invia ancora email a nessun provider reale (Resend
-proposto, non configurato) — il messaggio finisce solo nei log Vercel.
+~~**Evolutiva aperta**: `app/api/contact/route.ts` valida e sanitizza il
+form contatti ma non invia ancora email a nessun provider reale~~ —
+**SUPERATO, corretto 23/08/2026**: fatto il 06/08/2026, invia via Resend
+(`lib/resend.ts`), vedi `docs/EVOLUTIVE.md`. Questa nota non era mai stata
+aggiornata dopo.
 
 ---
 
 ## 5. RIFERIMENTI
 
 - Spec completa: `SPEC_SITO_HOTEL.md` (questa cartella)
+- Stato attuale (nuovo, 23/08/2026): `STATO_PROGETTO.md` (questa cartella)
 - Backlog/evolutive (gap noti, contenuti mancanti, miglioramenti
   rimandati): `docs/EVOLUTIVE.md` (questa cartella, creato 06/08/2026)
 - Gestionale interno (progetto collegato ma separato): repo

@@ -155,16 +155,19 @@ fatto, o alta complessità — qui il costo varia molto per voce):
     l'incremento di conversione del 35% citato sopra, è l'AI che serve —
     quindi questa voce non è gratis come le altre, va scelta consapevoli
     del costo ricorrente.
-  - Disponibilità/prezzo mostrati direttamente in pagina: oggi "Prenota"
-    è solo un redirect esterno al widget TeamSystem (BookingButton in
-    modalità 'teamsystem'), zero calendario o prezzo visibile senza
-    uscire dal sito. Risolto strutturalmente solo in Fase 2 col
-    calendario custom su API WuBook (già previsto in
-    SPEC_SITO_HOTEL.md Sezione 10) — non anticipabile prima.
-    COSTO: non gratis, ma già noto e già in roadmap — WuBook channel
-    manager (~21€/mese) + booking engine (~27€/mese), vedi
-    `docs/EVOLUTIVE.md` del gestionale, sezione decisioni strategiche
-    Fase 2. Nessun costo aggiuntivo oltre a quello già previsto.
+  - [FATTO 19-20/08/2026, corretto 23/08/2026] Disponibilità/prezzo
+    mostrati direttamente in pagina: questa voce diceva "risolto solo in
+    Fase 2 col calendario custom su API WuBook" — **superata su entrambi i
+    punti**. WuBook è stato scartato il 19/08/2026 (accetta solo fornitori
+    certificati multi-cliente, non un hotel col proprio gestionale — vedi
+    `docs/EVOLUTIVE.md` del gestionale, correzione 19/08/2026) e nel
+    frattempo `/prenota` (Booking Engine Diretto v2) è stato costruito
+    **senza passare da WuBook**: calendario reale, disponibilità e prezzo
+    in pagina, caparra 30% via Stripe. Non è più un gap. Verifica
+    end-to-end e range tariffe restano da confermare — vedi
+    `STATO_PROGETTO.md` del gestionale. La sincronizzazione OTA (canali
+    Booking.com/HRS/Expedia) resta invece un gap reale, ma va sotto
+    **Beds24** (spec non ancora scritta), non più sotto WuBook.
   - Remarketing verso ospiti passati integrato nel sito (voucher/sconto
     per chi riprenota diretto): oggi "Offerte" vive solo lato gestionale
     via email (modulo 5.3), il sito non ha una landing dedicata da
