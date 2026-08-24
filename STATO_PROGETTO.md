@@ -39,6 +39,19 @@ Pagina `/prenota` con calendario, disponibilità e prezzo reali, caparra
 30% via Stripe — costruita **senza WuBook** (vedi sotto). Stato tecnico
 dettagliato: `gestionale-hotel/STATO_PROGETTO.md`.
 
+**24/08/2026 (Piano 4, stesso giorno)**: il prezzo mostrato/prenotato ora
+legge anche `/planning-tariffe` (griglia giorno-per-giorno del Piano 3,
+gestionale-hotel) — prima leggeva solo il vecchio motore `/tariffe`,
+segnalato dal titolare come "prezzi a caso". `BookingWidget.tsx` mostra
+anche un motivo specifico (min-stay/chiusura/stop-sell) quando un
+trattamento è bloccato da una restrizione impostata dal titolare, invece
+del generico "non disponibile" — testo in italiano, non tradotto per
+EN/DE/FR (limite preesistente su questo widget, non una regressione).
+Nessuna verifica end-to-end fatta da questo sandbox (nessun accesso DB,
+nessuna build Next reale) — dettaglio completo, incluse le assunzioni
+sulle restrizioni da riconfermare col titolare, in
+`gestionale-hotel/docs/DIARIO_SESSIONI.md`, voce "Piano 4" del 24/08.
+
 ## Channel manager OTA — fornitore cambiato
 
 **19/08/2026**: WuBook/WooDoo escluso — **verificato direttamente con

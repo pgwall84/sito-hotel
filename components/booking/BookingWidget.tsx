@@ -31,6 +31,14 @@ type TipoCameraDisponibile = {
   num_notti: number;
   prezzi: Record<Trattamento, number | null>;
   capienza_max: number | null;
+  // Sincronizzazione con planning-tariffe (24/08/2026): quando un
+  // trattamento risulta non prenotabile per una restrizione impostata dal
+  // titolare (minimo notti, arrivo/partenza chiusi, vendita chiusa) invece
+  // che per assenza di prezzo, il gestionale manda anche il motivo — testo
+  // pronto in italiano, stesso principio già in uso per gli errori generici
+  // di questo widget (body.error mostrato direttamente, non tradotto).
+  // Campo opzionale: assente su risposte da versioni precedenti/cache.
+  motivi_non_disponibile?: Record<Trattamento, string | null>;
 };
 
 // Nota storica (rimossa 19/08/2026): qui c'era un hack che rietichettava
@@ -388,7 +396,11 @@ export default function BookingWidget({ locale }: { locale: string }) {
                     />
                     {etichetta}
                   </span>
-                  <span className="text-sm text-textMuted">{prezzo === null ? t("trattamentoNonDisponibile") : `€${prezzo}`}</span>
+                  <span className="text-sm text-textMuted">
+                    {prezzo === null
+                      ? tipoSelezionato.motivi_non_disponibile?.[opzione] || t("trattamentoNonDisponibile")
+                      : `€${prezzo}`}
+                  </span>
                 </label>
               );
             })}
