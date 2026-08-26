@@ -240,7 +240,7 @@ export default function DateRangePicker({
       </div>
 
       {aperto && (
-        <div className="absolute z-10 mt-2 rounded-lg border border-border bg-white p-4 shadow-cardHover">
+        <div className="absolute z-10 mt-2 rounded-lg border border-border bg-background p-4 shadow-cardHover">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-xs text-textMuted">
               {campoAttivo === "partenza" ? labelPartenza : labelArrivo}

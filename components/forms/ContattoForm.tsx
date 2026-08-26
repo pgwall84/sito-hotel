@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Button from "@/components/ui/Button";
 
 type Status = "idle" | "sending" | "success" | "error" | "rate-limited";
 
@@ -97,13 +98,9 @@ export default function ContattoForm() {
       {status === "error" && <p className="text-sm text-accent sm:col-span-2">{t("formError")}</p>}
       {status === "rate-limited" && <p className="text-sm text-accent sm:col-span-2">{t("formRateLimited")}</p>}
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-primaryLight disabled:opacity-60 sm:col-span-2"
-      >
+      <Button type="submit" variant="primary" disabled={status === "sending"} className="disabled:opacity-60 sm:col-span-2">
         {status === "sending" ? t("formSending") : t("formSubmit")}
-      </button>
+      </Button>
     </form>
   );
 }

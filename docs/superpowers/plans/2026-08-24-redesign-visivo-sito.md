@@ -48,6 +48,11 @@ Letti direttamente `lib/theme.ts`, `tailwind.config.ts`, `app/globals.css`,
 
 ### 1. Barra di ricerca / date-range picker (componente nuovo, condiviso)
 
+**Stato: CHIUSO (24/08/2026)** — `DateRangePicker.tsx` costruito e in uso
+nel booking widget, checkpoint visivo confermato dal titolare. Dettaglio:
+`docs/superpowers/specs/2026-08-24-date-range-picker-design.md`,
+`STATO_PROGETTO.md`.
+
 **Perché per primo**: non è solo estetica — oggi il booking widget usa
 input data nativi del browser, un'esperienza sotto lo standard atteso da
 chi prenota un hotel online nel 2026. È anche l'unico punto della lista
@@ -79,6 +84,12 @@ userà.
 esistente, sostituendo i due input nativi, prima di essere riusato altrove.
 
 ### 2. Palette/tipografia/bottoni/card — audit di coerenza, non ricostruzione
+
+**Stato: CHIUSO (26/08/2026)** — eseguito in 6 fasi (token, `Button`,
+`Card`, flusso booking/pagamento, `LinguaSelector`, sweep finale), ognuna
+con checkpoint visivo confermato dal titolare. Dettaglio completo:
+`docs/superpowers/specs/2026-08-26-coerenza-visiva-design.md`,
+`STATO_PROGETTO.md`.
 
 **Perché**: il sistema in `lib/theme.ts` è già buono ma non è detto sia
 applicato ovunque con la stessa disciplina (pagine costruite in momenti

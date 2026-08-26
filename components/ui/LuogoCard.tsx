@@ -8,6 +8,7 @@ import {
   Siren, Shield, Anchor, Info, MapPin, Phone, type LucideIcon,
 } from "lucide-react";
 import type { Luogo } from "@/lib/queries";
+import Card from "@/components/ui/Card";
 
 // Card per un singolo "luogo" (Trasporti, Servizi, Attività, Ristoranti
 // esterni, Bar, Shopping, Informazioni, Emergenza — vedi docs/superpowers/
@@ -52,7 +53,7 @@ export default function LuogoCard({ luogo }: { luogo: Luogo }) {
         : null;
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-border bg-background p-5 shadow-card">
+    <Card conFoto={false} className="flex flex-col gap-2 p-5">
       <div className="flex items-center gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-primary">
           <Icon size={20} />
@@ -123,6 +124,6 @@ export default function LuogoCard({ luogo }: { luogo: Luogo }) {
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 }

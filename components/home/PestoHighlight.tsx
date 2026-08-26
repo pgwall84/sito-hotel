@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/lib/i18n/navigation";
+import Button from "@/components/ui/Button";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 
 export default function PestoHighlight() {
@@ -13,12 +13,9 @@ export default function PestoHighlight() {
           <p className="mt-1 text-white/85">{t("numberLabel")}</p>
           <h2 className="mt-6 font-heading text-3xl">{t("title")}</h2>
           <p className="mt-4 text-white/90">{t("description")}</p>
-          <Link
-            href="/esperienze"
-            className="mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-accent transition-colors hover:bg-surface"
-          >
+          <Button href="/esperienze" variant="solid-white-accent" className="mt-6 inline-block">
             {t("cta")}
-          </Link>
+          </Button>
         </div>
         <div className="aspect-[4/3] rounded-lg bg-white/10" />
       </div>

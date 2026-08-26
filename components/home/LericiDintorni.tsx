@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import SectionWrapper from "@/components/layout/SectionWrapper";
+import Card from "@/components/ui/Card";
 
 const BORGHI = ["cinqueTerre", "portovenere", "tellaro"] as const;
 
@@ -13,14 +14,10 @@ export default function LericiDintorni() {
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {BORGHI.map((key) => (
-          <Link
-            key={key}
-            href="/lerici"
-            className="rounded-lg border border-border p-6 shadow-card transition-shadow hover:shadow-cardHover"
-          >
+          <Card key={key} conFoto={false} hover href="/lerici" className="p-6">
             <h3 className="font-heading text-xl text-primary">{t(`${key}.name`)}</h3>
             <p className="mt-2 text-sm text-textMuted">{t(`${key}.distanza`)}</p>
-          </Link>
+          </Card>
         ))}
       </div>
 

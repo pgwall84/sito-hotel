@@ -14,6 +14,8 @@ import { client, urlFor } from "@/lib/sanity";
 import { pickLocale } from "@/lib/sanity-i18n";
 import { SERVIZI_ICONS } from "@/lib/servizi";
 import DateRangePicker from "@/components/ui/DateRangePicker";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 import PaymentStep from "./PaymentStep";
 
 const API_BASE = process.env.NEXT_PUBLIC_GESTIONALE_API_URL;
@@ -278,9 +280,9 @@ export default function BookingWidget({ locale }: { locale: string }) {
             className="w-full border-0 p-0 text-sm focus:outline-none focus:ring-0"
           />
         </label>
-        <button type="submit" disabled={caricamento || !dataArrivo || !dataPartenza} className="bg-primary text-white rounded px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed">
+        <Button type="submit" variant="primary" size="compatta" disabled={caricamento || !dataArrivo || !dataPartenza}>
           {t("cerca")}
-        </button>
+        </Button>
       </form>
 
       {/* Bambini con età (Fase A, 19/08/2026) — un selettore età per ogni
@@ -290,7 +292,7 @@ export default function BookingWidget({ locale }: { locale: string }) {
         <span className="text-sm text-textMuted">{t("bambini")}</span>
         <div className="mt-2 flex flex-wrap gap-2">
           {bambiniEta.map((eta, indice) => (
-            <div key={indice} className="flex items-center gap-1 border rounded px-2 py-1">
+            <div key={indice} className="flex items-center gap-1 rounded-md border border-border px-2 py-1">
               <select
                 value={eta}
                 onChange={(e) => {
@@ -310,7 +312,7 @@ export default function BookingWidget({ locale }: { locale: string }) {
                 type="button"
                 onClick={() => setBambiniEta(bambiniEta.filter((_, i) => i !== indice))}
                 aria-label={t("rimuoviBambino")}
-                className="text-textMuted hover:text-red-600 px-1"
+                className="text-textMuted hover:text-error px-1"
               >
                 ×
               </button>
@@ -319,14 +321,14 @@ export default function BookingWidget({ locale }: { locale: string }) {
           <button
             type="button"
             onClick={() => setBambiniEta([...bambiniEta, 0])}
-            className="text-sm border border-dashed rounded px-3 py-1 text-textMuted hover:text-primary hover:border-primary"
+            className="text-sm rounded-md border border-dashed border-border px-3 py-1 text-textMuted hover:text-primary hover:border-primary"
           >
             + {t("aggiungiBambino")}
           </button>
         </div>
       </div>
 
-      {errore && <p className="mt-4 text-red-600">{errore}</p>}
+      {errore && <p className="mt-4 text-error">{errore}</p>}
 
       {risultati && risultati.length === 0 && <p className="mt-6 text-textMuted">{t("nessunaDisponibilita")}</p>}
 
@@ -339,14 +341,14 @@ export default function BookingWidget({ locale }: { locale: string }) {
             const capienzaSuperata = tipo.capienza_max != null && ospitiChePesanoSuCapienza > tipo.capienza_max;
             const arricchimento = arricchimenti[tipo.id];
             return (
-              <div key={tipo.id} className="border rounded overflow-hidden">
+              <Card key={tipo.id} conFoto hover>
                 {arricchimento?.fotoUrl && (
                   <div className="relative aspect-[4/3]">
                     <Image src={arricchimento.fotoUrl} alt={tipo.nome} fill className="object-cover" />
                   </div>
                 )}
                 <div className="p-4">
-                  <h3 className="font-heading text-xl">{tipo.nome}</h3>
+                  <h3 className="font-heading text-xl text-primary">{tipo.nome}</h3>
                   {tipo.capienza_max != null && (
                     <p className="mt-1 text-xs text-textLight">Fino a {tipo.capienza_max} ospiti</p>
                   )}
@@ -368,18 +370,20 @@ export default function BookingWidget({ locale }: { locale: string }) {
                   <p className="mt-2 text-textMuted">
                     {t("daPrezzo")} €{tipo.prezzi.bb}
                   </p>
-                  <button
+                  <Button
+                    variant="primary"
+                    size="compatta"
+                    className="mt-3"
                     onClick={() => {
                       setTrattamento("bb");
                       setTipoSelezionato(tipo);
                     }}
                     disabled={capienzaSuperata}
-                    className="mt-3 bg-primary text-white rounded px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {t("selezionaCamera")}
-                  </button>
+                  </Button>
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>
@@ -402,7 +406,7 @@ export default function BookingWidget({ locale }: { locale: string }) {
               return (
                 <label
                   key={opzione}
-                  className={`flex items-center justify-between gap-3 border rounded px-3 py-2 ${prezzo === null ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${trattamento === opzione ? "border-primary" : ""}`}
+                  className={`flex items-center justify-between gap-3 rounded-md border px-3 py-2 ${prezzo === null ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${trattamento === opzione ? "border-primary" : "border-border"}`}
                 >
                   <span className="flex items-center gap-2">
                     <input
@@ -439,19 +443,19 @@ export default function BookingWidget({ locale }: { locale: string }) {
         <form onSubmit={confermaDatiOspite} className="mt-6 grid gap-4 md:grid-cols-2 max-w-lg">
           <label className="flex flex-col gap-1">
             <span className="text-sm text-textMuted">{t("nome")}</span>
-            <input required value={datiOspite.nome} onChange={(e) => setDatiOspite({ ...datiOspite, nome: e.target.value })} className="border rounded px-3 py-2" />
+            <input required value={datiOspite.nome} onChange={(e) => setDatiOspite({ ...datiOspite, nome: e.target.value })} className="rounded-md border border-border px-3 py-2" />
           </label>
           <label className="flex flex-col gap-1">
             <span className="text-sm text-textMuted">{t("cognome")}</span>
-            <input required value={datiOspite.cognome} onChange={(e) => setDatiOspite({ ...datiOspite, cognome: e.target.value })} className="border rounded px-3 py-2" />
+            <input required value={datiOspite.cognome} onChange={(e) => setDatiOspite({ ...datiOspite, cognome: e.target.value })} className="rounded-md border border-border px-3 py-2" />
           </label>
           <label className="flex flex-col gap-1 md:col-span-2">
             <span className="text-sm text-textMuted">{t("email")}</span>
-            <input type="email" required value={datiOspite.email} onChange={(e) => setDatiOspite({ ...datiOspite, email: e.target.value })} className="border rounded px-3 py-2" />
+            <input type="email" required value={datiOspite.email} onChange={(e) => setDatiOspite({ ...datiOspite, email: e.target.value })} className="rounded-md border border-border px-3 py-2" />
           </label>
           <label className="flex flex-col gap-1 md:col-span-2">
             <span className="text-sm text-textMuted">{t("telefono")}</span>
-            <input value={datiOspite.telefono} onChange={(e) => setDatiOspite({ ...datiOspite, telefono: e.target.value })} className="border rounded px-3 py-2" />
+            <input value={datiOspite.telefono} onChange={(e) => setDatiOspite({ ...datiOspite, telefono: e.target.value })} className="rounded-md border border-border px-3 py-2" />
           </label>
 
           {/* Termini di cancellazione (Fase C, 19/08/2026) — mostrati sempre
@@ -462,19 +466,21 @@ export default function BookingWidget({ locale }: { locale: string }) {
               avviso "da completare" visibile che un silenzio che lascia
               credere che non esista alcuna condizione. */}
           {terminiCancellazione && (
-            <div className="md:col-span-2 border rounded p-3 bg-surfaceDark/40">
-              <h4 className="text-sm font-semibold text-text">{t("terminiCancellazione")}</h4>
+            <div className="md:col-span-2 rounded-md border border-border p-3 bg-surfaceDark/40">
+              <h4 className="font-heading text-sm font-semibold text-text">{t("terminiCancellazione")}</h4>
               <p className="mt-1 text-sm text-textMuted whitespace-pre-line">{terminiCancellazione}</p>
             </div>
           )}
 
-          <button
+          <Button
             type="submit"
+            variant="primary"
+            size="compatta"
+            className="md:col-span-2"
             disabled={caricamento || tipoSelezionato.prezzi[trattamento] === null}
-            className="md:col-span-2 bg-primary text-white rounded px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {t("continua")}
-          </button>
+          </Button>
         </form>
       )}
     </div>

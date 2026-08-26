@@ -44,7 +44,7 @@ export default async function BenvenutoPosizionePage({
       </div>
 
       <div className="mt-6">
-        <p className="font-heading text-lg text-primary">{tContatti("comeArrivareTitle")}</p>
+        <h2 className="font-heading text-lg text-primary">{tContatti("comeArrivareTitle")}</h2>
         <ul className="mt-2 space-y-1 text-sm text-textMuted">
           <li>{tContatti("auto")}</li>
           <li>{tContatti("treno")}</li>

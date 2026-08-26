@@ -27,7 +27,7 @@ export default async function BenvenutoWifiPage({
   return (
     <SectionWrapper bg="white">
       {wb?.wifiNome ? (
-        <div className="inline-flex flex-col gap-2 rounded-lg border border-border bg-surface px-6 py-5 text-sm">
+        <div className="inline-flex flex-col gap-2 rounded-md border border-border bg-surface px-6 py-5 text-sm">
           <p>
             <span className="text-textMuted">{t("wifiNomeLabel")}: </span>
             <span className="text-lg font-semibold text-text">{wb.wifiNome}</span>

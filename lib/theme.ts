@@ -12,6 +12,7 @@ export const theme = {
     textMuted: '#6B6B6B',    // testo secondario
     textLight: '#9A9A9A',    // testo terziario
     border: '#E0D8CE',       // bordi sabbia
+    error: '#B23B2E',        // rosso mattone smorzato — sostituisce text-red-600 (stonato con la palette calda)
     white: '#FFFFFF',
     gold: '#C4A882',         // oro antico — eyebrow/testo secondario su navy
   },

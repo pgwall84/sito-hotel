@@ -1,5 +1,7 @@
 import Image from "next/image";
 import BookingButton from "@/components/ui/BookingButton";
+import { buttonClasses } from "@/components/ui/buttonClasses";
+import Card from "@/components/ui/Card";
 
 export default function OffertaCard({
   titolo,
@@ -23,7 +25,7 @@ export default function OffertaCard({
   ctaLabel: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-lg bg-background shadow-card transition-shadow hover:shadow-cardHover">
+    <Card conFoto hover className="relative">
       {evidenziata && (
         <span className="absolute left-3 top-3 z-10 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
           {badgeLabel}
@@ -50,10 +52,10 @@ export default function OffertaCard({
           </span>
         </div>
 
-        <BookingButton className="mt-4 inline-block w-full rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-primaryLight">
+        <BookingButton className={`mt-4 inline-block w-full text-center ${buttonClasses("accent", "compatta")}`}>
           {ctaLabel}
         </BookingButton>
       </div>
-    </div>
+    </Card>
   );
 }

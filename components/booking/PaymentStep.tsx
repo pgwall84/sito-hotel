@@ -10,6 +10,7 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import Button from "@/components/ui/Button";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -84,14 +85,14 @@ function FormPagamento({ importoCaparra, nomeOspite }: { importoCaparra: number;
           required
           value={nomeTitolareCarta}
           onChange={(e) => setNomeTitolareCarta(e.target.value)}
-          className="border rounded px-3 py-2"
+          className="rounded-md border border-border px-3 py-2"
         />
       </label>
       <PaymentElement />
-      {errore && <p className="mt-4 text-red-600">{errore}</p>}
-      <button type="submit" disabled={!stripe || elaborazione} className="mt-4 bg-primary text-white rounded px-4 py-2">
+      {errore && <p className="mt-4 text-error">{errore}</p>}
+      <Button type="submit" variant="primary" size="compatta" className="mt-4" disabled={!stripe || elaborazione}>
         {elaborazione ? "Elaborazione..." : `Paga €${importoCaparra}`}
-      </button>
+      </Button>
     </form>
   );
 }

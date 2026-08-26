@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { SERVIZI_ICONS } from "@/lib/servizi";
+import Card from "@/components/ui/Card";
 
 export default function CameraCard({
   nome,
@@ -23,7 +24,7 @@ export default function CameraCard({
   const t = useTranslations("Servizi");
 
   return (
-    <div className="overflow-hidden rounded-lg bg-background shadow-card transition-shadow hover:shadow-cardHover">
+    <Card conFoto hover>
       {fotoUrl ? (
         <div className="relative aspect-[4/3]">
           <Image src={fotoUrl} alt={nome} fill className="object-cover" />
@@ -45,6 +46,6 @@ export default function CameraCard({
           </Link>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

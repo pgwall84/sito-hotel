@@ -45,12 +45,12 @@ export default async function ContattiPage({
           </div>
 
           <div className="text-sm text-text">
-            <p className="font-heading text-xl text-primary">{t("orariTitle")}</p>
+            <h2 className="font-heading text-xl text-primary">{t("orariTitle")}</h2>
             <p className="mt-2 text-textMuted">+39 0187 967400 · +39 335 7579786</p>
             <p className="text-textMuted">info@hoteldelgolfo.com</p>
             <p className="mt-2 text-textMuted">Via Gerini 37, 19032 Lerici (SP)</p>
 
-            <p className="mt-6 font-heading text-xl text-primary">{t("comeArrivareTitle")}</p>
+            <h2 className="mt-6 font-heading text-xl text-primary">{t("comeArrivareTitle")}</h2>
             <ul className="mt-2 space-y-1 text-textMuted">
               <li>{t("auto")}</li>
               <li>{t("treno")}</li>

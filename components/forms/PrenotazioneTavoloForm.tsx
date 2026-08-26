@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Button from "@/components/ui/Button";
 
 const EMAIL_TO = "info@hoteldelgolfo.com";
 
@@ -60,12 +61,9 @@ export default function PrenotazioneTavoloForm() {
         onChange={(e) => setForm({ ...form, telefono: e.target.value })}
         className="rounded-md border border-border bg-background px-4 py-2 text-sm"
       />
-      <button
-        type="submit"
-        className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-primaryLight sm:col-span-2"
-      >
+      <Button type="submit" variant="primary" className="sm:col-span-2">
         {t("formSubmit")}
-      </button>
+      </Button>
     </form>
   );
 }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import BookingButton from "@/components/ui/BookingButton";
+import Button from "@/components/ui/Button";
+import { buttonClasses } from "@/components/ui/buttonClasses";
 import PrenotaDirettoNote from "@/components/ui/PrenotaDirettoNote";
 
 const BADGE_KEYS = ["mare", "borgo", "ristorante", "famiglia"] as const;
@@ -37,15 +39,12 @@ export default function Hero({ fotoUrl }: { fotoUrl?: string | null }) {
         <p className="mt-4 max-w-xl text-lg text-white/85">{t("subtitle")}</p>
 
         <div className="mt-8 flex flex-wrap gap-4">
-          <BookingButton className="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-accentLight">
+          <BookingButton className={buttonClasses("accent", "grande")}>
             {t("ctaPrimary")}
           </BookingButton>
-          <a
-            href="#punti-di-forza"
-            className="rounded-full border border-white px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-primary"
-          >
+          <Button href="#punti-di-forza" variant="outline-white">
             {t("ctaSecondary")}
-          </a>
+          </Button>
         </div>
         <PrenotaDirettoNote variant="light" />
 

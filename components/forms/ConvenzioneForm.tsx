@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Button from "@/components/ui/Button";
 
 export default function ConvenzioneForm({ emailTo }: { emailTo: string }) {
   const t = useTranslations("LavoroPage");
@@ -80,12 +81,9 @@ export default function ConvenzioneForm({ emailTo }: { emailTo: string }) {
         rows={3}
         className="rounded-md border border-border bg-background px-4 py-2 text-sm sm:col-span-2"
       />
-      <button
-        type="submit"
-        className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-primaryLight sm:col-span-2"
-      >
+      <Button type="submit" variant="primary" className="sm:col-span-2">
         {t("formSubmit")}
-      </button>
+      </Button>
     </form>
   );
 }

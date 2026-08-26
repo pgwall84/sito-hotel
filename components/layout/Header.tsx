@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import LinguaSelector from "@/components/ui/LinguaSelector";
 import BookingButton from "@/components/ui/BookingButton";
+import { buttonClasses } from "@/components/ui/buttonClasses";
 
 const NAV_ITEMS = [
   { href: "/", key: "home" },
@@ -59,7 +60,7 @@ export default function Header({
 
         <div className="hidden items-center gap-4 lg:flex">
           <LinguaSelector />
-          <BookingButton className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-primaryLight">
+          <BookingButton className={buttonClasses("primary", "compatta")}>
             {tHeader("cta")}
           </BookingButton>
         </div>
@@ -97,7 +98,7 @@ export default function Header({
           <div className="mt-2 px-3">
             <LinguaSelector />
           </div>
-          <BookingButton className="mt-2 rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white">
+          <BookingButton className={`mt-2 text-center ${buttonClasses("primary", "compatta")}`}>
             {tHeader("cta")}
           </BookingButton>
         </nav>
