@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { client, urlFor } from "@/lib/sanity";
 import { pickLocale } from "@/lib/sanity-i18n";
 import { SERVIZI_ICONS } from "@/lib/servizi";
+import DateRangePicker from "@/components/ui/DateRangePicker";
 import PaymentStep from "./PaymentStep";
 
 const API_BASE = process.env.NEXT_PUBLIC_GESTIONALE_API_URL;
@@ -246,20 +247,38 @@ export default function BookingWidget({ locale }: { locale: string }) {
 
   return (
     <div>
-      <form onSubmit={cercaDisponibilita} className="grid gap-4 md:grid-cols-4 items-end">
-        <label className="flex flex-col gap-1">
-          <span className="text-sm text-textMuted">{t("dataArrivo")}</span>
-          <input type="date" required value={dataArrivo} onChange={(e) => setDataArrivo(e.target.value)} className="border rounded px-3 py-2" />
+      <form onSubmit={cercaDisponibilita} className="grid gap-4 md:grid-cols-3 items-end">
+        <DateRangePicker
+          dataArrivo={dataArrivo}
+          dataPartenza={dataPartenza}
+          onChange={(nuovoArrivo, nuovaPartenza) => {
+            setDataArrivo(nuovoArrivo);
+            setDataPartenza(nuovaPartenza);
+          }}
+          adulti={adulti}
+          bambiniEta={bambiniEta}
+          labelArrivo={t("dataArrivo")}
+          labelPartenza={t("dataPartenza")}
+        />
+        {/* Uniformato al look del DateRangePicker (25/08/2026, feedback del
+            titolare: "campo enorme con bordo piu scuro del data picker") —
+            stessa struttura label-sopra/valore-sotto, stesso bordo
+            border-border/rounded-md, stesso anello di fuoco border-primary
+            usato dai due campi Check-in/Check-out. focus-within invece di
+            :focus sul wrapper perché l'elemento che riceve il focus reale è
+            l'<input> interno, non il <label>. */}
+        <label className="flex flex-1 flex-col gap-1 rounded-md border border-border px-3 py-2 text-left focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+          <span className="text-xs text-textMuted">{t("adulti")}</span>
+          <input
+            type="number"
+            min={1}
+            max={10}
+            value={adulti}
+            onChange={(e) => setAdulti(Math.max(1, Number(e.target.value)))}
+            className="w-full border-0 p-0 text-sm focus:outline-none focus:ring-0"
+          />
         </label>
-        <label className="flex flex-col gap-1">
-          <span className="text-sm text-textMuted">{t("dataPartenza")}</span>
-          <input type="date" required value={dataPartenza} onChange={(e) => setDataPartenza(e.target.value)} className="border rounded px-3 py-2" />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span className="text-sm text-textMuted">{t("adulti")}</span>
-          <input type="number" min={1} max={10} value={adulti} onChange={(e) => setAdulti(Math.max(1, Number(e.target.value)))} className="border rounded px-3 py-2" />
-        </label>
-        <button type="submit" disabled={caricamento} className="bg-primary text-white rounded px-4 py-2">
+        <button type="submit" disabled={caricamento || !dataArrivo || !dataPartenza} className="bg-primary text-white rounded px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed">
           {t("cerca")}
         </button>
       </form>
