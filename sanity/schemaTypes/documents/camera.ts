@@ -44,6 +44,7 @@ export const camera = defineType({
       options: { list: SERVIZI, layout: "grid" },
     }),
     defineField({ name: "disponibile", title: "Disponibile", type: "boolean", initialValue: true }),
+    defineField({ name: "evidenziata", title: "In evidenza", type: "boolean", initialValue: false }),
     defineField({ name: "ordine", title: "Ordine", type: "number" }),
     defineField({
       name: "tipoCameraId",

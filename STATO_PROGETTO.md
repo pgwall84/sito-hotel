@@ -479,6 +479,330 @@ eseguito lo stesso giorno in modalità Inline:
   redesign visivo (`docs/superpowers/plans/2026-08-24-redesign-visivo-sito.md`)
   risulta chiuso — nessun'altra fase pianificata su questo fronte.
 
+**Punto 3a (bento camere in home) CHIUSO (26/08/2026).** Punto 3 del piano
+(`docs/superpowers/plans/2026-08-24-redesign-visivo-sito.md`, "bento grid
+per camere/esperienze") scisso in due durante il brainstorming di questa
+stessa giornata: **3a — sezione camere in home** (questo piano) e
+**3b — sezione esperienze in home**, rimandato (oggi quella sezione non è
+una griglia di card, solo il banner `PestoHighlight.tsx` — un bento lì
+richiede prima costruire la griglia stessa, sotto-progetto separato non
+ancora brainstormato). Spec:
+`docs/superpowers/specs/2026-08-26-bento-camere-home-design.md`
+(approvata dal titolare senza richieste di modifica). Piano di
+implementazione:
+`docs/superpowers/plans/2026-08-26-bento-camere-home.md`, eseguito lo
+stesso giorno in modalità Inline:
+
+- **Nuovo campo Sanity** `evidenziata` (boolean, `initialValue: false`)
+  su `sanity/schemaTypes/documents/camera.ts` — stesso pattern esatto già
+  esistente su `offerta.ts`, inserito dopo `disponibile` prima di
+  `ordine`. **Nessuna camera reale ha ancora questo campo popolato**: il
+  titolare dovrà impostarlo lui da Sanity Studio sulla camera
+  "Matrimoniale" (decisione presa esplicitamente durante il
+  brainstorming — non è una scelta che il codice deduce da nome/prezzo/
+  capienza).
+- **`lib/queries.ts`** — `CAMERE_LIST_QUERY` ora proietta anche
+  `evidenziata`; l'interfaccia `CameraListItem` e il mapping in
+  `getCamere` lo portano fino al chiamante (`evidenziata: c.evidenziata
+  ?? false`).
+- **`components/ui/CameraCard.tsx`** — 3 nuove prop opzionali: `grande`
+  (default `false`, cambia solo il titolo da `text-xl` a `text-2xl` — la
+  foto resta sempre `aspect-[4/3]` in entrambe le taglie, nessun nuovo
+  rapporto d'aspetto introdotto), `evidenziata` e `badgeLabel` (badge
+  assoluto in alto a sinistra sulla foto, stesso identico markup/classi
+  già presenti in `OffertaCard.tsx` — `absolute left-3 top-3 z-10
+  rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white`).
+  Tutte e 3 opzionali con default, i call site esistenti (`/camere`, le 2
+  card piccole in home) restano validi senza modifiche.
+- **`components/home/CamereInEvidenza.tsx`** — riscritta la selezione
+  della camera "grande": la prima con `evidenziata === true` tra le
+  (massimo 3) mostrate, nell'ordine già restituito dalla query (`ordine
+  asc`); se nessuna è flaggata, la prima in ordine — mai un layout
+  "tutto piccolo" degradato; se più di una è flaggata per errore, vince
+  la prima incontrata. Placeholder (`CAMERE_PLACEHOLDER`, usato solo a
+  Sanity vuoto) aggiornato con lo stesso campo, "Camera Vista Mare"
+  marcata `evidenziata: true`. Griglia sostituita: card grande a piena
+  larghezza sopra (`flex flex-col gap-6`), le altre due sotto in
+  `grid grid-cols-1 gap-6 sm:grid-cols-2` — su schermi sotto i 640px
+  (breakpoint `sm` di Tailwind, default del progetto, nessuna
+  configurazione personalizzata trovata in `tailwind.config.ts`) tutte e
+  3 le card si impilano in colonna, decisione esplicita del titolare
+  durante il brainstorming ("per dare più spazio alle informazioni") —
+  da 640px in su le 2 piccole tornano affiancate.
+- **Copy** — nuova chiave `badgeEvidenziata` nel namespace `Home.camere`
+  di tutti e 4 i file `messages/*.json`, riusata letteralmente
+  dall'esistente `OffertePage.badgeEvidenziata` per lo stesso concetto
+  (non un testo nuovo): it "In evidenza", en "Featured", de "Empfohlen",
+  fr "En vedette".
+- **Processo di scelta del layout**: confronto visivo di 3 opzioni bento
+  (A "a L", B "grande sopra, due sotto", C "doppia larghezza") mostrato
+  al titolare tramite un Artifact pubblicato su claude.ai (non il server
+  locale del visual-companion della skill brainstorming — quel server si
+  lega a questo sandbox cloud, irraggiungibile dal browser del titolare
+  su una macchina diversa; annotazione utile per futuri usi del visual
+  companion in questo tipo di sessione). Il titolare ha scelto l'Opzione
+  B.
+- **Verificato da questa sessione Cowork**: per il campo Sanity, `npx
+  tsc --noEmit` reale sul file `camera.ts` intero (unici errori residui:
+  5 `implicit any` preesistenti su `Rule`/`prepare`, dovuti alla
+  semplicità dello stub del pacchetto `sanity` nella sandbox scratch —
+  non toccati dalla modifica di una riga aggiunta da questo piano, che è
+  un oggetto letterale senza funzioni). Per `lib/queries.ts`, verificato
+  isolatamente solo il blocco modificato (non l'intero file da 13KB, che
+  avrebbe richiesto stub aggiuntivi per query non toccate da questo
+  piano) con un controllo esplicito di forma del tipo di ritorno di
+  `getCamere` — zero errori. Per `CameraCard.tsx` e
+  `CamereInEvidenza.tsx`, `tsc --noEmit` reale contro le dipendenze
+  interne vere (`Card.tsx`, `SectionWrapper.tsx`, `lib/servizi.ts`,
+  `lib/i18n/navigation.ts`) e stub solo per i pacchetti npm esterni
+  (`sanity`, `next-sanity`, `next-intl`, `next-intl/server`,
+  `next/image`) — zero errori — ed `esbuild --bundle --jsx=automatic` su
+  tutti e 4 i file toccati (zero errori, bundle prodotto). Sandbox
+  scratch eliminata prima della consegna, mai committata.
+- **Nessuna verifica possibile da questa sessione Cowork sul campo
+  Sanity**: aprire Sanity Studio dopo il deploy/aggiornamento dello
+  schema e controllare che sul documento "Camera" compaia un nuovo campo
+  booleano "In evidenza" (default disattivato) vicino a "Disponibile"/
+  "Ordine" — poi impostarlo `true` sulla camera "Matrimoniale".
+- **Nessuna verifica visiva reale possibile da qui** (nessun browser):
+  da controllare in `npm run dev` locale — home page, sezione "Camere in
+  evidenza": un riquadro grande a piena larghezza con badge "In
+  evidenza" sulla foto (oggi mostrerà "Camera Vista Mare" dal
+  placeholder, o la prima camera reale per `ordine` se già ne esistono
+  ma nessuna è ancora flaggata — finché il titolare non imposta il flag
+  su Sanity Studio sulla Matrimoniale), due riquadri più piccoli sotto
+  affiancati da tablet in su. Restringere la finestra sotto i 640px (o
+  strumenti sviluppatore in modalità mobile): tutte e 3 le card devono
+  impilarsi in colonna.
+- **Fuori scope, dichiarato dalla spec**: il listato completo `/camere`
+  (resta la griglia a 3 colonne identiche, nessuna modifica) e il Punto
+  3b (sezione esperienze in home), rimandato come sopra.
+- **Fix (26/08/2026, dopo checkpoint) — foto sgranata sulla card
+  grande.** Il titolare ha segnalato che la foto della camera in
+  evidenza risultava sgranata dopo il checkpoint visivo. Causa reale,
+  non (solo) qualità della foto sorgente: `getCamere` chiedeva a Sanity
+  un crop fisso `600×450` per **tutte** le camere, card grande inclusa —
+  ma la card grande del bento è renderizzata fino a ~1100px di
+  larghezza reale (piena larghezza del contenitore `max-w-6xl`), quindi
+  quel raster da 600px veniva stirato quasi al doppio, sgranato per
+  costruzione indipendentemente da quanto fosse buona la foto caricata.
+  **Fix**: nuovo campo `fotoUrlGrande` in `lib/queries.ts`
+  (`imgUrl(c.fotoPrincipale, 1200, 900)`, stesso rapporto 4:3, doppia
+  risoluzione) accanto al `fotoUrl` esistente (`600×450`, invariato,
+  resta usato dalle 2 card piccole e dal listato `/camere`).
+  `components/home/CamereInEvidenza.tsx` passa `fotoUrlGrande` (non più
+  `fotoUrl`) alla card grande; `CAMERE_PLACEHOLDER` aggiornato con lo
+  stesso campo (sempre `null`, nessuna foto reale nel fallback). Nessuna
+  modifica a `CameraCard.tsx` (la prop si chiama sempre `fotoUrl`, cambia
+  solo quale URL le viene passato dal chiamante) né allo schema Sanity.
+  **Non risolve da solo se la foto sorgente caricata su Sanity è essa
+  stessa a bassa risoluzione** — resta possibile che serva comunque
+  ricaricarla più grande, verificabile solo dal titolare aprendo il file
+  originale su Sanity Studio.
+  **Verificato da questa sessione Cowork**: `npx tsc --noEmit` reale sul
+  blocco `getCamere` modificato (controllo esplicito di forma del tipo
+  di ritorno, incluso il nuovo campo `fotoUrlGrande`) e su
+  `CamereInEvidenza.tsx` con le dipendenze interne vere e stub solo per i
+  pacchetti npm esterni — zero errori in entrambi i casi — ed `esbuild
+  --bundle --jsx=automatic` su entrambi i file, zero errori, bundle
+  prodotto. Sandbox scratch eliminata prima della consegna, mai
+  committata. **Nessuna verifica visiva reale possibile da qui**: da
+  controllare in `npm run dev` locale sulla camera attualmente
+  flaggata `evidenziata` — la foto deve risultare visibilmente più
+  nitida rispetto a prima del fix.
+  **Checkpoint chiuso (26/08/2026)**: titolare ha confermato via
+  `npm run dev` reale — "ora molto meglio". Punto 3a
+  (bento camere in home) risulta interamente chiuso, fix foto incluso.
+
+
+**Punto 3b (esperienze in home) CHIUSO (27/08/2026).** Sostituisce
+`PestoHighlight.tsx` + `LericiDintorni.tsx` in home con un'unica sezione
+bento "Esperienze" (pesto grande + 2 escursioni piccole), e aggiorna
+`/esperienze` per usare la stessa fonte dati. Spec:
+`docs/superpowers/specs/2026-08-27-esperienze-home-design.md`. Piano:
+`docs/superpowers/plans/2026-08-27-esperienze-home.md`, eseguito lo
+stesso giorno in modalità Inline:
+
+- **Nuovo document type Sanity** `escursione` (`sanity/schemaTypes/
+  documents/escursione.ts`, registrato in `sanity/schemaTypes/index.ts`)
+  — solo per le voci di territorio (Cinque Terre, Portovenere, ecc.). Il
+  singleton `esperienzaPesto` resta invariato: non incluso nello stesso
+  tipo (i suoi campi — visitatori/stagione, durata, prezzo, come
+  prenotare — non hanno senso su una card "Cinque Terre"), e non serve un
+  flag `evidenziata` per scegliere la card grande, il pesto lo è per
+  definizione. **Nessuna voce `escursione` esiste ancora su Sanity**: il
+  titolare dovrà pubblicarne almeno 2 (per la home) con foto reali,
+  altrimenti home e `/esperienze` mostrano solo il placeholder
+  (`ESCURSIONI_PLACEHOLDER` in `EsperienzeInEvidenza.tsx`, nessun
+  fallback invece su `/esperienze` che mostra semplicemente una griglia
+  vuota a Sanity vuoto — accettato dalla spec, pagina meno visibile della
+  home).
+- **`lib/queries.ts`** — nuova `getEscursioni(locale)` (query
+  `*[_type == "escursione"] | order(ordine asc)`), stesso pattern delle
+  altre funzioni del file.
+- **Nuovo componente** `components/ui/EscursioneCard.tsx`: guscio
+  proprio, non `Card.tsx` — quel componente instrada sempre il suo `href`
+  tramite il `Link` interno di next-intl (rotte del sito), mentre il
+  campo `link` di `escursione` è testo libero da Sanity e può essere un
+  URL esterno. Replica invece il pattern già usato da `Button.tsx` in
+  questo repo (interno via `Link` se inizia per "/", altrimenti `<a>`
+  semplice) — scoperto durante la review del piano, non nella spec
+  originale.
+- **Nuovo componente home** `components/home/EsperienzeInEvidenza.tsx`,
+  sostituisce sia `PestoHighlight.tsx` che `LericiDintorni.tsx`
+  (entrambi eliminati, permesso di cancellazione richiesto ed esplicito
+  del titolare durante l'esecuzione). Bento: pesto sempre come riquadro
+  grande (ora un riquadro `bg-accent` dentro la sezione, non più un
+  banner a piena larghezza separato — **cambiamento visivo reale
+  segnalato esplicitamente nel piano, da confermare dal titolare al primo
+  `npm run dev`**), le prime 2 `escursione` per `ordine` come riquadri
+  piccoli sotto (`sm:grid-cols-2`, si impilano sotto i 640px, stesso
+  comportamento del bento camere del Punto 3a).
+- **`app/[locale]/(public)/esperienze/page.tsx`** — il banner pesto in
+  alto resta identico; la griglia sotto passa dall'array `ESCURSIONI`
+  hardcoded (4 voci fisse, testo da `messages/*.json`) a
+  `getEscursioni(locale)` (tutte le voci pubblicate, non solo 2) via lo
+  stesso `EscursioneCard`.
+- **Copy** — nuovo namespace `Home.esperienze` (`title`/`subtitle`) in
+  tutti e 4 i `messages/*.json`, rimosso `Home.dintorni` (assorbito) e
+  `EsperienzePage.escursioni.*` (assorbito da Sanity) — **mantenuto**
+  invece `EsperienzePage.escursioniTitle` (intestazione di sezione,
+  serve comunque anche col contenuto da Sanity): correzione fatta in
+  fase di piano rispetto alla spec, che lo dava per rimosso insieme al
+  resto.
+- **Verificato da questa sessione Cowork**: `npx tsc --noEmit` reale
+  (non stub — `node_modules` del progetto già installato con i pacchetti
+  veri, incluso `sanity`/`next-sanity`/`next-intl`) su ciascun file
+  toccato, con un tsconfig di scratch temporaneo (`extends` del
+  tsconfig reale, `files` limitato ai file del task, sempre includendo
+  `next-env.d.ts` — necessario per l'augmentation globale del `fetch`
+  con l'opzione `next: {revalidate}` di Next.js, altrimenti falso
+  positivo su OGNI chiamata `client.fetch` del file, non solo quelle
+  nuove) — creato e cancellato ad ogni task, mai lasciato nel repo. Zero
+  errori su tutti i file toccati. `esbuild --bundle --jsx=automatic`
+  anch'esso con il tool reale del progetto: il binario installato nel
+  repo è per Windows (`@esbuild/win32-x64`), incompatibile con la VM
+  Linux di questa sessione Cowork — installata una copia scratch
+  linux-x64 in una cartella fuori dal repo (`$HOME/verify`, mai
+  copiata dentro `sito-hotel`) per poter comunque bundlare. Zero errori
+  su tutti i file toccati.
+- **Nessuna verifica possibile da questa sessione Cowork sul tipo
+  Sanity**: da controllare in Sanity Studio dopo il deploy — deve
+  comparire "Escursione / dintorno" tra i tipi di contenuto, poi
+  pubblicare almeno 2 voci con foto per vedere la home popolata
+  davvero.
+- **Nessuna verifica visiva reale possibile da qui**: da controllare in
+  `npm run dev` locale — home page, sezione "Esperienze" (conferma
+  esplicita richiesta sul nuovo trattamento del riquadro pesto, vedi
+  sopra) e pagina `/esperienze` (banner invariato, griglia sotto vuota o
+  con placeholder finché non pubblichi voci reali).
+- **Fix (27/08/2026, dopo checkpoint) — `comePrenot` mai mostrato.**
+  Il titolare ha segnalato che il CTA "Prenota la degustazione" (sia in
+  home sia su `/esperienze`) non offre nessuna vera gestione della
+  prenotazione — solo un `mailto:`. Verificato: comportamento
+  preesistente al Punto 3b, non introdotto da questo piano (stesso
+  `href`/CTA già presenti in `PestoHighlight.tsx` prima della sua
+  rimozione). Trovato però un gap concreto: lo schema `esperienzaPesto`
+  ha già un campo `comePrenot` ("Come prenotare", testo libero) letto da
+  `getEsperienzaPesto` ma mai renderizzato da nessuna interfaccia. Fix
+  minimo scelto dal titolare (non il flusso di prenotazione vero, quello
+  resta backlog separato da brainstormare): mostrato `pesto.comePrenot`
+  su `/esperienze/page.tsx`, subito sopra il CTA mailto, solo se
+  valorizzato — nessuna modifica alla card home (resta teaser, il
+  dettaglio vive dove c'è l'azione). **Il campo è vuoto su Sanity**:
+  finché il titolare non lo compila da Studio, non cambia nulla a video.
+  Verificato con `tsc --noEmit` reale (stesso metodo del resto di questa
+  sessione, `next-env.d.ts` incluso) — zero errori.
+
+## Punto 4 (micro-interazioni hover) CHIUSO (27/08/2026)
+
+Brainstorming ha rivelato che gran parte del Punto 4 del piano master era già
+fatta dai punti precedenti: l'hover-ombra su `Card.tsx` (quindi `CameraCard`,
+`OffertaCard`) e la replica manuale in `EscursioneCard.tsx` erano già attivi
+(`transition-shadow hover:shadow-cardHover`); i bottoni avevano già
+`transition-colors` + cambio colore per variante in `buttonClasses.ts`.
+Scelta esplicita: niente scale/ingrandimento su card o bottoni, il
+trattamento esistente basta. "Filtri" citati dal piano master: nessuna UI di
+filtro esiste nel codice, punto non applicabile per ora.
+
+Restava solo:
+- `app/globals.css`: aggiunto blocco `@media (prefers-reduced-motion: reduce)`
+  (kill-switch globale su `animation-duration`/`transition-duration`) — prima
+  assente ovunque nel progetto.
+- `components/ui/LuogoCard.tsx`: aggiunto `transition-colors` ai due hover
+  esistenti (bottone "chiama", link "apri mappa") — prima cambiavano colore
+  di scatto.
+
+Spec: `docs/superpowers/specs/2026-08-27-hover-microinterazioni-design.md`.
+Piano: `docs/superpowers/plans/2026-08-27-hover-microinterazioni.md`.
+Verifica: `tsc` mirato su `LuogoCard.tsx` pulito (nessun errore); CSS
+verificato a mano (sintassi semplice, nessun compilatore coinvolto).
+
+**Checkpoint visivo non verificabile da questa sessione** (da fare dal
+titolare via `npm run dev`): attivare "riduci movimento" nel sistema
+operativo/browser e controllare che le transizioni hover (ombra su card,
+colore su bottoni e su `LuogoCard`) spariscano o diventino istantanee;
+controllare che i due hover di `LuogoCard` ora sfumino invece di cambiare
+colore di scatto (es. in una pagina del Welcome Book dove è renderizzato).
+
+## Punto 5 (audit accessibilità) CHIUSO (27/08/2026)
+
+Audit basato su calcolo reale dei rapporti di contrasto WCAG (formula
+relative luminance, non uno strumento esterno) sui colori di `lib/theme.ts`
+e su verifica del codice esistente — non su Lighthouse/axe (nessun browser
+reale in questa sessione). 16 file toccati in 3 blocchi:
+
+**Focus states**: nuovo `lib/a11y.ts` (`focusRingClasses`, meccanismo
+`focus-visible` + `outline` per non collidere con anelli di stato
+esistenti) applicato a `buttonClasses.ts` (tutti i bottoni del sito),
+`Card.tsx`/`EscursioneCard.tsx` (card cliccabili), `LuogoCard.tsx` (bottone
+"chiama", link mappa), `Header.tsx` (nav desktop/mobile, toggle menu),
+`DateRangePicker.tsx` (due bottoni trigger). Prima di questo solo un
+elemento nel sito aveva un focus-visible intenzionale (campo "adulti" del
+`BookingWidget`).
+
+**Contrasto colori**: `textLight` scurito `#9A9A9A`→`#767676` (2.81:1→
+4.54:1 su bianco, corregge 4 usi in `BookingWidget`/`OffertaCard` senza
+toccare quei file); nuovo `accentDeep: '#A65F31'` (4.88:1 sia come testo
+su chiaro sia come sfondo con testo bianco sopra) al posto di `accent` in:
+varianti "accent"/"solid-white-accent" di `buttonClasses.ts`, badge
+"evidenziata" di `OffertaCard`/`CameraCard`, box pesto di
+`EsperienzeInEvidenza.tsx` e variante `bg="accent"` di `SectionWrapper.tsx`,
+messaggi di errore di `ContattoForm`, sottotitolo di `EscursioneCard`, link
+di navigazione attivo dell'`Header`, e i 3 CTA scritti a mano (non passano
+da `buttonClasses`) in `esperienze/page.tsx`, `camere/[slug]/page.tsx`,
+`ristorante/page.tsx`.
+
+**Date-picker**: `aria-expanded`/`aria-haspopup="dialog"` sui due bottoni
+trigger, `role="dialog"` + `aria-label` sul popup, focus riportato al
+bottone corretto alla chiusura (Escape o selezione completata) — nessuna
+modifica alla logica `gestisciClick`/`apriCampo` già approvata in
+precedenza.
+
+Spec: `docs/superpowers/specs/2026-08-27-audit-accessibilita-design.md`.
+Piano: `docs/superpowers/plans/2026-08-27-audit-accessibilita.md`.
+Verifica: `tsc` mirato su tutti e 16 i file (4 gruppi da 4-5 file, il
+tsconfig di scratch pieno con tutti insieme superava il timeout di 45s
+dell'ambiente) — nessun errore.
+
+**Esplicitamente fuori scope**: Lighthouse/axe (serve un browser reale —
+da fare dal titolare via tab Code o in locale); overlay navy della Hero
+(dipende dalle foto reali su Sanity, per scelta esplicita del titolare
+resta un controllo visivo suo); stato hover dei colori (`accentLight`,
+momentaneo/mouse-only); refactor dei 3 CTA scritti a mano per farli
+passare da `buttonClasses()` (non necessario per il fix, evitato per
+restare aderenti allo scope); skip-link e altri miglioramenti WCAG non
+citati dal piano master.
+
+**Checkpoint non verificabile da questa sessione** (da fare dal titolare
+via `npm run dev`): (a) l'anello di focus è visibile navigando a Tab su
+bottoni/card/nav/date-picker e SPARISCE al click del mouse; (b)
+`accentDeep`/`textLight` risultano visivamente accettabili (cambio
+sottile, non un colore percepito come "sbagliato"); (c) aprendo il
+date-picker da tastiera, chiudendolo con Escape o completando una
+selezione, il focus torna visibilmente sul bottone corretto; (d)
+Lighthouse/axe per qualunque problema non individuabile da codice.
+
 ## Bloccato su terzi
 
 - Dominio `hoteldelgolfolerici.com`: **AGGIORNATO 24/08/2026** — il

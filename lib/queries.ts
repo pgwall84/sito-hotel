@@ -90,7 +90,8 @@ const CAMERE_LIST_QUERY = groq`
     nome,
     fotoPrincipale,
     servizi,
-    prezzoBase
+    prezzoBase,
+    evidenziata
   }
 `;
 
@@ -100,6 +101,7 @@ interface CameraListItem {
   fotoPrincipale: SanityImage;
   servizi: string[];
   prezzoBase: number;
+  evidenziata?: boolean;
 }
 
 export const getCamere = cache(async (locale: Locale) => {
@@ -108,8 +110,14 @@ export const getCamere = cache(async (locale: Locale) => {
     slug: c.slug,
     nome: pickLocale(c.nome, locale) ?? c.slug,
     fotoUrl: imgUrl(c.fotoPrincipale, 600, 450),
+    // Crop più alto, solo per la card "grande" del bento camere in home
+    // (fino a ~1100px di larghezza reale a schermo) — 600x450 upscalato
+    // lì dentro risultava visibilmente sgranato (26/08/2026, segnalato
+    // dal titolare dopo il checkpoint del Punto 3a).
+    fotoUrlGrande: imgUrl(c.fotoPrincipale, 1200, 900),
     servizi: c.servizi ?? [],
     prezzoBase: c.prezzoBase,
+    evidenziata: c.evidenziata ?? false,
   }));
 });
 
@@ -215,6 +223,37 @@ export const getEsperienzaPesto = cache(async (locale: Locale) => {
     prezzo: e.prezzo,
     comePrenot: pickLocale(e.comePrenot, locale) ?? "",
   };
+});
+
+// ---------- Escursioni / dintorni ----------
+
+const ESCURSIONI_LIST_QUERY = groq`
+  *[_type == "escursione"] | order(ordine asc) {
+    titolo,
+    sottotitolo,
+    descrizione,
+    foto,
+    link
+  }
+`;
+
+interface EscursioneListItem {
+  titolo: LocaleString;
+  sottotitolo?: LocaleString;
+  descrizione?: LocaleString;
+  foto?: SanityImage;
+  link?: string;
+}
+
+export const getEscursioni = cache(async (locale: Locale) => {
+  const raw = await client.fetch<EscursioneListItem[]>(ESCURSIONI_LIST_QUERY, {}, REVALIDATE);
+  return raw.map((e) => ({
+    titolo: pickLocale(e.titolo, locale) ?? "",
+    sottotitolo: e.sottotitolo ? pickLocale(e.sottotitolo, locale) : undefined,
+    descrizione: e.descrizione ? pickLocale(e.descrizione, locale) : undefined,
+    fotoUrl: imgUrl(e.foto, 600, 450),
+    link: e.link,
+  }));
 });
 
 // ---------- Convenzioni Aziendali ----------

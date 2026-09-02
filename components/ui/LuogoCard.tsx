@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { Luogo } from "@/lib/queries";
 import Card from "@/components/ui/Card";
+import { focusRingClasses } from "@/lib/a11y";
 
 // Card per un singolo "luogo" (Trasporti, Servizi, Attività, Ristoranti
 // esterni, Bar, Shopping, Informazioni, Emergenza — vedi docs/superpowers/
@@ -71,7 +72,7 @@ export default function LuogoCard({ luogo }: { luogo: Luogo }) {
               type="button"
               aria-label={t("chiamaConferma")}
               onClick={() => setConfermaChiamata(true)}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-surface text-primary hover:bg-surfaceDark"
+              className={`flex h-9 w-9 items-center justify-center rounded-full bg-surface text-primary transition-colors hover:bg-surfaceDark ${focusRingClasses}`}
             >
               <Phone size={16} />
             </button>
@@ -81,7 +82,7 @@ export default function LuogoCard({ luogo }: { luogo: Luogo }) {
               href={mapsHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto text-sm font-semibold text-primary hover:text-accent"
+              className={`ml-auto text-sm font-semibold text-primary transition-colors hover:text-accent ${focusRingClasses}`}
             >
               {t("apriMappa")} →
             </a>

@@ -11,6 +11,8 @@
 // un modulo senza direttiva, resta chiamabile sia da Server che da
 // Client Component.
 
+import { focusRingClasses } from "@/lib/a11y";
+
 export type ButtonVariant = "primary" | "accent" | "outline-primary" | "outline-white" | "solid-white-accent";
 export type ButtonSize = "grande" | "compatta";
 
@@ -23,10 +25,10 @@ export type ButtonSize = "grande" | "compatta";
 // PestoHighlight — non è "outline" (nessun bordo, sfondo pieno bianco).
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary: "bg-primary text-white hover:bg-primaryLight",
-  accent: "bg-accent text-white hover:bg-accentLight",
+  accent: "bg-accentDeep text-white hover:bg-accentLight",
   "outline-primary": "border border-primary text-primary hover:bg-primary hover:text-white",
   "outline-white": "border border-white text-white hover:bg-white hover:text-primary",
-  "solid-white-accent": "bg-white text-accent hover:bg-surface",
+  "solid-white-accent": "bg-white text-accentDeep hover:bg-surface",
 };
 
 // "compatta" a px-5/py-2.5 (non py-2): l'audit ha trovato 3 varianti della
@@ -39,5 +41,5 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 export function buttonClasses(variant: ButtonVariant, size: ButtonSize = "grande"): string {
-  return `rounded-full text-sm font-semibold transition-colors ${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]}`;
+  return `rounded-full text-sm font-semibold transition-colors ${focusRingClasses} ${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]}`;
 }

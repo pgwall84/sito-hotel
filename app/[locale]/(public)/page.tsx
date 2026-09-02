@@ -4,8 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import Hero from "@/components/home/Hero";
 import CamereInEvidenza from "@/components/home/CamereInEvidenza";
 import RistorantePreview from "@/components/home/RistorantePreview";
-import PestoHighlight from "@/components/home/PestoHighlight";
-import LericiDintorni from "@/components/home/LericiDintorni";
+import EsperienzeInEvidenza from "@/components/home/EsperienzeInEvidenza";
 import LavoroBanner from "@/components/home/LavoroBanner";
 import GalleriaPreview from "@/components/home/GalleriaPreview";
 import TripAdvisorWidget from "@/components/home/TripAdvisorWidget";
@@ -79,8 +78,7 @@ export default async function HomePage({
       <Hero fotoUrl={info.heroUrl} />
       <CamereInEvidenza locale={locale} />
       <RistorantePreview locale={locale} />
-      <PestoHighlight />
-      <LericiDintorni />
+      <EsperienzeInEvidenza locale={locale} />
       <LavoroBanner />
       <GalleriaPreview locale={locale} />
       <SectionWrapper bg="surface">

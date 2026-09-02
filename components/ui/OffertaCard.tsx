@@ -27,7 +27,7 @@ export default function OffertaCard({
   return (
     <Card conFoto hover className="relative">
       {evidenziata && (
-        <span className="absolute left-3 top-3 z-10 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute left-3 top-3 z-10 rounded-full bg-accentDeep px-3 py-1 text-xs font-semibold text-white">
           {badgeLabel}
         </span>
       )}

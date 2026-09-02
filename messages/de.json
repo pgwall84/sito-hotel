@@ -47,7 +47,8 @@
       "subtitle": "Gepflegte Zimmer mit Blick auf den Golf oder den Ort.",
       "priceFrom": "ab",
       "cta": "Entdecken",
-      "ctaAll": "Alle Zimmer ansehen"
+      "ctaAll": "Alle Zimmer ansehen",
+      "badgeEvidenziata": "Empfohlen"
     },
     "ristorante": {
       "tag": "Einzigartig in Lerici",
@@ -62,12 +63,9 @@
       "description": "Ein handwerkliches Erlebnis: Mörser, Stößel und authentische ligurische Zutaten, um das echte Rezept für Pesto Genovese zu entdecken.",
       "cta": "Verkostung buchen"
     },
-    "dintorni": {
-      "title": "Lerici und Umgebung",
-      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 Min. mit dem Zug" },
-      "portovenere": { "name": "Portovenere", "distanza": "10 Min. mit dem Boot" },
-      "tellaro": { "name": "Tellaro", "distanza": "10 Min. mit dem Auto" },
-      "cta": "Die Umgebung entdecken"
+    "esperienze": {
+      "title": "Erlebnisse",
+      "subtitle": "Von der Pesto-Verkostung bis zu Ausflügen im Golf der Dichter."
     },
     "lavoro": {
       "title": "Arbeitsaufenthalte — Firmenvereinbarungen",
@@ -142,13 +140,7 @@
   "EsperienzePage": {
     "title": "Erlebnisse",
     "pestoCta": "Verkostung buchen",
-    "escursioniTitle": "Empfohlene Ausflüge",
-    "escursioni": {
-      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "Die berühmten bunten Terrassen über dem Meer, erreichbar mit Zug oder Boot." },
-      "portovenere": { "titolo": "Portovenere", "descrizione": "UNESCO-Weltkulturerbe-Fischerdorf mit der Kirche San Pietro auf dem Felsen." },
-      "kayak": { "titolo": "Kajak-Ausflüge", "descrizione": "Den Golf vom Meer aus entdecken, zwischen Buchten und versteckten Stränden." },
-      "trekking": { "titolo": "Wandern auf ligurischen Pfaden", "descrizione": "Panoramawege zwischen Lerici, Tellaro und dem Naturpark Montemarcello." }
-    }
+    "escursioniTitle": "Empfohlene Ausflüge"
   },
   "LavoroPage": {
     "title": "Für alle, die im Golf arbeiten",

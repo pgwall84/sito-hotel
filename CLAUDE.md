@@ -88,6 +88,7 @@ aggiornata dopo.
 
 - Spec completa: `SPEC_SITO_HOTEL.md` (questa cartella)
 - Stato attuale (nuovo, 23/08/2026): `STATO_PROGETTO.md` (questa cartella)
+- To-do rapido (fix piccoli + evolutive): `to do list.md` (questa cartella)
 - Backlog/evolutive (gap noti, contenuti mancanti, miglioramenti
   rimandati): `docs/EVOLUTIVE.md` (questa cartella, creato 06/08/2026)
 - Gestionale interno (progetto collegato ma separato): repo

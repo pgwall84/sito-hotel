@@ -115,7 +115,7 @@ export default async function CameraDetailPage({
 
           <BookingButton
             cameraSlug={camera.slug}
-            className="mt-6 inline-block rounded-full bg-accent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-accentLight"
+            className="mt-6 inline-block rounded-full bg-accentDeep px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-accentLight"
           >
             {t("bookingCta")}
           </BookingButton>

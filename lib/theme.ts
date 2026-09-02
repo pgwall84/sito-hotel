@@ -5,12 +5,13 @@ export const theme = {
     primaryLight: '#2A5A8C', // blu hover
     accent: '#C4703A',       // terracotta ligure
     accentLight: '#D4875A',  // terracotta hover
+    accentDeep: '#A65F31',   // terracotta scurita per testo/sfondo a contrasto AA (27/08/2026, audit accessibilità: 4.88:1)
     background: '#FFFFFF',   // bianco caldo
     surface: '#F5F0E8',      // sabbia chiara (sezioni alternate)
     surfaceDark: '#EDE8DF',  // sabbia più scura
     text: '#2C2C2C',         // antracite morbido
     textMuted: '#6B6B6B',    // testo secondario
-    textLight: '#9A9A9A',    // testo terziario
+    textLight: '#767676',    // testo terziario (scurito 27/08/2026, audit accessibilità: 2.81:1 -> 4.54:1 su bianco)
     border: '#E0D8CE',       // bordi sabbia
     error: '#B23B2E',        // rosso mattone smorzato — sostituisce text-red-600 (stonato con la palette calda)
     white: '#FFFFFF',

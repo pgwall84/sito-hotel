@@ -47,7 +47,8 @@
       "subtitle": "Des chambres soignées, avec vue sur le golfe ou le village.",
       "priceFrom": "à partir de",
       "cta": "Découvrir",
-      "ctaAll": "Voir toutes les chambres"
+      "ctaAll": "Voir toutes les chambres",
+      "badgeEvidenziata": "En vedette"
     },
     "ristorante": {
       "tag": "Unique à Lerici",
@@ -62,12 +63,9 @@
       "description": "Une expérience artisanale : mortier, pilon et ingrédients ligures authentiques, pour découvrir la vraie recette du pesto génois.",
       "cta": "Réserver la dégustation"
     },
-    "dintorni": {
-      "title": "Lerici et ses environs",
-      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 min en train" },
-      "portovenere": { "name": "Portovenere", "distanza": "10 min en bateau" },
-      "tellaro": { "name": "Tellaro", "distanza": "10 min en voiture" },
-      "cta": "Découvrir la région"
+    "esperienze": {
+      "title": "Expériences",
+      "subtitle": "De la dégustation du pesto aux excursions dans le golfe des poètes."
     },
     "lavoro": {
       "title": "Séjours professionnels — Conventions d'entreprise",
@@ -142,13 +140,7 @@
   "EsperienzePage": {
     "title": "Expériences",
     "pestoCta": "Réserver la dégustation",
-    "escursioniTitle": "Excursions recommandées",
-    "escursioni": {
-      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "Les célèbres terrasses colorées surplombant la mer, accessibles en train ou en bateau." },
-      "portovenere": { "titolo": "Portovenere", "descrizione": "Village de pêcheurs classé UNESCO, avec l'église San Pietro sur le rocher." },
-      "kayak": { "titolo": "Excursions en kayak", "descrizione": "Explorez le golfe depuis la mer, entre criques et petites plages cachées." },
-      "trekking": { "titolo": "Randonnée sur les sentiers ligures", "descrizione": "Itinéraires panoramiques entre Lerici, Tellaro et le parc de Montemarcello." }
-    }
+    "escursioniTitle": "Excursions recommandées"
   },
   "LavoroPage": {
     "title": "Pour ceux qui travaillent dans le Golfe",

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/lib/i18n/navigation";
 import SectionWrapper from "@/components/layout/SectionWrapper";
-import { getEsperienzaPesto } from "@/lib/queries";
+import EscursioneCard from "@/components/ui/EscursioneCard";
+import { getEsperienzaPesto, getEscursioni } from "@/lib/queries";
 import { pageMetadata } from "@/lib/seo";
-
-const ESCURSIONI = ["cinqueTerre", "portovenere", "kayak", "trekking"] as const;
 
 export async function generateMetadata({
   params,
@@ -35,6 +33,7 @@ export default async function EsperienzePage({
   const t = await getTranslations({ locale, namespace: "EsperienzePage" });
   const tHome = await getTranslations({ locale, namespace: "Home.pesto" });
   const pesto = await getEsperienzaPesto(locale);
+  const escursioni = await getEscursioni(locale);
 
   const titolo = pesto?.titolo || tHome("title");
   const descrizione = pesto?.descrizione || tHome("description");
@@ -54,9 +53,10 @@ export default async function EsperienzePage({
                 {pesto.durata} · €{pesto.prezzo}
               </p>
             )}
+            {pesto?.comePrenot && <p className="mt-4 text-sm text-white/80">{pesto.comePrenot}</p>}
             <a
               href="mailto:info@hoteldelgolfo.com?subject=Prenotazione degustazione pesto"
-              className="mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-accent transition-colors hover:bg-surface"
+              className="mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-accentDeep transition-colors hover:bg-surface"
             >
               {t("pestoCta")}
             </a>
@@ -74,15 +74,15 @@ export default async function EsperienzePage({
       <SectionWrapper bg="white">
         <h2 className="font-heading text-3xl text-primary">{t("escursioniTitle")}</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {ESCURSIONI.map((key) => (
-            <Link
-              key={key}
-              href="/lerici"
-              className="rounded-lg border border-border p-6 shadow-card transition-shadow hover:shadow-cardHover"
-            >
-              <h3 className="font-heading text-xl text-primary">{t(`escursioni.${key}.titolo`)}</h3>
-              <p className="mt-2 text-sm text-textMuted">{t(`escursioni.${key}.descrizione`)}</p>
-            </Link>
+          {escursioni.map((e, i) => (
+            <EscursioneCard
+              key={`${e.titolo}-${i}`}
+              titolo={e.titolo}
+              sottotitolo={e.sottotitolo}
+              descrizione={e.descrizione}
+              fotoUrl={e.fotoUrl}
+              link={e.link}
+            />
           ))}
         </div>
       </SectionWrapper>

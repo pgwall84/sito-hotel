@@ -95,8 +95,8 @@ export default function ContattoForm() {
         className="rounded-md border border-border bg-background px-4 py-2 text-sm sm:col-span-2"
       />
 
-      {status === "error" && <p className="text-sm text-accent sm:col-span-2">{t("formError")}</p>}
-      {status === "rate-limited" && <p className="text-sm text-accent sm:col-span-2">{t("formRateLimited")}</p>}
+      {status === "error" && <p className="text-sm text-accentDeep sm:col-span-2">{t("formError")}</p>}
+      {status === "rate-limited" && <p className="text-sm text-accentDeep sm:col-span-2">{t("formRateLimited")}</p>}
 
       <Button type="submit" variant="primary" disabled={status === "sending"} className="disabled:opacity-60 sm:col-span-2">
         {status === "sending" ? t("formSending") : t("formSubmit")}

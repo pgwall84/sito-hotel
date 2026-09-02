@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { focusRingClasses } from "@/lib/a11y";
 
 const API_BASE = process.env.NEXT_PUBLIC_GESTIONALE_API_URL;
 
@@ -68,6 +69,8 @@ export default function DateRangePicker({
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cacheRef = useRef<Record<string, DisponibilitaMese>>({});
   const containerRef = useRef<HTMLDivElement>(null);
+  const arrivoBtnRef = useRef<HTMLButtonElement>(null);
+  const partenzaBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     cacheRef.current = disponibilitaCache;
@@ -88,6 +91,7 @@ export default function DateRangePicker({
     function chiudiSuEscape(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setAperto(false);
+        (campoAttivo === "partenza" ? partenzaBtnRef : arrivoBtnRef).current?.focus();
         setCampoAttivo(null);
       }
     }
@@ -212,15 +216,19 @@ export default function DateRangePicker({
     onChange(dataArrivo, iso);
     setCampoAttivo(null);
     setAperto(false); // range completo: selezione conclusa, si chiude da sola
+    partenzaBtnRef.current?.focus();
   }
 
   return (
     <div ref={containerRef} className="relative">
       <div className="flex gap-2">
         <button
+          ref={arrivoBtnRef}
           type="button"
           onClick={() => apriCampo("arrivo")}
-          className={`flex flex-1 flex-col gap-1 rounded-md border px-3 py-2 text-left ${
+          aria-haspopup="dialog"
+          aria-expanded={aperto && campoAttivo === "arrivo"}
+          className={`flex flex-1 flex-col gap-1 rounded-md border px-3 py-2 text-left ${focusRingClasses} ${
             aperto && campoAttivo === "arrivo" ? "border-primary ring-1 ring-primary" : "border-border"
           }`}
         >
@@ -228,9 +236,12 @@ export default function DateRangePicker({
           <span className="text-sm">{dataArrivo || "—"}</span>
         </button>
         <button
+          ref={partenzaBtnRef}
           type="button"
           onClick={() => apriCampo("partenza")}
-          className={`flex flex-1 flex-col gap-1 rounded-md border px-3 py-2 text-left ${
+          aria-haspopup="dialog"
+          aria-expanded={aperto && campoAttivo === "partenza"}
+          className={`flex flex-1 flex-col gap-1 rounded-md border px-3 py-2 text-left ${focusRingClasses} ${
             aperto && campoAttivo === "partenza" ? "border-primary ring-1 ring-primary" : "border-border"
           }`}
         >
@@ -240,7 +251,11 @@ export default function DateRangePicker({
       </div>
 
       {aperto && (
-        <div className="absolute z-10 mt-2 rounded-lg border border-border bg-background p-4 shadow-cardHover">
+        <div
+          role="dialog"
+          aria-label={campoAttivo === "partenza" ? labelPartenza : labelArrivo}
+          className="absolute z-10 mt-2 rounded-lg border border-border bg-background p-4 shadow-cardHover"
+        >
           <div className="mb-2 flex items-center justify-between">
             <span className="text-xs text-textMuted">
               {campoAttivo === "partenza" ? labelPartenza : labelArrivo}

@@ -4,7 +4,7 @@ const BG_CLASS: Record<Bg, string> = {
   white: "bg-background text-text",
   surface: "bg-surface text-text",
   primary: "bg-primary text-white",
-  accent: "bg-accent text-white",
+  accent: "bg-accentDeep text-white",
 };
 
 export default function SectionWrapper({

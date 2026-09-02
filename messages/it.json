@@ -47,7 +47,8 @@
       "subtitle": "Ambienti curati, vista sul golfo o sul borgo.",
       "priceFrom": "da",
       "cta": "Scopri",
-      "ctaAll": "Vedi tutte le camere"
+      "ctaAll": "Vedi tutte le camere",
+      "badgeEvidenziata": "In evidenza"
     },
     "ristorante": {
       "tag": "Unico a Lerici",
@@ -62,12 +63,9 @@
       "description": "Un'esperienza artigianale: pestello, mortaio e ingredienti liguri autentici, per scoprire la vera ricetta del pesto genovese.",
       "cta": "Prenota la degustazione"
     },
-    "dintorni": {
-      "title": "Lerici e dintorni",
-      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 min in treno" },
-      "portovenere": { "name": "Portovenere", "distanza": "10 min in battello" },
-      "tellaro": { "name": "Tellaro", "distanza": "10 min in auto" },
-      "cta": "Scopri il territorio"
+    "esperienze": {
+      "title": "Esperienze",
+      "subtitle": "Dalla degustazione del pesto alle gite nel golfo dei poeti."
     },
     "lavoro": {
       "title": "Soggiorni di lavoro — Convenzioni aziendali",
@@ -142,13 +140,7 @@
   "EsperienzePage": {
     "title": "Esperienze",
     "pestoCta": "Prenota la degustazione",
-    "escursioniTitle": "Escursioni consigliate",
-    "escursioni": {
-      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "Le celebri terrazze colorate a picco sul mare, raggiungibili in treno o battello." },
-      "portovenere": { "titolo": "Portovenere", "descrizione": "Borgo marinaro Patrimonio UNESCO, con la chiesa di San Pietro sullo scoglio." },
-      "kayak": { "titolo": "Escursioni in kayak", "descrizione": "Il golfo esplorato dal mare, tra insenature e piccole spiagge nascoste." },
-      "trekking": { "titolo": "Trekking sui sentieri liguri", "descrizione": "Percorsi panoramici tra Lerici, Tellaro e il Parco di Montemarcello." }
-    }
+    "escursioniTitle": "Escursioni consigliate"
   },
   "LavoroPage": {
     "title": "Per chi lavora nel Golfo",

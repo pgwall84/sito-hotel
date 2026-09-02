@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { Link } from "@/lib/i18n/navigation";
+import { focusRingClasses } from "@/lib/a11y";
 
 // Guscio fisico condiviso per tutte le "card" del sito (foto + testo, o
 // icona + testo) — vedi docs/superpowers/specs/2026-08-26-coerenza-visiva-design.md,
@@ -44,7 +45,7 @@ export default function Card(props: CardProps) {
     "bg-background",
     "shadow-card",
     conFoto ? "overflow-hidden" : "border border-border",
-    hover ? "transition-shadow hover:shadow-cardHover" : "",
+    hover ? `transition-shadow hover:shadow-cardHover ${focusRingClasses}` : "",
     className,
   ]
     .filter(Boolean)

@@ -7,6 +7,7 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
 import LinguaSelector from "@/components/ui/LinguaSelector";
 import BookingButton from "@/components/ui/BookingButton";
 import { buttonClasses } from "@/components/ui/buttonClasses";
+import { focusRingClasses } from "@/lib/a11y";
 
 const NAV_ITEMS = [
   { href: "/", key: "home" },
@@ -49,8 +50,8 @@ export default function Header({
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                pathname === item.href ? "text-accent" : "text-text"
+              className={`text-sm font-medium transition-colors hover:text-accent ${focusRingClasses} ${
+                pathname === item.href ? "text-accentDeep" : "text-text"
               }`}
             >
               {t(item.key)}
@@ -69,7 +70,7 @@ export default function Header({
           type="button"
           aria-label={tHeader("menuAria")}
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center lg:hidden"
+          className={`flex h-10 w-10 items-center justify-center lg:hidden ${focusRingClasses}`}
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">{tHeader("menuAria")}</span>
@@ -88,8 +89,8 @@ export default function Header({
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`rounded-md px-3 py-2 text-sm font-medium hover:bg-surface ${
-                pathname === item.href ? "text-accent" : "text-text"
+              className={`rounded-md px-3 py-2 text-sm font-medium hover:bg-surface ${focusRingClasses} ${
+                pathname === item.href ? "text-accentDeep" : "text-text"
               }`}
             >
               {t(item.key)}

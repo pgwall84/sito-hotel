@@ -106,6 +106,15 @@ non reinventare.
 
 ### 3. Bento grid per camere/esperienze
 
+**Stato: 3a CHIUSO (26/08/2026), 3b non pianificato.** Punto scisso in
+due durante il brainstorming del 26/08/2026: **3a — sezione camere in
+home**, implementata e chiusa (dettaglio:
+`docs/superpowers/specs/2026-08-26-bento-camere-home-design.md`,
+`docs/superpowers/plans/2026-08-26-bento-camere-home.md`,
+`STATO_PROGETTO.md`); **3b — sezione esperienze in home**, rimandata a un
+brainstorming dedicato (oggi quella sezione non è una griglia di card,
+solo il banner `PestoHighlight.tsx`).
+
 **Perché**: con poche categorie (camere, ristorante, esperienze locali)
 una griglia asimmetrica ha un impatto visivo reale senza il rischio di
 sembrare forzata che avrebbe su un catalogo enorme — qui il numero di

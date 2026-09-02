@@ -47,7 +47,8 @@
       "subtitle": "Carefully furnished rooms, with views of the gulf or the village.",
       "priceFrom": "from",
       "cta": "Discover",
-      "ctaAll": "View all rooms"
+      "ctaAll": "View all rooms",
+      "badgeEvidenziata": "Featured"
     },
     "ristorante": {
       "tag": "Unique in Lerici",
@@ -62,12 +63,9 @@
       "description": "A handmade experience: mortar, pestle and authentic Ligurian ingredients, to discover the true recipe for Genoese pesto.",
       "cta": "Book the tasting"
     },
-    "dintorni": {
-      "title": "Lerici and beyond",
-      "cinqueTerre": { "name": "Cinque Terre", "distanza": "20 min by train" },
-      "portovenere": { "name": "Portovenere", "distanza": "10 min by boat" },
-      "tellaro": { "name": "Tellaro", "distanza": "10 min by car" },
-      "cta": "Discover the area"
+    "esperienze": {
+      "title": "Experiences",
+      "subtitle": "From the pesto tasting to trips around the Gulf of Poets."
     },
     "lavoro": {
       "title": "Work stays — Corporate agreements",
@@ -142,13 +140,7 @@
   "EsperienzePage": {
     "title": "Experiences",
     "pestoCta": "Book the tasting",
-    "escursioniTitle": "Recommended excursions",
-    "escursioni": {
-      "cinqueTerre": { "titolo": "Cinque Terre", "descrizione": "The famous colourful terraces overlooking the sea, reachable by train or boat." },
-      "portovenere": { "titolo": "Portovenere", "descrizione": "A UNESCO World Heritage fishing village, with the church of San Pietro on the rock." },
-      "kayak": { "titolo": "Kayak excursions", "descrizione": "Explore the gulf from the sea, among coves and hidden little beaches." },
-      "trekking": { "titolo": "Hiking on Ligurian trails", "descrizione": "Scenic routes between Lerici, Tellaro and the Montemarcello Park." }
-    }
+    "escursioniTitle": "Recommended excursions"
   },
   "LavoroPage": {
     "title": "For those who work in the Gulf",
