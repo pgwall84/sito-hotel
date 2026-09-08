@@ -188,9 +188,11 @@ export default function NexiPaymentStep({
       const originAtteso = new URL(contestoRef.current.datiPagamento.scriptSrc).origin;
       if (e.origin !== originAtteso) return;
       try {
-        const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-        // Solo log diagnostico (07/09/2026) — NON più il canale che avvia
-        // pagaConNonce. Scoperto in test reale (07/09/2026): questo
+        // Parsing solo per scartare i payload non-JSON di altri script
+        // della pagina (vedi catch) — il contenuto NON viene usato.
+        if (typeof e.data === "string") JSON.parse(e.data);
+        // NON più il canale che avvia pagaConNonce (07/09/2026). Scoperto
+        // in test reale (07/09/2026): questo
         // postMessage grezzo cattura anche i messaggi INTERNI che Nexi si
         // scambia tra pagina e iframe carta durante il 3D Secure — su una
         // carta con sfida 3DS arrivano DUE payload con xpayNonce diversi
@@ -199,11 +201,12 @@ export default function NexiPaymentStep({
         // "Dati non validi" da Nexi perché non è più il nonce valido per
         // quella transazione. Il CustomEvent XPay_Nonce (onXPayNonce sopra)
         // è invece dispatchato da Nexi stessa una sola volta, con l'esito
-        // finale — è l'unico canale da cui partire. Log tenuto solo per
-        // diagnosi futura, non aggiungere qui una seconda chiamata a
-        // pagaConNonce senza aver capito come distinguere in modo
-        // affidabile un payload "intermedio" da uno finale.
-        console.log("XPay postMessage ricevuto (solo log):", JSON.stringify(data));
+        // finale — è l'unico canale da cui partire. Non aggiungere qui
+        // una seconda chiamata a pagaConNonce senza aver capito come
+        // distinguere in modo affidabile un payload "intermedio" da uno
+        // finale (e senza valutare di nuovo cosa loggare: il payload
+        // include dettaglioCarta, meglio non stamparlo in console in
+        // produzione).
       } catch {
         // Messaggio non nel formato atteso: ignorato, non è un errore per
         // l'utente (può arrivare da altri script della pagina).
