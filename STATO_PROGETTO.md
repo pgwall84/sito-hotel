@@ -41,10 +41,15 @@ dettagliato: `gestionale-hotel/STATO_PROGETTO.md`.
 
 ## Pagamento Nexi XPay Build (modulo 4.1, frontend) — verificato 07/09/2026
 
-`components/booking/NexiPaymentStep.tsx` (widget XPay Build lato ospite UE,
-affiancato a `PaymentStep.tsx`/Stripe per gli ospiti extra-UE — strategia
-combinata decisa da Marco il 29/08/2026, dettaglio in
+`components/booking/NexiPaymentStep.tsx` (widget XPay Build), alternativo
+a `PaymentStep.tsx`/Stripe — **non montati insieme per instradare gli
+ospiti per nazionalità**: quella strategia combinata (decisa da Marco il
+29/08/2026) è stata scartata esplicitamente da Marco il 02/09/2026 a
+favore di un solo gateway attivo alla volta per tutte le prenotazioni
+(switch `PAYMENT_PROVIDER` lato backend — dettaglio in
 `gestionale-hotel/STATO_PROGETTO.md` sezione "Pagamenti Nexi XPay").
+`BookingWidget.tsx` monta il componente giusto guardando quale campo
+torna dalla risposta di `/prenota` (`pagamento_nexi` vs `client_secret`).
 **File ancora non committato** (`git status` → `??`, nuovo).
 
 Flusso completo (ricerca disponibilità → dati ospite → widget carta XPay →

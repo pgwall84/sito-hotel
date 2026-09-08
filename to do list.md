@@ -34,6 +34,9 @@
 - Punto 2 del piano redesign: audit palette/tipografia/bottoni/card per
   coerenza tra tutte le pagine — da ri-scopare con brainstorming
   dedicato quando si riprende (non partire da un piano diretto).
-- Integrazione Nexi XPay Pro: raccogliere paese/residenza dell'ospite in
-  `components/booking/BookingWidget.tsx` — parte del brainstorming
-  cross-repo con gestionale-hotel (vedi `to do list.md` di quel repo).
+- ~~Integrazione Nexi XPay Pro: raccogliere paese/residenza dell'ospite~~
+  — **non serve più (08/09/2026)**: il routing per nazionalità è stato
+  scartato da Marco il 02/09/2026, sostituito da uno switch globale
+  lato backend. Widget Nexi (`NexiPaymentStep.tsx`) costruito e
+  verificato end-to-end il 07/09/2026, solo in locale/sandbox, file
+  ancora non committato — dettaglio in `gestionale-hotel/to do list.md`.
