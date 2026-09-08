@@ -39,6 +39,35 @@ Pagina `/prenota` con calendario, disponibilità e prezzo reali, caparra
 30% via Stripe — costruita **senza WuBook** (vedi sotto). Stato tecnico
 dettagliato: `gestionale-hotel/STATO_PROGETTO.md`.
 
+## Pagamento Nexi XPay Build (modulo 4.1, frontend) — verificato 07/09/2026
+
+`components/booking/NexiPaymentStep.tsx` (widget XPay Build lato ospite UE,
+affiancato a `PaymentStep.tsx`/Stripe per gli ospiti extra-UE — strategia
+combinata decisa da Marco il 29/08/2026, dettaglio in
+`gestionale-hotel/STATO_PROGETTO.md` sezione "Pagamenti Nexi XPay").
+**File ancora non committato** (`git status` → `??`, nuovo).
+
+Flusso completo (ricerca disponibilità → dati ospite → widget carta XPay →
+3D Secure → conferma prenotazione + email) testato end-to-end il
+07/09/2026 con esito positivo su carta accettata e su carta di rifiuto.
+Tre bug trovati e corretti nella stessa sessione — valuta stringa 'EUR'
+invece del numerico 978 richiesto dall'API, doppio invio del nonce di
+pagamento (due canali di consegna concorrenti, serviva una guardia),
+nonce sbagliato durante la sfida 3D Secure (bug di nome campo + race tra
+i due canali, risolto rendendo l'evento `XPay_Nonce` l'unico canale
+attendibile). L'08/09/2026, su richiesta di Marco, letta la
+documentazione ufficiale Nexi per un audit dei campi e per valutare la
+pre-autorizzazione carta: trovate due strade (prodotto Nexi dedicato
+"Incasso Senza Pensieri", separato e da attivare a parte; oppure il
+campo `TCONTAB` già disponibile nella stessa API integrata, attivabile
+con un ticket al supporto Nexi), nessuna delle due implementata.
+Discrepanza aperta e non bloccante tra doc e codice sul formato valuta
+lato widget (stringa "EUR" da doc vs numerico 978 usato e funzionante) —
+da tenere d'occhio, non da correggere ora. Dettaglio completo: piano
+`docs/superpowers/plans/2026-09-06-nexi-frontend-integration.md`
+(Task 6, tutti gli step chiusi) e memoria di progetto
+(`integrazione_nexi_xpay.md`).
+
 ## Channel manager OTA — fornitore cambiato
 
 **19/08/2026**: WuBook/WooDoo escluso — **verificato direttamente con
