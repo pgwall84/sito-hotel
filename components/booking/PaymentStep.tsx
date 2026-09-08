@@ -4,6 +4,11 @@
 // avviene lato server via webhook (backend/controllers/stripeWebhookController.js),
 // MAI da questo componente — la pagina di ritorno mostra solo lo stato,
 // non decide nulla.
+//
+// Schermata di chiusura unificata con Nexi (06/09/2026): al posto del
+// paragrafo statico usa ConfermaPrenotazione, condiviso con
+// NexiPaymentStep.tsx — vedi
+// docs/superpowers/specs/2026-09-06-nexi-frontend-integration-design.md.
 
 "use client";
 
@@ -11,6 +16,7 @@ import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button from "@/components/ui/Button";
+import ConfermaPrenotazione, { type RiepilogoPrenotazione } from "./ConfermaPrenotazione";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -26,7 +32,15 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 // diverso da chi soggiorna (es. un genitore che prenota per la famiglia con
 // la propria carta). Passato a confirmPayment via payment_method_data,
 // MAI lasciato al solo PaymentElement.
-function FormPagamento({ importoCaparra, nomeOspite }: { importoCaparra: number; nomeOspite: string }) {
+function FormPagamento({
+  importoCaparra,
+  nomeOspite,
+  riepilogo,
+}: {
+  importoCaparra: number;
+  nomeOspite: string;
+  riepilogo: RiepilogoPrenotazione;
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [nomeTitolareCarta, setNomeTitolareCarta] = useState(nomeOspite);
@@ -62,18 +76,14 @@ function FormPagamento({ importoCaparra, nomeOspite }: { importoCaparra: number;
 
     // Nessun redirect necessario: il pagamento è confermato lato Stripe,
     // la conferma DEFINITIVA della prenotazione arriva dal webhook lato
-    // server (può richiedere qualche secondo) — qui mostriamo solo un
-    // messaggio di attesa, mai uno stato "confermata" deciso dal client.
+    // server (può richiedere qualche secondo) — qui mostriamo solo la
+    // schermata di attesa, mai uno stato "confermata" deciso dal client.
     setCompletato(true);
     setElaborazione(false);
   }
 
   if (completato) {
-    return (
-      <p className="mt-6 text-primary">
-        Pagamento ricevuto. La conferma definitiva della prenotazione arriverà a breve via email.
-      </p>
-    );
+    return <ConfermaPrenotazione riepilogo={riepilogo} importoPagato={importoCaparra} esito="in_attesa_conferma" />;
   }
 
   return (
@@ -101,15 +111,17 @@ export default function PaymentStep({
   clientSecret,
   importoCaparra,
   nomeOspite,
+  riepilogo,
 }: {
   clientSecret: string;
   importoCaparra: number;
   locale: string;
   nomeOspite: string;
+  riepilogo: RiepilogoPrenotazione;
 }) {
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <FormPagamento importoCaparra={importoCaparra} nomeOspite={nomeOspite} />
+      <FormPagamento importoCaparra={importoCaparra} nomeOspite={nomeOspite} riepilogo={riepilogo} />
     </Elements>
   );
 }

@@ -24,14 +24,22 @@ const CONNECT_SRC_GESTIONALE =
 
 // CSP applicata solo al sito pubblico: lo Studio Sanity richiede una policy
 // molto più permissiva per i propri bundle/worker interni
+//
+// Domini Nexi aggiunti il 07/09/2026 (Task 6, primo test reale end-to-end
+// di NexiPaymentStep su /it/prenota — prima la pagina reale non aveva MAI
+// avuto i domini Nexi in questa policy, solo /xpay-test li aveva tramite
+// XPAY_TEST_CSP sotto). Confermato empiricamente https://int-ecommerce.nexi.it
+// per l'ambiente INTEG; wildcard *.nexi.it/*.nexigroup.com mantenuto (stessa
+// scelta già fatta per XPAY_TEST_CSP) perché il sottodominio PROD non è
+// ancora confermato — restringere quando anche PROD sarà testato davvero.
 const PUBLIC_SITE_CSP = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EVAL} https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com`,
+  `script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EVAL} https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://*.nexi.it https://*.nexigroup.com`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com",
+  "img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://*.nexi.it https://*.nexigroup.com",
   "font-src 'self' data:",
-  `connect-src 'self' https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com${CONNECT_SRC_GESTIONALE}`,
-  "frame-src https://www.google.com https://js.stripe.com",
+  `connect-src 'self' https://*.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://*.nexi.it https://*.nexigroup.com${CONNECT_SRC_GESTIONALE}`,
+  "frame-src https://www.google.com https://js.stripe.com https://*.nexi.it https://*.nexigroup.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",

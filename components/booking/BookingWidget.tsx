@@ -17,6 +17,8 @@ import DateRangePicker from "@/components/ui/DateRangePicker";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import PaymentStep from "./PaymentStep";
+import NexiPaymentStep, { type DatiPagamentoNexi } from "./NexiPaymentStep";
+import { type RiepilogoPrenotazione } from "./ConfermaPrenotazione";
 
 const API_BASE = process.env.NEXT_PUBLIC_GESTIONALE_API_URL;
 
@@ -83,11 +85,16 @@ type ArricchimentoRaw = {
 
 type DatiOspite = { nome: string; cognome: string; email: string; telefono: string };
 
-type PrenotazioneCreata = {
-  prenotazione_id: number;
-  importo_caparra: number;
-  client_secret: string;
-};
+// Unione discriminata (06/09/2026, integrazione frontend Nexi): il backend
+// restituisce client_secret quando PAYMENT_PROVIDER=stripe, pagamento_nexi
+// quando =nexi — mai entrambi. La chiave presente decide quale step di
+// pagamento montare, non un flag letto a parte da /configurazione (resta
+// corretto anche se le due chiamate leggessero valori di provider diversi
+// a cavallo di un cutover). Vedi
+// docs/superpowers/specs/2026-09-06-nexi-frontend-integration-design.md.
+type PrenotazioneCreata =
+  | { prenotazione_id: number; importo_caparra: number; client_secret: string; scadenza_hold: string }
+  | { prenotazione_id: number; importo_caparra: number; pagamento_nexi: DatiPagamentoNexi; scadenza_hold: string };
 
 export default function BookingWidget({ locale }: { locale: string }) {
   const t = useTranslations("PrenotaPage");
@@ -236,13 +243,36 @@ export default function BookingWidget({ locale }: { locale: string }) {
     }
   }
 
-  if (prenotazioneCreata) {
+  if (prenotazioneCreata && tipoSelezionato) {
+    const prezzoTotale = tipoSelezionato.prezzi[trattamento] as number;
+    const trattamentoLabel =
+      trattamento === "bb" ? t("bb") : trattamento === "mezza_pensione" ? t("mezzaPensione") : t("pensioneCompleta");
+    const riepilogo: RiepilogoPrenotazione = {
+      prenotazioneId: prenotazioneCreata.prenotazione_id,
+      nomeCamera: tipoSelezionato.nome,
+      dataArrivo,
+      dataPartenza,
+      trattamentoLabel,
+      saldoDaPagare: prezzoTotale - prenotazioneCreata.importo_caparra,
+    };
+
+    if ("client_secret" in prenotazioneCreata) {
+      return (
+        <PaymentStep
+          clientSecret={prenotazioneCreata.client_secret}
+          importoCaparra={prenotazioneCreata.importo_caparra}
+          locale={locale}
+          nomeOspite={`${datiOspite.nome} ${datiOspite.cognome}`.trim()}
+          riepilogo={riepilogo}
+        />
+      );
+    }
+
     return (
-      <PaymentStep
-        clientSecret={prenotazioneCreata.client_secret}
+      <NexiPaymentStep
+        datiPagamento={prenotazioneCreata.pagamento_nexi}
         importoCaparra={prenotazioneCreata.importo_caparra}
-        locale={locale}
-        nomeOspite={`${datiOspite.nome} ${datiOspite.cognome}`.trim()}
+        riepilogo={riepilogo}
       />
     );
   }
