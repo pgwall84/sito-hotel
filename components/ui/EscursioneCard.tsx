@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Link } from "@/lib/i18n/navigation";
 import { focusRingClasses } from "@/lib/a11y";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 
 // Guscio proprio, non components/ui/Card.tsx: Card instrada sempre il suo
 // href tramite il Link interno di next-intl (pensato per rotte del sito).
@@ -17,24 +17,18 @@ export default function EscursioneCard({
   titolo,
   sottotitolo,
   descrizione,
-  fotoUrl,
+  fotoUrls,
   link,
 }: {
   titolo: string;
   sottotitolo?: string;
   descrizione?: string;
-  fotoUrl?: string | null;
+  fotoUrls?: string[] | null;
   link?: string;
 }) {
   const contenuto = (
     <>
-      {fotoUrl ? (
-        <div className="relative aspect-[4/3]">
-          <Image src={fotoUrl} alt={titolo} fill className="object-cover" />
-        </div>
-      ) : (
-        <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-surfaceDark" />
-      )}
+      <ImageCarousel foto={fotoUrls ?? []} alt={titolo} controls={false} />
       <div className="p-5">
         <h3 className="font-heading text-xl text-primary">{titolo}</h3>
         {sottotitolo && <p className="mt-1 text-sm text-accentDeep">{sottotitolo}</p>}

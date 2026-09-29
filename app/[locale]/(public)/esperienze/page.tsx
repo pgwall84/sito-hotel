@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import EscursioneCard from "@/components/ui/EscursioneCard";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 import { getEsperienzaPesto, getEscursioni } from "@/lib/queries";
 import { pageMetadata } from "@/lib/seo";
 
@@ -61,13 +61,7 @@ export default async function EsperienzePage({
               {t("pestoCta")}
             </a>
           </div>
-          {pesto?.fotoUrl ? (
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-              <Image src={pesto.fotoUrl} alt={titolo} fill className="object-cover" />
-            </div>
-          ) : (
-            <div className="aspect-[4/3] rounded-lg bg-white/10" />
-          )}
+          <ImageCarousel foto={pesto?.fotoUrls ?? []} alt={titolo} />
         </div>
       </SectionWrapper>
 
@@ -80,7 +74,7 @@ export default async function EsperienzePage({
               titolo={e.titolo}
               sottotitolo={e.sottotitolo}
               descrizione={e.descrizione}
-              fotoUrl={e.fotoUrl}
+              fotoUrls={e.fotoUrls}
               link={e.link}
             />
           ))}

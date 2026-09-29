@@ -183,10 +183,14 @@ interface SezioneRistoranteRaw {
 export const getSezioneRistorante = cache(async (locale: Locale) => {
   const r = await client.fetch<SezioneRistoranteRaw | null>(SEZIONE_RISTORANTE_QUERY, {}, REVALIDATE);
   if (!r) return null;
+  const fotoUrls = (r.foto ?? [])
+    .map((f) => imgUrl(f, 1200, 800))
+    .filter((url): url is string => Boolean(url));
   return {
     titolo: pickLocale(r.titolo, locale) ?? "",
     descrizione: pickLocale(r.descrizione, locale) ?? "",
-    fotoUrl: imgUrl(r.foto?.[0], 1200, 800),
+    fotoUrl: fotoUrls[0] ?? null,
+    fotoUrls,
     specialita: (r.specialita ?? []).map((s) => pickLocale(s, locale)).filter(Boolean) as string[],
     orari: r.orari,
     linkMenu: r.linkMenu,
@@ -214,10 +218,14 @@ interface EsperienzaPestoRaw {
 export const getEsperienzaPesto = cache(async (locale: Locale) => {
   const e = await client.fetch<EsperienzaPestoRaw | null>(ESPERIENZA_PESTO_QUERY, {}, REVALIDATE);
   if (!e) return null;
+  const fotoUrls = (e.foto ?? [])
+    .map((f) => imgUrl(f, 1200, 800))
+    .filter((url): url is string => Boolean(url));
   return {
     titolo: pickLocale(e.titolo, locale) ?? "",
     descrizione: pickLocale(e.descrizione, locale) ?? "",
-    fotoUrl: imgUrl(e.foto?.[0], 1200, 800),
+    fotoUrl: fotoUrls[0] ?? null,
+    fotoUrls,
     visitatoriStagione: e.visitatoriStagione,
     durata: pickLocale(e.durata, locale) ?? "",
     prezzo: e.prezzo,
@@ -241,19 +249,25 @@ interface EscursioneListItem {
   titolo: LocaleString;
   sottotitolo?: LocaleString;
   descrizione?: LocaleString;
-  foto?: SanityImage;
+  foto?: SanityImage[];
   link?: string;
 }
 
 export const getEscursioni = cache(async (locale: Locale) => {
   const raw = await client.fetch<EscursioneListItem[]>(ESCURSIONI_LIST_QUERY, {}, REVALIDATE);
-  return raw.map((e) => ({
-    titolo: pickLocale(e.titolo, locale) ?? "",
-    sottotitolo: e.sottotitolo ? pickLocale(e.sottotitolo, locale) : undefined,
-    descrizione: e.descrizione ? pickLocale(e.descrizione, locale) : undefined,
-    fotoUrl: imgUrl(e.foto, 600, 450),
-    link: e.link,
-  }));
+  return raw.map((e) => {
+    const fotoUrls = (e.foto ?? [])
+      .map((f) => imgUrl(f, 600, 450))
+      .filter((url): url is string => Boolean(url));
+    return {
+      titolo: pickLocale(e.titolo, locale) ?? "",
+      sottotitolo: e.sottotitolo ? pickLocale(e.sottotitolo, locale) : undefined,
+      descrizione: e.descrizione ? pickLocale(e.descrizione, locale) : undefined,
+      fotoUrl: fotoUrls[0] ?? null,
+      fotoUrls,
+      link: e.link,
+    };
+  });
 });
 
 // ---------- Convenzioni Aziendali ----------

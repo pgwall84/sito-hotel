@@ -1,16 +1,16 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import Button from "@/components/ui/Button";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import EscursioneCard from "@/components/ui/EscursioneCard";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 import { getEsperienzaPesto, getEscursioni } from "@/lib/queries";
 
 // fallback solo se non c'è ancora nessuna escursione pubblicata su Sanity
 // (27/08/2026, Punto 3b) — 2 voci finte senza foto, così il bento resta
 // "1 grande + 2 piccole" anche a Sanity vuoto, mai un solo riquadro.
 const ESCURSIONI_PLACEHOLDER = [
-  { titolo: "Cinque Terre", sottotitolo: "20 min in treno", descrizione: undefined, fotoUrl: null, link: "/lerici" },
-  { titolo: "Portovenere", sottotitolo: "10 min in battello", descrizione: undefined, fotoUrl: null, link: "/lerici" },
+  { titolo: "Cinque Terre", sottotitolo: "20 min in treno", descrizione: undefined, fotoUrls: [], link: "/lerici" },
+  { titolo: "Portovenere", sottotitolo: "10 min in battello", descrizione: undefined, fotoUrls: [], link: "/lerici" },
 ];
 
 export default async function EsperienzeInEvidenza({ locale }: { locale: string }) {
@@ -40,13 +40,7 @@ export default async function EsperienzeInEvidenza({ locale }: { locale: string 
               {tPesto("cta")}
             </Button>
           </div>
-          {pesto?.fotoUrl ? (
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-              <Image src={pesto.fotoUrl} alt={titoloPesto} fill className="object-cover" />
-            </div>
-          ) : (
-            <div className="aspect-[4/3] rounded-lg bg-white/10" />
-          )}
+          <ImageCarousel foto={pesto?.fotoUrls ?? []} alt={titoloPesto} />
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -56,7 +50,7 @@ export default async function EsperienzeInEvidenza({ locale }: { locale: string 
               titolo={e.titolo}
               sottotitolo={e.sottotitolo}
               descrizione={e.descrizione}
-              fotoUrl={e.fotoUrl}
+              fotoUrls={e.fotoUrls}
               link={e.link}
             />
           ))}

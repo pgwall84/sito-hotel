@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/lib/i18n/navigation";
 import SectionWrapper from "@/components/layout/SectionWrapper";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 import { getSezioneRistorante } from "@/lib/queries";
 
 export default async function RistorantePreview({ locale }: { locale: string }) {
@@ -14,13 +14,7 @@ export default async function RistorantePreview({ locale }: { locale: string }) 
   return (
     <SectionWrapper bg="surface">
       <div className="grid items-center gap-10 md:grid-cols-2">
-        {ristorante?.fotoUrl ? (
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-            <Image src={ristorante.fotoUrl} alt={titolo} fill className="object-cover" />
-          </div>
-        ) : (
-          <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/15 to-surfaceDark" />
-        )}
+        <ImageCarousel foto={ristorante?.fotoUrls ?? []} alt={titolo} />
         <div>
           <span className="inline-block rounded-full bg-primary px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white">
             {t("tag")}
