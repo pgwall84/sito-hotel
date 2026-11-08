@@ -140,7 +140,14 @@
   "EsperienzePage": {
     "title": "Esperienze",
     "pestoCta": "Prenota la degustazione",
-    "escursioniTitle": "Escursioni consigliate"
+    "escursioniTitle": "Escursioni consigliate",
+    "pestoFormNome": "Nome",
+    "pestoFormEmail": "Email",
+    "pestoFormTelefono": "Telefono (facoltativo)",
+    "pestoFormData": "Data desiderata",
+    "pestoFormPersone": "Numero di persone",
+    "pestoFormNote": "Note (facoltativo)",
+    "pestoFormSubmit": "Invia richiesta"
   },
   "LavoroPage": {
     "title": "Per chi lavora nel Golfo",
@@ -363,5 +370,15 @@
     "rowMapsType": "Funzionale (terze parti — Google)",
     "rowMapsPurpose": "Visualizzazione della mappa interattiva nella pagina Contatti",
     "rowMapsDuration": "Variabile (gestita da Google)"
+  },
+  "EsperienzaDettaglioPage": {
+    "backToList": "Tutte le esperienze",
+    "bookCta": "Prenota il tuo soggiorno"
+  },
+  "FormRichiesta": {
+    "sending": "Invio in corso…",
+    "success": "Richiesta inviata, grazie! Ti risponderemo al più presto.",
+    "error": "Si è verificato un errore. Riprova più tardi o contattaci direttamente.",
+    "rateLimited": "Troppi invii, riprova tra qualche minuto."
   }
 }

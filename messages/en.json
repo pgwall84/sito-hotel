@@ -140,7 +140,14 @@
   "EsperienzePage": {
     "title": "Experiences",
     "pestoCta": "Book the tasting",
-    "escursioniTitle": "Recommended excursions"
+    "escursioniTitle": "Recommended excursions",
+    "pestoFormNome": "Name",
+    "pestoFormEmail": "Email",
+    "pestoFormTelefono": "Phone (optional)",
+    "pestoFormData": "Preferred date",
+    "pestoFormPersone": "Number of people",
+    "pestoFormNote": "Notes (optional)",
+    "pestoFormSubmit": "Send request"
   },
   "LavoroPage": {
     "title": "For those who work in the Gulf",
@@ -363,5 +370,15 @@
     "rowMapsType": "Functional (third party — Google)",
     "rowMapsPurpose": "Displays the interactive map on the Contact page",
     "rowMapsDuration": "Variable (managed by Google)"
+  },
+  "EsperienzaDettaglioPage": {
+    "backToList": "All experiences",
+    "bookCta": "Book your stay"
+  },
+  "FormRichiesta": {
+    "sending": "Sending…",
+    "success": "Request sent, thank you! We'll get back to you shortly.",
+    "error": "Something went wrong. Please try again later or contact us directly.",
+    "rateLimited": "Too many submissions, please try again in a few minutes."
   }
 }

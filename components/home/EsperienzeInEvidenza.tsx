@@ -8,9 +8,10 @@ import { getEsperienzaPesto, getEscursioni } from "@/lib/queries";
 // fallback solo se non c'è ancora nessuna escursione pubblicata su Sanity
 // (27/08/2026, Punto 3b) — 2 voci finte senza foto, così il bento resta
 // "1 grande + 2 piccole" anche a Sanity vuoto, mai un solo riquadro.
-const ESCURSIONI_PLACEHOLDER = [
-  { titolo: "Cinque Terre", sottotitolo: "20 min in treno", descrizione: undefined, fotoUrls: [], link: "/lerici" },
-  { titolo: "Portovenere", sottotitolo: "10 min in battello", descrizione: undefined, fotoUrls: [], link: "/lerici" },
+// Senza link: la pagina dell'esperienza esiste solo se il documento è su Sanity.
+const ESCURSIONI_PLACEHOLDER: { titolo: string; sottotitolo?: string; descrizione?: string; fotoUrls: string[]; link?: string }[] = [
+  { titolo: "Cinque Terre", sottotitolo: "20 min in treno", descrizione: undefined, fotoUrls: [] },
+  { titolo: "Portovenere", sottotitolo: "10 min in battello", descrizione: undefined, fotoUrls: [] },
 ];
 
 export default async function EsperienzeInEvidenza({ locale }: { locale: string }) {

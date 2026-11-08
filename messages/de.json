@@ -140,7 +140,14 @@
   "EsperienzePage": {
     "title": "Erlebnisse",
     "pestoCta": "Verkostung buchen",
-    "escursioniTitle": "Empfohlene Ausflüge"
+    "escursioniTitle": "Empfohlene Ausflüge",
+    "pestoFormNome": "Name",
+    "pestoFormEmail": "E-Mail",
+    "pestoFormTelefono": "Telefon (optional)",
+    "pestoFormData": "Wunschdatum",
+    "pestoFormPersone": "Anzahl der Personen",
+    "pestoFormNote": "Anmerkungen (optional)",
+    "pestoFormSubmit": "Anfrage senden"
   },
   "LavoroPage": {
     "title": "Für alle, die im Golf arbeiten",
@@ -363,5 +370,15 @@
     "rowMapsType": "Funktional (Drittanbieter — Google)",
     "rowMapsPurpose": "Anzeige der interaktiven Karte auf der Kontaktseite",
     "rowMapsDuration": "Variabel (verwaltet von Google)"
+  },
+  "EsperienzaDettaglioPage": {
+    "backToList": "Alle Erlebnisse",
+    "bookCta": "Buchen Sie Ihren Aufenthalt"
+  },
+  "FormRichiesta": {
+    "sending": "Wird gesendet…",
+    "success": "Anfrage gesendet, danke! Wir melden uns in Kürze bei Ihnen.",
+    "error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.",
+    "rateLimited": "Zu viele Anfragen, bitte versuchen Sie es in ein paar Minuten erneut."
   }
 }

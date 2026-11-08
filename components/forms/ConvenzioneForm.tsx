@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Button from "@/components/ui/Button";
+import { inviaRichiesta, type EsitoRichiesta } from "@/lib/inviaRichiesta";
 
-export default function ConvenzioneForm({ emailTo }: { emailTo: string }) {
+export default function ConvenzioneForm() {
   const t = useTranslations("LavoroPage");
   const [form, setForm] = useState({
     azienda: "",
@@ -16,15 +17,22 @@ export default function ConvenzioneForm({ emailTo }: { emailTo: string }) {
     note: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [stato, setStato] = useState<"idle" | "sending" | EsitoRichiesta>("idle");
+  const tForm = useTranslations("FormRichiesta");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const periodoLabel = form.periodo === "anno" ? t("formPeriodoAnno") : t("formPeriodoStagionale");
-    const subject = encodeURIComponent(`Richiesta convenzione — ${form.azienda}`);
-    const body = encodeURIComponent(
-      `Azienda: ${form.azienda}\nReferente: ${form.referente}\nEmail: ${form.email}\nTelefono: ${form.telefono}\nDipendenti/mese: ${form.dipendenti}\nPeriodo: ${periodoLabel}\nNote: ${form.note}`
-    );
-    window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+    setStato("sending");
+    const esito = await inviaRichiesta("convenzione", form);
+    setStato(esito);
+    if (esito === "ok") {
+      setForm({ azienda: "", referente: "", email: "", telefono: "", dipendenti: "", periodo: "anno", note: "" });
+    }
   };
+
+  if (stato === "ok") {
+    return <p className="text-sm text-primary">{tForm("success")}</p>;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
@@ -81,8 +89,10 @@ export default function ConvenzioneForm({ emailTo }: { emailTo: string }) {
         rows={3}
         className="rounded-md border border-border bg-background px-4 py-2 text-sm sm:col-span-2"
       />
-      <Button type="submit" variant="primary" className="sm:col-span-2">
-        {t("formSubmit")}
+      {stato === "error" && <p className="text-sm text-accentDeep sm:col-span-2">{tForm("error")}</p>}
+      {stato === "rate-limited" && <p className="text-sm text-accentDeep sm:col-span-2">{tForm("rateLimited")}</p>}
+      <Button type="submit" variant="primary" disabled={stato === "sending"} className="disabled:opacity-60 sm:col-span-2">
+        {stato === "sending" ? tForm("sending") : t("formSubmit")}
       </Button>
     </form>
   );

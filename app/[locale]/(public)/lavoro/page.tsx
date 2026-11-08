@@ -34,7 +34,6 @@ export default async function LavoroPage({
   const sottotitolo = convenzioni?.sottotitolo || t("subtitle");
   const servizi = convenzioni && convenzioni.servizi.length > 0 ? convenzioni.servizi : t.raw("serviziDefault");
   const testoConvenzioni = convenzioni?.testoConvenzioni || t("convenzioniFallback");
-  const emailTo = convenzioni?.emailRichieste ?? "info@hoteldelgolfo.com";
   const mostraForm = convenzioni?.mostraFormRichiesta ?? true;
 
   return (
@@ -65,7 +64,7 @@ export default async function LavoroPage({
           <div className="mt-8 max-w-2xl">
             <h3 className="font-heading text-lg text-primary">{t("formTitle")}</h3>
             <div className="mt-4">
-              <ConvenzioneForm emailTo={emailTo} />
+              <ConvenzioneForm />
             </div>
           </div>
         )}

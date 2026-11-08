@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/lib/i18n/routing";
-import { getCamere } from "@/lib/queries";
+import { getCamere, getEscursioni } from "@/lib/queries";
 import { SITE_URL } from "@/lib/seo";
 
 const STATIC_PATHS = [
@@ -19,7 +19,12 @@ const STATIC_PATHS = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const camere = await getCamere(routing.defaultLocale);
-  const paths = [...STATIC_PATHS, ...camere.map((c) => `/camere/${c.slug}`)];
+  const escursioni = await getEscursioni(routing.defaultLocale);
+  const paths = [
+    ...STATIC_PATHS,
+    ...camere.map((c) => `/camere/${c.slug}`),
+    ...escursioni.filter((e) => e.slug).map((e) => `/esperienze/${e.slug}`),
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
   for (const path of paths) {

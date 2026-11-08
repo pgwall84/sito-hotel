@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import PestoRichiestaForm from "@/components/forms/PestoRichiestaForm";
 import SectionWrapper from "@/components/layout/SectionWrapper";
 import EscursioneCard from "@/components/ui/EscursioneCard";
 import ImageCarousel from "@/components/ui/ImageCarousel";
@@ -54,12 +55,7 @@ export default async function EsperienzePage({
               </p>
             )}
             {pesto?.comePrenot && <p className="mt-4 text-sm text-white/80">{pesto.comePrenot}</p>}
-            <a
-              href="mailto:info@hoteldelgolfo.com?subject=Prenotazione degustazione pesto"
-              className="mt-6 inline-block rounded-full bg-white px-7 py-3 text-sm font-semibold text-accentDeep transition-colors hover:bg-surface"
-            >
-              {t("pestoCta")}
-            </a>
+            <PestoRichiestaForm />
           </div>
           <ImageCarousel foto={pesto?.fotoUrls ?? []} alt={titolo} />
         </div>

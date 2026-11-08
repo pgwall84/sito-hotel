@@ -241,7 +241,19 @@ const ESCURSIONI_LIST_QUERY = groq`
     sottotitolo,
     descrizione,
     foto,
-    link
+    link,
+    "slug": slug.current
+  }
+`;
+
+const ESCURSIONE_BY_SLUG_QUERY = groq`
+  *[_type == "escursione" && slug.current == $slug][0] {
+    titolo,
+    sottotitolo,
+    descrizione,
+    descrizioneEstesa,
+    foto,
+    "slug": slug.current
   }
 `;
 
@@ -251,6 +263,7 @@ interface EscursioneListItem {
   descrizione?: LocaleString;
   foto?: SanityImage[];
   link?: string;
+  slug?: string;
 }
 
 export const getEscursioni = cache(async (locale: Locale) => {
@@ -265,9 +278,37 @@ export const getEscursioni = cache(async (locale: Locale) => {
       descrizione: e.descrizione ? pickLocale(e.descrizione, locale) : undefined,
       fotoUrl: fotoUrls[0] ?? null,
       fotoUrls,
-      link: e.link,
+      slug: e.slug,
+      // Pagina dedicata se c'è lo slug, altrimenti l'eventuale link esterno.
+      link: e.slug ? `/esperienze/${e.slug}` : e.link,
     };
   });
+});
+
+interface EscursioneDetailRaw {
+  titolo: LocaleString;
+  sottotitolo?: LocaleString;
+  descrizione?: LocaleString;
+  descrizioneEstesa?: LocaleString;
+  foto?: SanityImage[];
+  slug: string;
+}
+
+export const getEscursioneBySlug = cache(async (slug: string, locale: Locale) => {
+  const e = await client.fetch<EscursioneDetailRaw | null>(ESCURSIONE_BY_SLUG_QUERY, { slug }, REVALIDATE);
+  if (!e) return null;
+  const fotoUrls = (e.foto ?? [])
+    .map((f) => imgUrl(f, 1200, 800))
+    .filter((url): url is string => Boolean(url));
+  return {
+    slug: e.slug,
+    titolo: pickLocale(e.titolo, locale) ?? "",
+    sottotitolo: e.sottotitolo ? pickLocale(e.sottotitolo, locale) : undefined,
+    descrizione: e.descrizione ? pickLocale(e.descrizione, locale) : undefined,
+    // Se manca la versione estesa nella lingua richiesta, pickLocale ricade sull'italiano.
+    descrizioneEstesa: e.descrizioneEstesa ? pickLocale(e.descrizioneEstesa, locale) : undefined,
+    fotoUrls,
+  };
 });
 
 // ---------- Convenzioni Aziendali ----------

@@ -75,6 +75,34 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
+  // Redirect permanenti (SEO) dalle pagine del sito vecchio (HTML statico su
+  // hoteldelgolfolerici.com) a quelle del sito nuovo: le pagine italiane vanno
+  // sotto /it, quelle del vecchio sotto-sito /en/ sotto /en. Le ancore
+  // (#dove-siamo, #contatti) non arrivano al server: i link con ancora
+  // atterrano sulla destinazione di index.html (home).
+  async redirects() {
+    const mappa: Array<[string, string]> = [
+      // Italiano
+      ["/index.html", "/it"],
+      ["/hotel.html", "/it/camere"],
+      ["/ristorante.html", "/it/ristorante"],
+      ["/disponibilita.html", "/it/prenota"],
+      ["/news-e-offerte.html", "/it/offerte"],
+      ["/offerte/index.html", "/it/offerte"],
+      ["/come-arrivare.html", "/it/contatti"],
+      ["/lerici-e-dintorni.html", "/it/lerici"],
+      ["/privacy-policy.html", "/it/privacy-policy"],
+      // Inglese
+      ["/en/index.html", "/en"],
+      ["/en/hotel.html", "/en/camere"],
+      ["/en/restaurant.html", "/en/ristorante"],
+      ["/en/availability.html", "/en/prenota"],
+      ["/en/how-to-get.html", "/en/contatti"],
+      ["/en/lerici---surroundings.html", "/en/lerici"],
+      ["/en/privacy-policy.html", "/en/privacy-policy"],
+    ];
+    return mappa.map(([source, destination]) => ({ source, destination, permanent: true }));
+  },
   async headers() {
     return [
       {
