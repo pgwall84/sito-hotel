@@ -7,7 +7,7 @@ import { inviaRichiesta, type EsitoRichiesta } from "@/lib/inviaRichiesta";
 
 export default function PrenotazioneTavoloForm() {
   const t = useTranslations("RistorantePage");
-  const [form, setForm] = useState({ nome: "", data: "", ora: "", coperti: "", telefono: "" });
+  const [form, setForm] = useState({ nome: "", data: "", ora: "", coperti: "", telefono: "", email: "" });
 
   const [stato, setStato] = useState<"idle" | "sending" | EsitoRichiesta>("idle");
   const tForm = useTranslations("FormRichiesta");
@@ -17,7 +17,7 @@ export default function PrenotazioneTavoloForm() {
     setStato("sending");
     const esito = await inviaRichiesta("tavolo", form);
     setStato(esito);
-    if (esito === "ok") setForm({ nome: "", data: "", ora: "", coperti: "", telefono: "" });
+    if (esito === "ok") setForm({ nome: "", data: "", ora: "", coperti: "", telefono: "", email: "" });
   };
 
   if (stato === "ok") {
@@ -65,6 +65,13 @@ export default function PrenotazioneTavoloForm() {
         value={form.telefono}
         onChange={(e) => setForm({ ...form, telefono: e.target.value })}
         className="rounded-md border border-border bg-background px-4 py-2 text-sm"
+      />
+      <input
+        type="email"
+        placeholder={t("formEmail")}
+        value={form.email}
+        onChange={(e) => setForm({ ...form, email: e.target.value })}
+        className="rounded-md border border-border bg-background px-4 py-2 text-sm sm:col-span-2"
       />
       {stato === "error" && <p className="text-sm text-accentDeep sm:col-span-2">{tForm("error")}</p>}
       {stato === "rate-limited" && <p className="text-sm text-accentDeep sm:col-span-2">{tForm("rateLimited")}</p>}

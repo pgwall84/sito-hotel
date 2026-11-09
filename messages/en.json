@@ -135,6 +135,7 @@
     "formOra": "Time",
     "formCoperti": "Number of guests",
     "formTelefono": "Phone",
+    "formEmail": "Email (optional)",
     "formSubmit": "Send request"
   },
   "EsperienzePage": {

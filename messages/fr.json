@@ -135,6 +135,7 @@
     "formOra": "Heure",
     "formCoperti": "Nombre de couverts",
     "formTelefono": "Téléphone",
+    "formEmail": "E-mail (facultatif)",
     "formSubmit": "Envoyer la demande"
   },
   "EsperienzePage": {

@@ -135,6 +135,7 @@
     "formOra": "Uhrzeit",
     "formCoperti": "Anzahl Personen",
     "formTelefono": "Telefon",
+    "formEmail": "E-Mail (optional)",
     "formSubmit": "Anfrage senden"
   },
   "EsperienzePage": {

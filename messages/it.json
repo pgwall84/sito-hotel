@@ -135,6 +135,7 @@
     "formOra": "Ora",
     "formCoperti": "Numero coperti",
     "formTelefono": "Telefono",
+    "formEmail": "Email (facoltativa)",
     "formSubmit": "Invia richiesta"
   },
   "EsperienzePage": {

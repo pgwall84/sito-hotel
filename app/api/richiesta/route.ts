@@ -68,6 +68,7 @@ const DEFINIZIONI = {
       { chiave: "ora", etichetta: "Ora", kind: "ora", obbligatorio: true },
       { chiave: "coperti", etichetta: "Coperti", kind: "numero", obbligatorio: true },
       { chiave: "telefono", etichetta: "Telefono", kind: "telefono", obbligatorio: true },
+      { chiave: "email", etichetta: "Email", kind: "email" },
     ],
   },
   convenzione: {
