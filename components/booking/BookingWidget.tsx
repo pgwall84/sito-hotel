@@ -156,9 +156,20 @@ export default function BookingWidget({ locale }: { locale: string }) {
       });
   }, []);
 
+  // Cambiando date, adulti o bambini i risultati già mostrati (e la camera
+  // scelta) non sono più validi: si azzerano, così la ricerca si può
+  // rifare senza lasciare cards o prezzi vecchi a schermo.
+  useEffect(() => {
+    setRisultati(null);
+    setTipoSelezionato(null);
+    setErrore(null);
+  }, [dataArrivo, dataPartenza, adulti, bambiniEta]);
+
   async function cercaDisponibilita(e: React.FormEvent) {
     e.preventDefault();
     setErrore(null);
+    setTipoSelezionato(null);
+    setTrattamento("bb");
     setCaricamento(true);
     try {
       const url = new URL(`${API_BASE}/api/booking-pubblico/disponibilita`);
@@ -256,24 +267,45 @@ export default function BookingWidget({ locale }: { locale: string }) {
       saldoDaPagare: prezzoTotale - prenotazioneCreata.importo_caparra,
     };
 
+    const modificaRicerca = (
+      <button
+        type="button"
+        onClick={() => {
+          setPrenotazioneCreata(null);
+          setTipoSelezionato(null);
+          setRisultati(null);
+          setErrore(null);
+        }}
+        className="mb-4 text-sm text-textMuted underline hover:text-primary"
+      >
+        ← {t("modificaRicerca")}
+      </button>
+    );
+
     if ("client_secret" in prenotazioneCreata) {
       return (
-        <PaymentStep
-          clientSecret={prenotazioneCreata.client_secret}
-          importoCaparra={prenotazioneCreata.importo_caparra}
-          locale={locale}
-          nomeOspite={`${datiOspite.nome} ${datiOspite.cognome}`.trim()}
-          riepilogo={riepilogo}
-        />
+        <div>
+          {modificaRicerca}
+          <PaymentStep
+            clientSecret={prenotazioneCreata.client_secret}
+            importoCaparra={prenotazioneCreata.importo_caparra}
+            locale={locale}
+            nomeOspite={`${datiOspite.nome} ${datiOspite.cognome}`.trim()}
+            riepilogo={riepilogo}
+          />
+        </div>
       );
     }
 
     return (
-      <NexiPaymentStep
-        datiPagamento={prenotazioneCreata.pagamento_nexi}
-        importoCaparra={prenotazioneCreata.importo_caparra}
-        riepilogo={riepilogo}
-      />
+      <div>
+        {modificaRicerca}
+        <NexiPaymentStep
+          datiPagamento={prenotazioneCreata.pagamento_nexi}
+          importoCaparra={prenotazioneCreata.importo_caparra}
+          riepilogo={riepilogo}
+        />
+      </div>
     );
   }
 
@@ -428,6 +460,16 @@ export default function BookingWidget({ locale }: { locale: string }) {
           vede che esiste ma non è ancora prenotabile online. */}
       {tipoSelezionato && (
         <div className="mt-6 max-w-lg">
+          <button
+            type="button"
+            onClick={() => {
+              setTipoSelezionato(null);
+              setTrattamento("bb");
+            }}
+            className="mb-3 text-sm text-textMuted underline hover:text-primary"
+          >
+            ← {t("cambiaCamera")}
+          </button>
           <span className="text-sm text-textMuted">{t("trattamento")}</span>
           <div className="mt-2 grid gap-2">
             {(["bb", "mezza_pensione", "pensione_completa"] as Trattamento[]).map((opzione) => {
